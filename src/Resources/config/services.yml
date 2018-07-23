@@ -1,0 +1,27 @@
+parameters:
+services:
+    #FORM TYPES
+    odiseo_sylius_banner.form.type.banner:
+        class: Odiseo\SyliusBannerPlugin\Form\Type\BannerType
+        arguments: ['%odiseo_sylius_banner.model.banner.class%', []]
+        tags:
+            - { name: form.type, alias: odiseo_sylius_banner }
+
+    odiseo_sylius_banner.form.type.banner_translation:
+        class: Odiseo\SyliusBannerPlugin\Form\Type\BannerTranslationType
+        arguments: ['%odiseo_sylius_banner.model.banner_translation.class%', []]
+        tags:
+            - { name: form.type, alias: odiseo_sylius_banner_translation }
+
+    #LISTENERS
+    odiseo_sylius_banner.listener.admin.menu_builder:
+        class: Odiseo\SyliusBannerPlugin\Menu\AdminMenuListener
+        tags:
+            - { name: kernel.event_listener, event: sylius.menu.admin.main, method: addAdminMenuItems }
+
+    #FIXTURES
+    odiseo_sylius_banner.fixture.banner:
+        class: Odiseo\SyliusBannerPlugin\Fixture\BannerFixture
+        arguments: ["@odiseo_sylius_banner.manager.banner", "@odiseo_sylius_banner.factory.banner", "@odiseo_sylius_banner.repository.banner", "@sylius.repository.channel", "@sylius.repository.locale"]
+        tags:
+            - { name: "sylius_fixtures.fixture" }

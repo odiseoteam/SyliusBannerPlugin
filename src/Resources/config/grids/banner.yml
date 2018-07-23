@@ -1,0 +1,46 @@
+sylius_grid:
+    grids:
+        odiseo_sylius_banner:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: "%odiseo_sylius_banner.model.banner.class%"
+            sorting:
+                createdAt: desc
+            fields:
+                code:
+                    type: string
+                    label: sylius.ui.code
+                    sortable: ~
+                image:
+                    type: twig
+                    label: sylius.ui.image
+                    path: imageName
+                    options:
+                        template: "@OdiseoSyliusBannerPlugin/Field/_image.html.twig"
+                enabled:
+                    type: twig
+                    label: sylius.ui.enabled
+                    options:
+                        template: "@SyliusUi/Grid/Field/enabled.html.twig"
+                createdAt:
+                    type: datetime
+                    label: sylius.ui.creation_date
+                    sortable: ~
+                    options:
+                        format: d-m-Y H:i
+            filters:
+                search:
+                    type: string
+                    label: sylius.ui.search
+                    options:
+                        fields: [code]
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete

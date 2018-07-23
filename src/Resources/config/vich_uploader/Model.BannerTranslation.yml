@@ -1,0 +1,4 @@
+Odiseo\SyliusBannerPlugin\Model\BannerTranslation:
+    imageFile:
+        mapping:           banner_image
+        filename_property: image_name

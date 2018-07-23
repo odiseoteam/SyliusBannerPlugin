@@ -1,0 +1,9 @@
+odiseo_sylius_banner:
+    ui:
+        banners: Banners
+        edit_banner: Editar banner
+        new_banner: Nuevo banner
+    form:
+        banner:
+            translations: Traducciones
+            channel: Tienda

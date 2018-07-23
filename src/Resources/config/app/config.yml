@@ -1,0 +1,41 @@
+sylius_channel:
+    resources:
+        channel:
+            classes:
+                model: Odiseo\SyliusBannerPlugin\Model\Channel
+
+knp_gaufrette:
+    stream_wrapper: ~
+    adapters:
+        banner_image:
+            local:
+                directory: "%kernel.root_dir%/../web/media/banner-image"
+                create: true
+    filesystems:
+        banner_image_fs:
+            adapter: banner_image
+
+vich_uploader:
+   db_driver: orm # or mongodb or propel or phpcr
+   storage:   gaufrette
+
+   mappings:
+        banner_image:
+            uri_prefix:         /banner-image
+            upload_destination: banner_image_fs
+            namer:              vich_uploader.namer_uniqid
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+
+liip_imagine:
+    loaders:
+        banner_image:
+            filesystem:
+                data_root: "%kernel.root_dir%/../web/media/banner-image"
+    filter_sets:
+        odiseo_sylius_banner_image:
+            data_loader: banner_image
+            filters:
+                thumbnail: { size: [300, 300], mode: inset }
+                background: { size: [300, 300], position: center, color: '#FFFFFF' }
