@@ -29,7 +29,7 @@ class BannerType extends AbstractResourceType
                 'entry_type' => BannerTranslationType::class,
                 'label' => 'odiseo_sylius_banner.form.banner.translations',
             ])
-            ->add('channel', ChannelChoiceType::class, [
+            ->add('channels', ChannelChoiceType::class, [
                 'multiple' => true,
                 'expanded' => true,
                 'label' => 'odiseo_sylius_banner.form.banner.channel',

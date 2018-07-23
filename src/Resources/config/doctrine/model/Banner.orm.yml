@@ -36,6 +36,6 @@ Odiseo\SyliusBannerPlugin\Model\Banner:
                     banner_id:
                         referencedColumnName: id
                         onDelete: 'CASCADE'
-            inverseJoinColumns:
-                channel_id:
-                    referencedColumnName: id
+                inverseJoinColumns:
+                    channel_id:
+                        referencedColumnName: id

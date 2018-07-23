@@ -7,3 +7,5 @@ odiseo_sylius_banner:
         banner:
             translations: Traducciones
             channel: Tienda
+            image: Imagen
+            url: URL

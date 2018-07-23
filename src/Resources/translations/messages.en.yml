@@ -7,3 +7,5 @@ odiseo_sylius_banner:
         banner:
             translations: Translations
             channel: Channel
+            image: Image
+            url: URL

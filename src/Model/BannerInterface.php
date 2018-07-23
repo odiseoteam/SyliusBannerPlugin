@@ -6,7 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Sylius\Component\Resource\Model\ToggleableInterface;
 use Sylius\Component\Resource\Model\TranslatableInterface;
 
-interface BannerInterface extends TranslatableInterface, ToggleableInterface
+interface BannerInterface extends BannerTranslationInterface, TranslatableInterface, ToggleableInterface
 {
     /**
      * @return string
