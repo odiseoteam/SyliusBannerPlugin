@@ -13,6 +13,12 @@ services:
         tags:
             - { name: form.type, alias: odiseo_sylius_banner_translation }
 
+    odiseo_sylius_banner.form.type.banner_type:
+        class: Odiseo\SyliusBannerPlugin\Form\Type\BannerTypeType
+        arguments: ['%odiseo_sylius_banner.model.banner_type.class%', []]
+        tags:
+        - { name: form.type, alias: odiseo_sylius_banner_type }
+
     #LISTENERS
     odiseo_sylius_banner.listener.admin.menu_builder:
         class: Odiseo\SyliusBannerPlugin\Menu\AdminMenuListener

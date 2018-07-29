@@ -20,6 +20,16 @@ interface BannerInterface extends BannerTranslationInterface, TranslatableInterf
     public function setCode($code);
 
     /**
+     * @return BannerTypeInterface
+     */
+    public function getType();
+
+    /**
+     * @param BannerTypeInterface $type
+     */
+    public function setType(BannerTypeInterface $type);
+
+    /**
      * @return TaxonInterface
      */
     public function getTaxon();

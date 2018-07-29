@@ -22,6 +22,9 @@ class Banner implements BannerInterface
     /** @var string */
     protected $code;
 
+    /** @var BannerTypeInterface */
+    protected $type;
+
     /** @var TaxonInterface */
     protected $taxon;
 
@@ -67,6 +70,23 @@ class Banner implements BannerInterface
     {
         $this->code = $code;
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function setType(BannerTypeInterface $type)
+    {
+        $this->type = $type;
+    }
+
 
     /**
      * {@inheritdoc}

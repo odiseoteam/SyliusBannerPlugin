@@ -27,6 +27,13 @@ Odiseo\SyliusBannerPlugin\Model\Banner:
                 timestampable:
                     on: update
     manyToOne:
+        type:
+            targetEntity: BannerType
+            inversedBy: banners
+            joinColumn:
+                name: type_id
+                referenceColumnName: id
+                onDelete: 'CASCADE'
         taxon:
             targetEntity: Sylius\Component\Taxonomy\Model\TaxonInterface
             joinColumn:
