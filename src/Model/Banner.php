@@ -3,6 +3,7 @@
 namespace Odiseo\SyliusBannerPlugin\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Sylius\Component\Core\Model\TaxonInterface;
 use Sylius\Component\Resource\Model\TimestampableTrait;
 use Sylius\Component\Resource\Model\ToggleableTrait;
 use Sylius\Component\Resource\Model\TranslatableTrait;
@@ -20,6 +21,9 @@ class Banner implements BannerInterface
 
     /** @var string */
     protected $code;
+
+    /** @var TaxonInterface */
+    protected $taxon;
 
     /** @var ArrayCollection|ChannelInterface[] */
     protected $channels;
@@ -110,6 +114,22 @@ class Banner implements BannerInterface
     public function setUrl($url)
     {
         $this->getTranslation()->setUrl($url);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getTaxon()
+    {
+        return $this->taxon;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function setTaxon(TaxonInterface $taxon)
+    {
+        $this->taxon = $taxon;
     }
 
     /**

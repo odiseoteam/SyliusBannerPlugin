@@ -6,6 +6,7 @@ odiseo_sylius_banner:
     form:
         banner:
             translations: Traducciones
+            taxon: Taxon
             channel: Tienda
             image: Imagen
             url: URL

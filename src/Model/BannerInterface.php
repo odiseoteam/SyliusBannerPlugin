@@ -3,6 +3,7 @@
 namespace Odiseo\SyliusBannerPlugin\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Sylius\Component\Core\Model\TaxonInterface;
 use Sylius\Component\Resource\Model\ToggleableInterface;
 use Sylius\Component\Resource\Model\TranslatableInterface;
 
@@ -17,6 +18,16 @@ interface BannerInterface extends BannerTranslationInterface, TranslatableInterf
      * @param string $code
      */
     public function setCode($code);
+
+    /**
+     * @return TaxonInterface
+     */
+    public function getTaxon();
+
+    /**
+     * @param TaxonInterface $taxon
+     */
+    public function setTaxon(TaxonInterface $taxon);
 
     /**
      * @return ArrayCollection|ChannelInterface[]

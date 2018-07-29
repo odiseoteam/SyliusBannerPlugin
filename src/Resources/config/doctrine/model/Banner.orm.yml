@@ -26,6 +26,13 @@ Odiseo\SyliusBannerPlugin\Model\Banner:
             gedmo:
                 timestampable:
                     on: update
+    manyToOne:
+        taxon:
+            targetEntity: Sylius\Component\Taxonomy\Model\TaxonInterface
+            joinColumn:
+                name: taxon_id
+                referenceColumnName: id
+                onDelete: 'CASCADE'
     manyToMany:
         channels:
             targetEntity: Sylius\Component\Channel\Model\ChannelInterface
