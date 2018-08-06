@@ -40,7 +40,7 @@ class BannerTranslation extends AbstractTranslation implements BannerTranslation
      */
     public function setImageFile(File $file)
     {
-        $this->image = $file;
+        $this->imageFile = $file;
 
         if($file)
         {
