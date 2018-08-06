@@ -4,6 +4,12 @@ sylius_channel:
             classes:
                 model: Odiseo\SyliusBannerPlugin\Model\Channel
 
+sylius_taxonomy:
+    resources:
+        taxon:
+            classes:
+                model: Odiseo\SyliusBannerPlugin\Model\Taxon
+
 knp_gaufrette:
     stream_wrapper: ~
     adapters:

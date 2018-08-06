@@ -26,13 +26,6 @@ Odiseo\SyliusBannerPlugin\Model\Banner:
             gedmo:
                 timestampable:
                     on: update
-    manyToOne:
-        taxon:
-            targetEntity: Sylius\Component\Taxonomy\Model\TaxonInterface
-            joinColumn:
-                name: taxon_id
-                referenceColumnName: id
-                onDelete: 'CASCADE'
     manyToMany:
         channels:
             targetEntity: Sylius\Component\Channel\Model\ChannelInterface
@@ -45,4 +38,16 @@ Odiseo\SyliusBannerPlugin\Model\Banner:
                         onDelete: 'CASCADE'
                 inverseJoinColumns:
                     channel_id:
+                        referencedColumnName: id
+        taxons:
+            targetEntity: Sylius\Component\Taxonomy\Model\TaxonInterface
+            inversedBy: banners
+            joinTable:
+                name: odiseo_banners_taxons
+                joinColumns:
+                    banner_id:
+                        referencedColumnName: id
+                        onDelete: 'CASCADE'
+                inverseJoinColumns:
+                    taxon_id:
                         referencedColumnName: id

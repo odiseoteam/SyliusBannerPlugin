@@ -3,7 +3,6 @@
 namespace Odiseo\SyliusBannerPlugin\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Sylius\Component\Core\Model\TaxonInterface;
 use Sylius\Component\Resource\Model\TimestampableTrait;
 use Sylius\Component\Resource\Model\ToggleableTrait;
 use Sylius\Component\Resource\Model\TranslatableTrait;
@@ -23,17 +22,18 @@ class Banner implements BannerInterface
     /** @var string */
     protected $code;
 
-    /** @var TaxonInterface */
-    protected $taxon;
-
     /** @var ArrayCollection|ChannelInterface[] */
     protected $channels;
+
+    /** @var ArrayCollection|TaxonInterface[] */
+    protected $taxons;
 
     public function __construct()
     {
         $this->initializeTranslationsCollection();
 
         $this->channels = new ArrayCollection();
+        $this->taxons = new ArrayCollection();
         $this->createdAt = new \DateTime();
     }
 
@@ -118,22 +118,6 @@ class Banner implements BannerInterface
     }
 
     /**
-     * @inheritdoc
-     */
-    public function getTaxon()
-    {
-        return $this->taxon;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function setTaxon(TaxonInterface $taxon)
-    {
-        $this->taxon = $taxon;
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function getChannels()
@@ -163,6 +147,38 @@ class Banner implements BannerInterface
     {
         if($this->channels->contains($channel))
             $this->channels->removeElement($channel);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getTaxons()
+    {
+        return $this->taxons;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setTaxons(ArrayCollection $taxons)
+    {
+        $this->taxons = $taxons;
+    }
+    /**
+     * {@inheritdoc}
+     */
+    public function addTaxon(TaxonInterface $taxon)
+    {
+        if(!$this->taxons->contains($taxon))
+            $this->taxons->add($taxon);
+    }
+    /**
+     * {@inheritdoc}
+     */
+    public function removeTaxon(TaxonInterface $taxon)
+    {
+        if($this->taxons->contains($taxon))
+            $this->taxons->removeElement($taxon);
     }
 
     /**

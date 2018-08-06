@@ -30,7 +30,8 @@ class BannerType extends AbstractResourceType
                 'entry_type' => BannerTranslationType::class,
                 'label' => 'odiseo_sylius_banner.form.banner.translations',
             ])
-            ->add('taxon', TaxonAutocompleteChoiceType::class, [
+            ->add('taxons', TaxonAutocompleteChoiceType::class, [
+                'multiple' => true,
                 'label' => 'odiseo_sylius_banner.form.banner.taxon',
             ])
             ->add('channels', ChannelChoiceType::class, [
