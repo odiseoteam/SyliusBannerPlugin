@@ -5,16 +5,12 @@ declare(strict_types=1);
 namespace Odiseo\SyliusBannerPlugin\DependencyInjection;
 
 use Odiseo\SyliusBannerPlugin\Doctrine\ORM\BannerRepository;
-use Odiseo\SyliusBannerPlugin\Doctrine\ORM\BannerTypeRepository;
 use Odiseo\SyliusBannerPlugin\Form\Type\BannerTranslationType;
 use Odiseo\SyliusBannerPlugin\Form\Type\BannerType;
-use Odiseo\SyliusBannerPlugin\Form\Type\BannerTypeType;
 use Odiseo\SyliusBannerPlugin\Model\Banner;
 use Odiseo\SyliusBannerPlugin\Model\BannerInterface;
 use Odiseo\SyliusBannerPlugin\Model\BannerTranslation;
 use Odiseo\SyliusBannerPlugin\Model\BannerTranslationInterface;
-use Odiseo\SyliusBannerPlugin\Model\BannerType as Type;
-use Odiseo\SyliusBannerPlugin\Model\BannerTypeInterface;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
@@ -90,23 +86,6 @@ final class Configuration implements ConfigurationInterface
                                                 ->end()
                                             ->end()
                                         ->end()
-                                    ->end()
-                                ->end()
-                            ->end()
-                        ->end()
-                        ->arrayNode('banner_type')
-                            ->addDefaultsIfNotSet()
-                            ->children()
-                                ->variableNode('options')->end()
-                                ->arrayNode('classes')
-                                    ->addDefaultsIfNotSet()
-                                    ->children()
-                                        ->scalarNode('model')->defaultValue(Type::class)->cannotBeEmpty()->end()
-                                        ->scalarNode('interface')->defaultValue(BannerTypeInterface::class)->cannotBeEmpty()->end()
-                                        ->scalarNode('controller')->defaultValue(ResourceController::class)->cannotBeEmpty()->end()
-                                        ->scalarNode('repository')->defaultValue(BannerTypeRepository::class)->cannotBeEmpty()->end()
-                                        ->scalarNode('factory')->defaultValue(Factory::class)->end()
-                                        ->scalarNode('form')->defaultValue(BannerTypeType::class)->cannotBeEmpty()->end()
                                     ->end()
                                 ->end()
                             ->end()

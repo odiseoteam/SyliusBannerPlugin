@@ -7,6 +7,7 @@ use Sylius\Component\Core\Model\TaxonInterface;
 use Sylius\Component\Resource\Model\TimestampableTrait;
 use Sylius\Component\Resource\Model\ToggleableTrait;
 use Sylius\Component\Resource\Model\TranslatableTrait;
+use Symfony\Component\HttpFoundation\File\File;
 
 class Banner implements BannerInterface
 {
@@ -21,9 +22,6 @@ class Banner implements BannerInterface
 
     /** @var string */
     protected $code;
-
-    /** @var BannerTypeInterface */
-    protected $type;
 
     /** @var TaxonInterface */
     protected $taxon;
@@ -72,23 +70,6 @@ class Banner implements BannerInterface
     }
 
     /**
-     * @inheritdoc
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function setType(BannerTypeInterface $type)
-    {
-        $this->type = $type;
-    }
-
-
-    /**
      * {@inheritdoc}
      */
     public function getImageFile()
@@ -99,7 +80,7 @@ class Banner implements BannerInterface
     /**
      * {@inheritdoc}
      */
-    public function setImageFile($file)
+    public function setImageFile(File $file)
     {
         $this->getTranslation()->setImageFile($file);
     }

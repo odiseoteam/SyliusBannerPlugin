@@ -3,12 +3,8 @@ odiseo_sylius_banner:
         banners: Banners
         edit_banner: Edit banner
         new_banner: New banner
-        banner_types: Banner Types
-        edit_banner_type: Edit banner type
-        new_banner_type: New banner type
     form:
         banner:
-            type: Type
             translations: Translations
             taxon: Taxon
             channel: Channel
