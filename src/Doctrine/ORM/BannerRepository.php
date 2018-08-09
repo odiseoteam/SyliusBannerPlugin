@@ -2,8 +2,8 @@
 
 namespace Odiseo\SyliusBannerPlugin\Doctrine\ORM;
 
-use Odiseo\SyliusBannerPlugin\Model\BannerInterface;
 use Odiseo\SyliusBannerPlugin\Model\ChannelInterface;
+use Odiseo\SyliusBannerPlugin\Model\TaxonInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 
 class BannerRepository extends EntityRepository implements BannerRepositoryInterface
@@ -11,7 +11,7 @@ class BannerRepository extends EntityRepository implements BannerRepositoryInter
     /**
      * {@inheritdoc}
      */
-    public function findByChannelQuery(ChannelInterface $channel)
+    public function findByChannelQuery(ChannelInterface $channel, TaxonInterface $taxon = null)
     {
         $queryBuilder = $this->createQueryBuilder('b')
             ->innerJoin('b.channels', 'channel')
@@ -21,31 +21,21 @@ class BannerRepository extends EntityRepository implements BannerRepositoryInter
             ->setParameter('enabled', true)
         ;
 
+        if($taxon) {
+            $queryBuilder->innerJoin('b.taxons', 'taxon')
+                ->andWhere('taxon = :taxon')
+                ->setParameter('taxon', $taxon)
+            ;
+        }
+
         return $queryBuilder;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function findByChannel(ChannelInterface $channel)
+    public function findByChannel(ChannelInterface $channel, TaxonInterface $taxon = null)
     {
-        return $this->findByChannelQuery($channel)->getQuery()->getResult();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function findOneByCode(string $code): ?BannerInterface
-    {
-        $banner = $this->createQueryBuilder('o')
-            ->andWhere('o.code = :code')
-            ->andWhere('o.enabled = :enabled')
-            ->setParameter('code', $code)
-            ->setParameter('enabled', true)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-
-        return $banner;
+        return $this->findByChannelQuery($channel, $taxon)->getQuery()->getResult();
     }
 }
