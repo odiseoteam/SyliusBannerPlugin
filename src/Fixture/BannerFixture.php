@@ -100,7 +100,7 @@ class BannerFixture extends AbstractFixture
                 /** @var BannerInterface $banner */
                 $banner = $this->bannerFactory->createNew();
 
-                $banner->setCode($this->faker->company);
+                $banner->setCode($this->faker->slug);
                 $banner->addChannel($channel);
 
                 foreach ($this->getLocales() as $localeCode) {
