@@ -15,7 +15,14 @@ interface BannerRepositoryInterface extends RepositoryInterface
      *
      * @return QueryBuilder
      */
-    public function findByChannelQuery(ChannelInterface $channel, TaxonInterface $taxon);
+    public function findByEnabledQuery(ChannelInterface $channel, TaxonInterface $taxon);
+
+    /**
+     * @param ChannelInterface $channel
+     *
+     * @return array
+     */
+    public function findByChannel(ChannelInterface $channel);
 
     /**
      * @param ChannelInterface $channel
@@ -23,5 +30,5 @@ interface BannerRepositoryInterface extends RepositoryInterface
      *
      * @return array
      */
-    public function findByChannel(ChannelInterface $channel, TaxonInterface $taxon);
+    public function findByChannelAndTaxon(ChannelInterface $channel, TaxonInterface $taxon);
 }
