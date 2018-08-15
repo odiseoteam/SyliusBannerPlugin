@@ -4,16 +4,13 @@
             <div class="sp-slides">
                 {% for banner in banners %}
                     <div class="sp-slide">
-                        <a href="{{ banner.url }}" target="_blank">
-                            <img class="sp-image" src="{{ banner.imageName|imagine_filter('odiseo_sylius_banner_image') }}">
-                        </a>
+                        {% include '@OdiseoSyliusBannerPlugin/Shop/Banner/_banner.html.twig' with {'banner': banner} only %}
                     </div>
                 {% endfor %}
             </div>
         </div>
     {% else %}
-        <a href="{{ banners[0].url }}" target="_blank">
-            <img src="{{ banners[0].imageName|imagine_filter('odiseo_sylius_banner_image') }}">
-        </a>
+        {% set banner = banners|first %}
+        {% include '@OdiseoSyliusBannerPlugin/Shop/Banner/_banner.html.twig' with {'banner': banner} only %}
     {% endif %}
 {% endif %}
