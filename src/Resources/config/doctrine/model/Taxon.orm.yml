@@ -1,7 +1,0 @@
-Odiseo\SyliusBannerPlugin\Model\Taxon:
-    type: mappedSuperclass
-    table: sylius_taxon
-    manyToMany:
-        banners:
-            targetEntity: Odiseo\SyliusBannerPlugin\Model\BannerInterface
-            mappedBy: taxons

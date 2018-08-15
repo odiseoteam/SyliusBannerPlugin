@@ -1,7 +1,0 @@
-Odiseo\SyliusBannerPlugin\Model\Channel:
-    type: mappedSuperclass
-    table: sylius_channel
-    manyToMany:
-        banners:
-            targetEntity: Odiseo\SyliusBannerPlugin\Model\BannerInterface
-            mappedBy: channels

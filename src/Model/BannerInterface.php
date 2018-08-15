@@ -3,8 +3,10 @@
 namespace Odiseo\SyliusBannerPlugin\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Sylius\Component\Channel\Model\ChannelInterface;
 use Sylius\Component\Resource\Model\ToggleableInterface;
 use Sylius\Component\Resource\Model\TranslatableInterface;
+use Sylius\Component\Taxonomy\Model\TaxonInterface;
 
 interface BannerInterface extends BannerTranslationInterface, TranslatableInterface, ToggleableInterface
 {

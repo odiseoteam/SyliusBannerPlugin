@@ -29,7 +29,6 @@ Odiseo\SyliusBannerPlugin\Model\Banner:
     manyToMany:
         channels:
             targetEntity: Sylius\Component\Channel\Model\ChannelInterface
-            inversedBy: banners
             joinTable:
                 name: odiseo_banners_channels
                 joinColumns:
@@ -41,7 +40,6 @@ Odiseo\SyliusBannerPlugin\Model\Banner:
                         referencedColumnName: id
         taxons:
             targetEntity: Sylius\Component\Taxonomy\Model\TaxonInterface
-            inversedBy: banners
             joinTable:
                 name: odiseo_banners_taxons
                 joinColumns:

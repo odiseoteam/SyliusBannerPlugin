@@ -3,10 +3,9 @@
 namespace Odiseo\SyliusBannerPlugin\Doctrine\ORM;
 
 use Doctrine\ORM\QueryBuilder;
-use Odiseo\SyliusBannerPlugin\Model\BannerInterface;
-use Odiseo\SyliusBannerPlugin\Model\ChannelInterface;
-use Odiseo\SyliusBannerPlugin\Model\TaxonInterface;
+use Sylius\Component\Channel\Model\ChannelInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
+use Sylius\Component\Taxonomy\Model\TaxonInterface;
 
 interface BannerRepositoryInterface extends RepositoryInterface
 {

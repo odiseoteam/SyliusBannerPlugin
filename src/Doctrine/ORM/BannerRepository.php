@@ -2,9 +2,9 @@
 
 namespace Odiseo\SyliusBannerPlugin\Doctrine\ORM;
 
-use Odiseo\SyliusBannerPlugin\Model\ChannelInterface;
-use Odiseo\SyliusBannerPlugin\Model\TaxonInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
+use Sylius\Component\Channel\Model\ChannelInterface;
+use Sylius\Component\Taxonomy\Model\TaxonInterface;
 
 class BannerRepository extends EntityRepository implements BannerRepositoryInterface
 {
