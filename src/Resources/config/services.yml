@@ -22,6 +22,6 @@ services:
     #FIXTURES
     odiseo_sylius_banner.fixture.banner:
         class: Odiseo\SyliusBannerPlugin\Fixture\BannerFixture
-        arguments: ["@odiseo_sylius_banner.manager.banner", "@odiseo_sylius_banner.factory.banner", "@odiseo_sylius_banner.repository.banner", "@sylius.repository.channel", "@sylius.repository.locale"]
+        arguments: ["@odiseo_sylius_banner.manager.banner", "@odiseo_sylius_banner.factory.banner", "@odiseo_sylius_banner.repository.banner", "@sylius.repository.channel", "@sylius.repository.locale", "@sylius.factory.taxon", "@sylius.repository.taxon"]
         tags:
             - { name: "sylius_fixtures.fixture" }
