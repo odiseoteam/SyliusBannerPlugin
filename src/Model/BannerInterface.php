@@ -2,13 +2,20 @@
 
 namespace Odiseo\SyliusBannerPlugin\Model;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Sylius\Component\Channel\Model\ChannelInterface;
+use Sylius\Component\Channel\Model\ChannelsAwareInterface;
+use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\ToggleableInterface;
 use Sylius\Component\Resource\Model\TranslatableInterface;
-use Sylius\Component\Taxonomy\Model\TaxonInterface;
+use Sylius\Component\Resource\Model\TranslationInterface;
+use Sylius\Component\Taxonomy\Model\TaxonsAwareInterface;
+use Symfony\Component\HttpFoundation\File\File;
 
-interface BannerInterface extends BannerTranslationInterface, TranslatableInterface, ToggleableInterface
+interface BannerInterface extends
+    ResourceInterface,
+    TranslatableInterface,
+    ToggleableInterface,
+    ChannelsAwareInterface,
+    TaxonsAwareInterface
 {
     /**
      * @return string
@@ -21,44 +28,41 @@ interface BannerInterface extends BannerTranslationInterface, TranslatableInterf
     public function setCode($code);
 
     /**
-     * @return ArrayCollection|ChannelInterface[]
+     * @param File $file
      */
-    public function getChannels();
+    public function setImageFile(File $file);
 
     /**
-     * @param ArrayCollection $channels
+     * @return File
      */
-    public function setChannels(ArrayCollection $channels);
+    public function getImageFile();
 
     /**
-     * @param ChannelInterface $channel
+     * @param string $imageName
      */
-    public function addChannel(ChannelInterface $channel);
+    public function setImageName($imageName);
 
     /**
-     * @param ChannelInterface $channel
+     * @return string
      */
-    public function removeChannel(ChannelInterface $channel);
+    public function getImageName();
 
     /**
-     * @return ArrayCollection|TaxonInterface[]
+     * @return string
      */
-    public function getTaxons();
+    public function getUrl();
 
     /**
-     * @param ArrayCollection $taxons
+     * @param string $url
      */
-    public function setTaxons(ArrayCollection $taxons);
+    public function setUrl($url);
 
     /**
-     * @param TaxonInterface $taxon
+     * @param string|null $locale
+     *
+     * @return BannerTranslationInterface
      */
-    public function addTaxon(TaxonInterface $taxon);
-
-    /**
-     * @param TaxonInterface $taxon
-     */
-    public function removeTaxon(TaxonInterface $taxon);
+    public function getTranslation(?string $locale = null): TranslationInterface;
 
     /**
      * @return string

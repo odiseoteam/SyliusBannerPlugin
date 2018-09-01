@@ -28,6 +28,13 @@ This plugin add banners to the Sylius content. The banners are fully customizabl
 
 <img src="https://github.com/odiseoteam/SyliusBannerPlugin/blob/master/screenshot_1.png" alt="Banners admin">
 
+## Demo
+
+You can see this plugin in action in our Sylius Demo application.
+
+- Frontend: [sylius-demo.odiseo.com.ar](https://sylius-demo.odiseo.com.ar). 
+- Administration: [sylius-demo.odiseo.com.ar/admin](https://sylius-demo.odiseo.com.ar/admin) with `odiseo: odiseo` credentials.
+
 ## Installation
 
 1. Run `composer require odiseoteam/sylius-banner-plugin`.
@@ -54,19 +61,27 @@ public function registerBundles(): array
 3. Import the configurations on your config.yml:
  
 ```yml
-    - { resource: "@OdiseoSyliusBannerPlugin/Resources/config/app/config.yml" }
-    - { resource: "@OdiseoSyliusBannerPlugin/Resources/config/grids/banner.yml" }
+    - { resource: "@OdiseoSyliusBannerPlugin/Resources/config/config.yml" }
 ```
 
-4. Add the admin routes:
+4. Add the admin and shop routes:
 
 ```yml
-odiseo_sylius_admin_banner:
-    resource: "@OdiseoSyliusBannerPlugin/Resources/config/routing/admin_banner.yml"
+odiseo_sylius_banner_admin:
+    resource: "@OdiseoSyliusBannerPlugin/Resources/config/routing/admin.yml"
     prefix: /admin
+    
+odiseo_sylius_banner_shop:
+    resource: "@OdiseoSyliusBannerPlugin/Resources/config/routing/shop.yml"
+    prefix: /{_locale}/banner
 ```
 
-5. Update your schema and/or migrations.
+5. Finish the installation updatating the database schema and installing assets:
+   
+```
+php bin/console doctrine:schema:update --force
+php bin/console assets:install
+php bin/console sylius:theme:assets:install
 
 ## Fixtures
 
@@ -82,6 +97,10 @@ banner:
         banners_per_channel: 12
 ```
 
+## Test the plugin
+
+You can follow the instructions to test this plugins in the proper documentation page: [Test the plugin](doc/tests.md).
+    
 ## Credits
 
-This plugins is maintained by <a href="https://odiseo.com.ar">Odiseo</a>, a team of senior developers. Contact us: <a href="mailto:team@odiseo.com.ar">team@odiseo.com.ar</a>.
+This plugin is maintained by <a href="https://odiseo.com.ar">Odiseo</a>. Want us to help you with this plugin or any Sylius project? Contact us on <a href="mailto:team@odiseo.com.ar">team@odiseo.com.ar</a>.

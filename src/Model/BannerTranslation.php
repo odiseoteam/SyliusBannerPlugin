@@ -42,10 +42,7 @@ class BannerTranslation extends AbstractTranslation implements BannerTranslation
     {
         $this->imageFile = $file;
 
-        if($file)
-        {
-            $this->setUpdatedAt(new \DateTime());
-        }
+        $this->setUpdatedAt(new \DateTime());
     }
 
     /**

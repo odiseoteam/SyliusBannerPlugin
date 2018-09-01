@@ -3,10 +3,12 @@
 namespace Odiseo\SyliusBannerPlugin\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Channel\Model\ChannelInterface;
 use Sylius\Component\Resource\Model\TimestampableTrait;
 use Sylius\Component\Resource\Model\ToggleableTrait;
 use Sylius\Component\Resource\Model\TranslatableTrait;
+use Sylius\Component\Resource\Model\TranslationInterface;
 use Sylius\Component\Taxonomy\Model\TaxonInterface;
 use Symfony\Component\HttpFoundation\File\File;
 
@@ -14,6 +16,7 @@ class Banner implements BannerInterface
 {
     use TranslatableTrait {
         __construct as private initializeTranslationsCollection;
+        getTranslation as private doGetTranslation;
     }
     use TimestampableTrait;
     use ToggleableTrait;
@@ -45,14 +48,6 @@ class Banner implements BannerInterface
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function createTranslation()
-    {
-        return new BannerTranslation();
     }
 
     /**
@@ -122,7 +117,7 @@ class Banner implements BannerInterface
     /**
      * {@inheritdoc}
      */
-    public function getChannels()
+    public function getChannels(): Collection
     {
         return $this->channels;
     }
@@ -130,31 +125,35 @@ class Banner implements BannerInterface
     /**
      * {@inheritdoc}
      */
-    public function setChannels(ArrayCollection $channels)
+    public function hasChannel(ChannelInterface $channel): bool
     {
-        $this->channels = $channels;
-    }
-    /**
-     * {@inheritdoc}
-     */
-    public function addChannel(ChannelInterface $channel)
-    {
-        if(!$this->channels->contains($channel))
-            $this->channels->add($channel);
-    }
-    /**
-     * {@inheritdoc}
-     */
-    public function removeChannel(ChannelInterface $channel)
-    {
-        if($this->channels->contains($channel))
-            $this->channels->removeElement($channel);
+        return $this->channels->contains($channel);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getTaxons()
+    public function addChannel(ChannelInterface $channel): void
+    {
+        if(!$this->hasChannel($channel)) {
+            $this->channels->add($channel);
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeChannel(ChannelInterface $channel): void
+    {
+        if($this->hasChannel($channel)) {
+            $this->channels->removeElement($channel);
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getTaxons(): Collection
     {
         return $this->taxons;
     }
@@ -162,25 +161,48 @@ class Banner implements BannerInterface
     /**
      * {@inheritdoc}
      */
-    public function setTaxons(ArrayCollection $taxons)
+    public function hasTaxon(TaxonInterface $taxon): bool
     {
-        $this->taxons = $taxons;
+        return $this->taxons->contains($taxon);
     }
+
     /**
      * {@inheritdoc}
      */
-    public function addTaxon(TaxonInterface $taxon)
+    public function addTaxon(TaxonInterface $taxon): void
     {
-        if(!$this->taxons->contains($taxon))
+        if (!$this->taxons->contains($taxon)) {
             $this->taxons->add($taxon);
+        }
     }
+
     /**
      * {@inheritdoc}
      */
-    public function removeTaxon(TaxonInterface $taxon)
+    public function removeTaxon(TaxonInterface $taxon): void
     {
-        if($this->taxons->contains($taxon))
+        if($this->taxons->contains($taxon)) {
             $this->taxons->removeElement($taxon);
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getTranslation(?string $locale = null): TranslationInterface
+    {
+        /** @var BannerTranslation $translation */
+        $translation = $this->doGetTranslation($locale);
+
+        return $translation;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function createTranslation(): BannerTranslation
+    {
+        return new BannerTranslation();
     }
 
     /**

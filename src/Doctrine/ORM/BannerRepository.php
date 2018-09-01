@@ -11,7 +11,7 @@ class BannerRepository extends EntityRepository implements BannerRepositoryInter
     /**
      * {@inheritdoc}
      */
-    public function findByEnabledQuery(ChannelInterface $channel, TaxonInterface $taxon = null)
+    public function findByEnabledQueryBuilder(ChannelInterface $channel, TaxonInterface $taxon = null)
     {
         $queryBuilder = $this->createQueryBuilder('b')
             ->innerJoin('b.channels', 'channel')
@@ -36,7 +36,7 @@ class BannerRepository extends EntityRepository implements BannerRepositoryInter
      */
     public function findByChannel(ChannelInterface $channel)
     {
-        return $this->findByEnabledQuery($channel)->getQuery()->getResult();
+        return $this->findByEnabledQueryBuilder($channel)->getQuery()->getResult();
     }
 
     /**
@@ -44,6 +44,6 @@ class BannerRepository extends EntityRepository implements BannerRepositoryInter
      */
     public function findByChannelAndTaxon(ChannelInterface $channel, TaxonInterface $taxon)
     {
-        return $this->findByEnabledQuery($channel, $taxon)->getQuery()->getResult();
+        return $this->findByEnabledQueryBuilder($channel, $taxon)->getQuery()->getResult();
     }
 }

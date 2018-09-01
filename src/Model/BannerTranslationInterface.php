@@ -4,9 +4,10 @@ namespace Odiseo\SyliusBannerPlugin\Model;
 
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TimestampableInterface;
+use Sylius\Component\Resource\Model\TranslationInterface;
 use Symfony\Component\HttpFoundation\File\File;
 
-interface BannerTranslationInterface extends ResourceInterface, TimestampableInterface
+interface BannerTranslationInterface extends ResourceInterface, TranslationInterface, TimestampableInterface
 {
     /**
      * @param File $file
@@ -19,7 +20,7 @@ interface BannerTranslationInterface extends ResourceInterface, TimestampableInt
     public function getImageFile();
 
     /**
-     * @param $imageName
+     * @param string $imageName
      */
     public function setImageName($imageName);
 

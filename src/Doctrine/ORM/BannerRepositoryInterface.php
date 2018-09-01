@@ -15,7 +15,7 @@ interface BannerRepositoryInterface extends RepositoryInterface
      *
      * @return QueryBuilder
      */
-    public function findByEnabledQuery(ChannelInterface $channel, TaxonInterface $taxon);
+    public function findByEnabledQueryBuilder(ChannelInterface $channel, TaxonInterface $taxon);
 
     /**
      * @param ChannelInterface $channel

@@ -14,19 +14,15 @@ final class AdminMenuListener
     {
         $menu = $event->getMenu();
 
-        //Add new ones
-        $this->addBannersSubMenu($menu->getChild('catalog'));
-    }
+        /** @var ItemInterface $item */
+        $item = $menu->getChild('catalog');
+        if (null == $item) {
+           $item = $menu;
+        }
 
-    /**
-     * @param ItemInterface $menu
-     */
-    private function addBannersSubMenu(ItemInterface $menu): void
-    {
-        $menu
-            ->addChild('banners', ['route' => 'odiseo_sylius_banner_admin_banner_index'])
+        $item->addChild('banners', ['route' => 'odiseo_sylius_banner_admin_banner_index'])
             ->setLabel('odiseo_sylius_banner.ui.banners')
-            ->setLabelAttribute('icon', 'trademark')
+            ->setLabelAttribute('icon', 'image')
         ;
     }
 }

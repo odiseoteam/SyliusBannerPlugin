@@ -8,6 +8,9 @@ odiseo_sylius_admin_banner:
         grid: odiseo_sylius_banner
         permission: true
         vars:
+            all:
+                templates:
+                    form: '@OdiseoSyliusBannerPlugin/Admin/Banner/_form.html.twig'
             index:
-                icon: trademark
+                icon: image
     type: sylius.resource

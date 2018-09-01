@@ -1,0 +1,10 @@
+# This file is part of the Sylius package.
+# (c) Paweł Jędrzejewski
+
+sylius_fixtures:
+    suites:
+        default:
+            fixtures:
+                banner:
+                    options:
+                        banners_per_channel: 12

@@ -7,8 +7,10 @@ imports:
     - { resource: "@SyliusAdminBundle/Resources/config/app/config.yml" }
     - { resource: "@SyliusShopBundle/Resources/config/app/config.yml" }
     - { resource: "@SyliusAdminApiBundle/Resources/config/app/config.yml" }
+    - { resource: "@OdiseoSyliusBannerPlugin/Resources/config/config.yml" }
 
     - { resource: "../../../../vendor/sylius/sylius/app/config/security.yml" }
+    - { resource: fixtures.yml }
 
 framework:
     translator: { fallbacks: ["%locale%", "en"] }

@@ -158,7 +158,11 @@ class BannerFixture extends AbstractFixture
 
                 foreach ($imageFinder->files()->in($imagesPath)->name('01.png') as $img)
                 {
-                    $file = new UploadedFile($img->getRealPath(), $img->getFilename());
+                    /** @var string $path */
+                    $path = $img->getRealPath();
+                    /** @var string $filename */
+                    $filename = $img->getFilename();
+                    $file = new UploadedFile($path, $filename);
                     $banner->setImageFile($file);
                 }
             }
@@ -189,7 +193,11 @@ class BannerFixture extends AbstractFixture
 
                     foreach ($imageFinder->files()->in($imagesPath)->name('0'.$imageIndex.'.png') as $img)
                     {
-                        $file = new UploadedFile($img->getRealPath(), $img->getFilename());
+                        /** @var string $path */
+                        $path = $img->getRealPath();
+                        /** @var string $filename */
+                        $filename = $img->getFilename();
+                        $file = new UploadedFile($path, $filename);
                         $banner->setImageFile($file);
                     }
                     $imageIndex = $imageIndex>=4?1:$imageIndex+1;
@@ -202,9 +210,6 @@ class BannerFixture extends AbstractFixture
         $this->objectManager->flush();
     }
 
-    /**
-     * @return array
-     */
     private function getLocales()
     {
         /** @var LocaleInterface[] $locales */
