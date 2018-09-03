@@ -1,0 +1,14 @@
+odiseo_sylius_banner:
+    banner:
+        code:
+            unique: There is an existing banner with this code.
+            not_blank: Code cannot be blank.
+            min_length: Code must be at least {{ limit }} characters long.
+            max_length: Code can not be longer than {{ limit }} characters.
+    banner_translation:
+        image_file:
+            not_blank: Image cannot be blank.
+        url:
+            not_blank: Url cannot be blank.
+            min_length: Url must be at least {{ limit }} characters long.
+            max_length: Url can not be longer than {{ limit }} characters.

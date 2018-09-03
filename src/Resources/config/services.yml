@@ -3,13 +3,13 @@ services:
     #FORM TYPES
     odiseo_sylius_banner.form.type.banner:
         class: Odiseo\SyliusBannerPlugin\Form\Type\BannerType
-        arguments: ['%odiseo_sylius_banner.model.banner.class%', []]
+        arguments: ['%odiseo_sylius_banner.model.banner.class%', ['odiseo']]
         tags:
             - { name: form.type, alias: odiseo_sylius_banner }
 
     odiseo_sylius_banner.form.type.banner_translation:
         class: Odiseo\SyliusBannerPlugin\Form\Type\BannerTranslationType
-        arguments: ['%odiseo_sylius_banner.model.banner_translation.class%', []]
+        arguments: ['%odiseo_sylius_banner.model.banner_translation.class%', ['odiseo']]
         tags:
             - { name: form.type, alias: odiseo_sylius_banner_translation }
 
