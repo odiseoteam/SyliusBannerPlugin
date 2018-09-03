@@ -24,7 +24,7 @@ class Banner implements BannerInterface
     /** @var int */
     protected $id;
 
-    /** @var string */
+    /** @var string|null */
     protected $code;
 
     /** @var ArrayCollection|ChannelInterface[] */
@@ -203,13 +203,5 @@ class Banner implements BannerInterface
     protected function createTranslation(): BannerTranslation
     {
         return new BannerTranslation();
-    }
-
-    /**
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->code;
     }
 }

@@ -55,9 +55,4 @@ interface BannerInterface extends
      * @return BannerTranslationInterface
      */
     public function getTranslation(?string $locale = null): TranslationInterface;
-
-    /**
-     * @return string
-     */
-    public function __toString();
 }
