@@ -3,11 +3,11 @@
 namespace Odiseo\SyliusBannerPlugin\Form\Type;
 
 use Sylius\Bundle\ChannelBundle\Form\Type\ChannelChoiceType;
+use Sylius\Bundle\ResourceBundle\Form\EventSubscriber\AddCodeFormSubscriber;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Sylius\Bundle\ResourceBundle\Form\Type\ResourceTranslationsType;
 use Sylius\Bundle\TaxonomyBundle\Form\Type\TaxonAutocompleteChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class BannerType extends AbstractResourceType
@@ -20,9 +20,7 @@ class BannerType extends AbstractResourceType
         parent::buildForm($builder, $options);
 
         $builder
-            ->add('code', TextType::class, [
-                'label' => 'sylius.ui.code',
-            ])
+            ->addEventSubscriber(new AddCodeFormSubscriber())
             ->add('enabled', CheckboxType::class , [
                 'label' => 'sylius.ui.enabled',
             ])

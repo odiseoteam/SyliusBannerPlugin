@@ -3,6 +3,7 @@
 namespace Odiseo\SyliusBannerPlugin\Model;
 
 use Sylius\Component\Channel\Model\ChannelsAwareInterface;
+use Sylius\Component\Resource\Model\CodeAwareInterface;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\ToggleableInterface;
 use Sylius\Component\Resource\Model\TranslatableInterface;
@@ -12,21 +13,12 @@ use Symfony\Component\HttpFoundation\File\File;
 
 interface BannerInterface extends
     ResourceInterface,
+    CodeAwareInterface,
     TranslatableInterface,
     ToggleableInterface,
     ChannelsAwareInterface,
     TaxonsAwareInterface
 {
-    /**
-     * @return string
-     */
-    public function getCode();
-
-    /**
-     * @param string $code
-     */
-    public function setCode($code);
-
     /**
      * @param File $file
      */
