@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Odiseo\SyliusBlogPlugin\Behat\Behaviour;
+namespace Tests\Odiseo\SyliusBannerPlugin\Behat\Behaviour;
 
 use Behat\Mink\Element\NodeElement;
 use Sylius\Behat\Behaviour\DocumentAccessor;

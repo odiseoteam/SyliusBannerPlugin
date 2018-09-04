@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\Odiseo\SyliusBlogPlugin\Behat\Page\Admin\ArticleCategory;
+namespace Tests\Odiseo\SyliusBannerPlugin\Behat\Page\Admin\Banner;
 
 use Sylius\Behat\Page\Admin\Crud\CreatePageInterface as BaseCreatePageInterface;
-use Tests\Odiseo\SyliusBlogPlugin\Behat\Behaviour\ContainsErrorInterface;
+use Tests\Odiseo\SyliusBannerPlugin\Behat\Behaviour\ContainsErrorInterface;
 
 interface CreatePageInterface extends BaseCreatePageInterface, ContainsErrorInterface
 {
@@ -14,14 +14,14 @@ interface CreatePageInterface extends BaseCreatePageInterface, ContainsErrorInte
     public function fillCode($code);
 
     /**
-     * @param string $slug
+     * @param string $url
      * @throws \Behat\Mink\Exception\ElementNotFoundException
      */
-    public function fillSlug($slug);
+    public function fillUrl($url);
 
     /**
-     * @param string $title
+     * @param string $file
      * @throws \Behat\Mink\Exception\ElementNotFoundException
      */
-    public function fillTitle($title);
+    public function uploadFile($file);
 }

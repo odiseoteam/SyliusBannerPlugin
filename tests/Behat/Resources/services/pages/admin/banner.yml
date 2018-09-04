@@ -1,0 +1,21 @@
+services:
+    odiseo_sylius_banner.page.admin.banner.index_page:
+        class: Tests\Odiseo\SyliusBannerPlugin\Behat\Page\Admin\Banner\IndexPage
+        parent: sylius.behat.page.admin.crud.index
+        public: false
+        arguments:
+            - 'odiseo_sylius_banner_admin_banner_index'
+
+    odiseo_sylius_banner.page.admin.banner.create_page:
+        class: Tests\Odiseo\SyliusBannerPlugin\Behat\Page\Admin\Banner\CreatePage
+        parent: sylius.behat.page.admin.crud.create
+        public: false
+        arguments:
+            - 'odiseo_sylius_banner_admin_banner_create'
+
+    odiseo_sylius_banner.page.admin.banner.update_page:
+        class: Tests\Odiseo\SyliusBannerPlugin\Behat\Page\Admin\Banner\UpdatePage
+        parent: sylius.behat.page.admin.crud.update
+        public: false
+        arguments:
+            - 'odiseo_sylius_banner_admin_banner_update'

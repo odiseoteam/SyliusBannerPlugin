@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Odiseo\SyliusBlogPlugin\Behat\Page\Admin\Article;
+namespace Tests\Odiseo\SyliusBannerPlugin\Behat\Page\Admin\Banner;
 
 use Sylius\Behat\Page\Admin\Crud\IndexPageInterface as BaseIndexPageInterface;
 

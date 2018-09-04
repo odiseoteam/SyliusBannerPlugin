@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Tests\Odiseo\SyliusBlogPlugin\Behat\Context\Ui\Admin;
+namespace Tests\Odiseo\SyliusBannerPlugin\Behat\Context\Ui\Admin;
 
 use Behat\Behat\Context\Context;
-use Odiseo\SyliusBlogPlugin\Model\ArticleInterface;
+use Odiseo\SyliusBannerPlugin\Model\BannerInterface;
 use Sylius\Behat\Page\SymfonyPageInterface;
 use Sylius\Behat\Service\NotificationCheckerInterface;
 use Sylius\Behat\Service\Resolver\CurrentPageResolverInterface;
-use Tests\Odiseo\SyliusBlogPlugin\Behat\Page\Admin\Article\CreatePageInterface;
-use Tests\Odiseo\SyliusBlogPlugin\Behat\Page\Admin\Article\IndexPageInterface;
-use Tests\Odiseo\SyliusBlogPlugin\Behat\Page\Admin\Article\UpdatePageInterface;
+use Tests\Odiseo\SyliusBannerPlugin\Behat\Page\Admin\Banner\CreatePageInterface;
+use Tests\Odiseo\SyliusBannerPlugin\Behat\Page\Admin\Banner\IndexPageInterface;
+use Tests\Odiseo\SyliusBannerPlugin\Behat\Page\Admin\Banner\UpdatePageInterface;
 use Webmozart\Assert\Assert;
 
-final class ManagingArticlesContext implements Context
+final class ManagingBannersContext implements Context
 {
     /** @var CurrentPageResolverInterface */
     private $currentPageResolver;
@@ -53,53 +53,42 @@ final class ManagingArticlesContext implements Context
     }
 
     /**
-     * @Given I want to add a new article
+     * @Given I want to add a new banner
      * @throws \Sylius\Behat\Page\UnexpectedPageException
      */
-    public function iWantToAddNewArticle()
+    public function iWantToAddNewBanner()
     {
         $this->createPage->open(); // This method will send request.
     }
 
     /**
-     * @When I fill the code with :articleCode
-     * @param $articleCode
+     * @When I fill the code with :bannerCode
+     * @param $bannerCode
      * @throws \Behat\Mink\Exception\ElementNotFoundException
      */
-    public function iFillTheCodeWith($articleCode)
+    public function iFillTheCodeWith($bannerCode)
     {
-        $this->createPage->fillCode($articleCode);
+        $this->createPage->fillCode($bannerCode);
     }
 
     /**
-     * @When I fill the slug with :articleSlug
-     * @param $articleSlug
+     * @When I fill the url with :bannerUrl
+     * @param $bannerUrl
      * @throws \Behat\Mink\Exception\ElementNotFoundException
      */
-    public function iFillTheSlugWith($articleSlug)
+    public function iFillTheUrlWith($bannerUrl)
     {
-        $this->createPage->fillSlug($articleSlug);
+        $this->createPage->fillUrl($bannerUrl);
     }
 
     /**
-     * @When I fill the title with :articleTitle
-     * @When I rename it to :articleTitle
-     * @param $articleTitle
+     * @When I upload the :file image
+     * @param $bannerImage
      * @throws \Behat\Mink\Exception\ElementNotFoundException
      */
-    public function iFillTheTitleWith($articleTitle)
+    public function iUploadTheImage($bannerImage)
     {
-        $this->createPage->fillTitle($articleTitle);
-    }
-
-    /**
-     * @When I fill the content with :articleContent
-     * @param $articleContent
-     * @throws \Behat\Mink\Exception\ElementNotFoundException
-     */
-    public function iFillTheContentWith($articleContent)
-    {
-        $this->createPage->fillContent($articleContent);
+        $this->resolveCurrentPage()->uploadFile($bannerImage);
     }
 
     /**
@@ -112,54 +101,18 @@ final class ManagingArticlesContext implements Context
     }
 
     /**
-     * @Given /^I want to modify the (article "([^"]+)")/
-     * @param ArticleInterface $article
+     * @Then /^the (banner "([^"]+)") should appear in the admin/
+     * @param BannerInterface $banner
      * @throws \Sylius\Behat\Page\UnexpectedPageException
      */
-    public function iWantToModifyArticle(ArticleInterface $article)
-    {
-        $this->updatePage->open(['id' => $article->getId()]);
-    }
-
-    /**
-     * @When I save my changes
-     */
-    public function iSaveMyChanges()
-    {
-        $this->updatePage->saveChanges();
-    }
-
-    /**
-     * @When I want to browse articles
-     * @throws \Sylius\Behat\Page\UnexpectedPageException
-     */
-    public function iWantToBrowseArticles()
-    {
-        $this->indexPage->open();
-    }
-
-    /**
-     * @Then I should see :numberOfArticles articles in the list
-     * @param $numberOfArticles
-     */
-    public function iShouldSeeArticlesInTheList(int $numberOfArticles = 1): void
-    {
-        Assert::same($this->indexPage->countItems(), (int) $numberOfArticles);
-    }
-
-    /**
-     * @Then /^the (article "([^"]+)") should appear in the admin/
-     * @param ArticleInterface $article
-     * @throws \Sylius\Behat\Page\UnexpectedPageException
-     */
-    public function articleShouldAppearInTheAdmin(ArticleInterface $article)
+    public function bannerShouldAppearInTheAdmin(BannerInterface $banner) // This step use Report transformer to get Report object.
     {
         $this->indexPage->open();
 
         //Webmozart assert library.
         Assert::true(
-            $this->indexPage->isSingleResourceOnPage(['code' => $article->getCode()]),
-            sprintf('Article %s should exist but it does not', $article->getCode())
+            $this->indexPage->isSingleResourceOnPage(['code' => $banner->getCode()]),
+            sprintf('Banner %s should exist but it does not', $banner->getCode())
         );
     }
 
@@ -174,12 +127,12 @@ final class ManagingArticlesContext implements Context
     }
 
     /**
-     * @Then I should be notified that there is already an existing article with provided code
+     * @Then I should be notified that there is already an existing banner with provided code
      */
-    public function iShouldBeNotifiedThatThereIsAlreadyAnExistingArticleWithCode(): void
+    public function iShouldBeNotifiedThatThereIsAlreadyAnExistingBannerWithCode(): void
     {
         Assert::true($this->resolveCurrentPage()->containsErrorWithMessage(
-            'There is an existing article with this code.',
+            'There is an existing banner with this code.',
             false
         ));
     }
@@ -192,7 +145,7 @@ final class ManagingArticlesContext implements Context
         return $this->currentPageResolver->getCurrentPageWithForm([
             $this->indexPage,
             $this->createPage,
-            $this->updatePage,
+            $this->updatePage
         ]);
     }
 }
