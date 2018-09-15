@@ -9,6 +9,13 @@ Feature: Adding a new banner
         And the store operates on a single channel in "United States"
 
     @ui
+    Scenario: Trying to add a new banner with empty fields
+        Given I want to add a new banner
+        When I fill the code with "banner_home"
+        And I add it
+        Then I should be notified that the form contains invalid fields
+
+    @ui
     Scenario: Adding a new banner
         Given I want to add a new banner
         When I fill the code with "banner_home"
@@ -17,13 +24,6 @@ Feature: Adding a new banner
         And I add it
         Then I should be notified that it has been successfully created
         And the banner "banner_home" should appear in the admin
-
-    @ui
-    Scenario: Trying to add a new banner with empty fields
-        Given I want to add a new banner
-        When I fill the code with "banner_home"
-        And I add it
-        Then I should be notified that the form contains invalid fields
 
     @ui
     Scenario: Trying to add a banner with existing code

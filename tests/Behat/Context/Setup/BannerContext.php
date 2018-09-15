@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Odiseo\SyliusBannerPlugin\Doctrine\ORM\BannerRepositoryInterface;
 use Odiseo\SyliusBannerPlugin\Model\BannerInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 final class BannerContext implements Context
 {
@@ -53,6 +54,12 @@ final class BannerContext implements Context
         $banner = $this->bannerFactory->createNew();
 
         $banner->setCode($code);
+        $banner->setCurrentLocale('en_US');
+
+        $path = __DIR__.'/../../Resources/images/';
+        $filename = 'logo_odiseo.png';
+        $banner->setImageFile(new UploadedFile($path.$filename, $filename));
+        $banner->setUrl('https://odiseo.com.ar');
 
         return $banner;
     }

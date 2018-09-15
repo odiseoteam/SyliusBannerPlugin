@@ -105,11 +105,10 @@ final class ManagingBannersContext implements Context
      * @param BannerInterface $banner
      * @throws \Sylius\Behat\Page\UnexpectedPageException
      */
-    public function bannerShouldAppearInTheAdmin(BannerInterface $banner) // This step use Report transformer to get Report object.
+    public function bannerShouldAppearInTheAdmin(BannerInterface $banner)
     {
         $this->indexPage->open();
 
-        //Webmozart assert library.
         Assert::true(
             $this->indexPage->isSingleResourceOnPage(['code' => $banner->getCode()]),
             sprintf('Banner %s should exist but it does not', $banner->getCode())
