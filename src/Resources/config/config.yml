@@ -34,5 +34,4 @@ liip_imagine:
         odiseo_sylius_banner_image:
             data_loader: banner_image
             filters:
-                thumbnail: { size: [1127, 150], mode: inset }
-                background: { size: [1127, 150], position: center, color: '#FFFFFF' }
+                thumbnail: { size: [1127, 300], mode: outbound }
