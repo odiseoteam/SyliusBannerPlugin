@@ -6,7 +6,7 @@ knp_gaufrette:
     adapters:
         banner_image:
             local:
-                directory: "%kernel.root_dir%/../web/media/banner-image"
+                directory: "%sylius_core.public_dir%/media/banner-image"
                 create: true
     filesystems:
         banner_image_fs:
@@ -29,7 +29,7 @@ liip_imagine:
     loaders:
         banner_image:
             filesystem:
-                data_root: "%kernel.root_dir%/../web/media/banner-image"
+                data_root: "%kernel.project_dir%/public/media/banner-image"
     filter_sets:
         odiseo_sylius_banner_image:
             data_loader: banner_image
