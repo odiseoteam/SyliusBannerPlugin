@@ -39,29 +39,29 @@ You can see this plugin in action in our Sylius Demo application.
 
 ## Installation
 
-1. Run `composer require odiseoteam/sylius-banner-plugin`.
+1. Run `composer require odiseoteam/sylius-banner-plugin`
 
-2. Enable the plugin in bundles.php.
+2. Enable the plugin in bundles.php
 
 ```php
 <?php
 
 return [
     // ...
-    Odiseo\SyliusBannerPlugin\OdiseoSyliusBannerPlugin::class => ['all' => true],
     Vich\UploaderBundle\VichUploaderBundle::class => ['all' => true],
+    Odiseo\SyliusBannerPlugin\OdiseoSyliusBannerPlugin::class => ['all' => true],
     // ...
 ];
 ```
  
-3. Import the plugin configurations. For example on services.yaml:
+3. Import the plugin configurations
  
 ```yml
 imports:
     - { resource: "@OdiseoSyliusBannerPlugin/Resources/config/config.yml" }
 ```
 
-4. Add the shop and admin routes:
+4. Add the shop and admin routes
 
 ```yml
 odiseo_sylius_banner_admin:
@@ -75,9 +75,9 @@ odiseo_sylius_banner_shop:
         _locale: ^[a-z]{2}(?:_[A-Z]{2})?$
 ```
 
-5. Create banner folder: run `mkdir public/media/banner-image -p` and insert a .gitkeep file in that folder.
+5. Create banner folder: run `mkdir public/media/banner-image -p` and insert a .gitkeep file in that folder
 
-6. Finish the installation updating the database schema and installing assets:
+6. Finish the installation updating the database schema and installing assets
    
 ```
 php bin/console doctrine:schema:update --force
