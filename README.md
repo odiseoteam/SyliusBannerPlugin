@@ -39,32 +39,26 @@ You can see this plugin in action in our Sylius Demo application.
 
 1. Run `composer require odiseoteam/sylius-banner-plugin`.
 
-2. Add the plugin to the AppKernel but add it before SyliusResourceBundle. To do that you need change the registerBundles like this:
+2. Add the plugin to the bundles.php but add it before SyliusResourceBundle.
 
 ```php
-public function registerBundles(): array
-{
-    $preResourceBundles = [
-        new \Odiseo\SyliusBannerPlugin\OdiseoSyliusBannerPlugin(),
-    ];
+<?php
 
-    $bundles = [
-        ...
-        //This plugin use the vich uploader bundle
-        new \Vich\UploaderBundle\VichUploaderBundle(),
-    ];
-
-    return array_merge($preResourceBundles, parent::registerBundles(), $bundles);
-}
+return [
+    // ...
+    Odiseo\SyliusBannerPlugin\OdiseoSyliusBannerPlugin::class => ['all' => true],
+    // ...
+];
 ```
  
-3. Import the configurations on your config.yml:
+3. Import the plugin configurations. For example on services.yaml:
  
 ```yml
+imports:
     - { resource: "@OdiseoSyliusBannerPlugin/Resources/config/config.yml" }
 ```
 
-4. Add the admin and shop routes:
+4. Add the shop and admin routes:
 
 ```yml
 odiseo_sylius_banner_admin:
@@ -74,14 +68,19 @@ odiseo_sylius_banner_admin:
 odiseo_sylius_banner_shop:
     resource: "@OdiseoSyliusBannerPlugin/Resources/config/routing/shop.yml"
     prefix: /{_locale}/banner
+    requirements:
+        _locale: ^[a-z]{2}(?:_[A-Z]{2})?$
 ```
 
-5. Finish the installation updatating the database schema and installing assets:
+5. Create banner folder: run `mkdir public/media/banner-image -p` and insert a .gitkeep file in that folder.
+
+6. Finish the installation updating the database schema and installing assets:
    
 ```
 php bin/console doctrine:schema:update --force
 php bin/console assets:install
 php bin/console sylius:theme:assets:install
+```
 
 ## Fixtures
 
