@@ -26,6 +26,8 @@
 
 This plugin add banners to the Sylius content. The banners are fully customizable by the admin.
 
+Now supporting Sylius 1.4 with Symfony 4 + Flex structure.
+
 <img src="https://github.com/odiseoteam/SyliusBannerPlugin/blob/master/screenshot_1.png" alt="Banners admin">
 
 ## Demo
@@ -39,7 +41,7 @@ You can see this plugin in action in our Sylius Demo application.
 
 1. Run `composer require odiseoteam/sylius-banner-plugin`.
 
-2. Add the plugin to the bundles.php but add it before SyliusResourceBundle.
+2. Enable the plugin in bundles.php.
 
 ```php
 <?php
@@ -47,6 +49,7 @@ You can see this plugin in action in our Sylius Demo application.
 return [
     // ...
     Odiseo\SyliusBannerPlugin\OdiseoSyliusBannerPlugin::class => ['all' => true],
+    Vich\UploaderBundle\VichUploaderBundle::class => ['all' => true],
     // ...
 ];
 ```
@@ -79,7 +82,6 @@ odiseo_sylius_banner_shop:
 ```
 php bin/console doctrine:schema:update --force
 php bin/console assets:install
-php bin/console sylius:theme:assets:install
 ```
 
 ## Fixtures
