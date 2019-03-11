@@ -135,7 +135,7 @@ class Banner implements BannerInterface
      */
     public function addChannel(ChannelInterface $channel): void
     {
-        if(!$this->hasChannel($channel)) {
+        if (!$this->hasChannel($channel)) {
             $this->channels->add($channel);
         }
     }
@@ -145,7 +145,7 @@ class Banner implements BannerInterface
      */
     public function removeChannel(ChannelInterface $channel): void
     {
-        if($this->hasChannel($channel)) {
+        if ($this->hasChannel($channel)) {
             $this->channels->removeElement($channel);
         }
     }
@@ -181,7 +181,7 @@ class Banner implements BannerInterface
      */
     public function removeTaxon(TaxonInterface $taxon): void
     {
-        if($this->taxons->contains($taxon)) {
+        if ($this->taxons->contains($taxon)) {
             $this->taxons->removeElement($taxon);
         }
     }

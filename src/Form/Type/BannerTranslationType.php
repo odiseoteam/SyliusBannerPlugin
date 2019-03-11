@@ -17,7 +17,7 @@ class BannerTranslationType extends AbstractResourceType
         parent::buildForm($builder, $options);
 
         $builder
-            ->add('imageFile',  FileType::class, [
+            ->add('imageFile', FileType::class, [
                 'label' => 'odiseo_sylius_banner.form.banner.image',
             ])
             ->add('url', TextType::class, [

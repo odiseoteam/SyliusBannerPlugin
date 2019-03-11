@@ -17,7 +17,7 @@ final class AdminMenuListener
         /** @var ItemInterface $item */
         $item = $menu->getChild('catalog');
         if (null == $item) {
-           $item = $menu;
+            $item = $menu;
         }
 
         $item->addChild('banners', ['route' => 'odiseo_sylius_banner_admin_banner_index'])

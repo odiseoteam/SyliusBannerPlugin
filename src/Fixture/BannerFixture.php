@@ -82,8 +82,7 @@ class BannerFixture extends AbstractFixture
         RepositoryInterface $localeRepository,
         FactoryInterface $taxonFactory,
         TaxonRepositoryInterface $taxonRepository
-    )
-    {
+    ) {
         $this->objectManager = $objectManager;
         $this->bannerFactory = $bannerFactory;
         $this->bannerRepository = $bannerRepository;
@@ -138,8 +137,7 @@ class BannerFixture extends AbstractFixture
         $channels = $this->channelRepository->findAll();
 
         /** @var ChannelInterface $channel */
-        foreach($channels as $channel)
-        {
+        foreach ($channels as $channel) {
             /** @var BannerInterface $banner */
             $banner = $this->bannerFactory->createNew();
 
@@ -156,8 +154,7 @@ class BannerFixture extends AbstractFixture
                 $imageFinder = new Finder();
                 $imagesPath = __DIR__ . '/../Resources/fixtures/banner';
 
-                foreach ($imageFinder->files()->in($imagesPath)->name('01.png') as $img)
-                {
+                foreach ($imageFinder->files()->in($imagesPath)->name('01.png') as $img) {
                     /** @var string $path */
                     $path = $img->getRealPath();
                     /** @var string $filename */
@@ -171,11 +168,9 @@ class BannerFixture extends AbstractFixture
         }
 
         /** @var ChannelInterface $channel */
-        foreach($channels as $channel)
-        {
+        foreach ($channels as $channel) {
             $imageIndex = 1;
-            for($i=1; $i <= $options['banners_per_channel']; $i++)
-            {
+            for ($i=1; $i <= $options['banners_per_channel']; $i++) {
                 /** @var BannerInterface $banner */
                 $banner = $this->bannerFactory->createNew();
 
@@ -191,8 +186,7 @@ class BannerFixture extends AbstractFixture
                     $imageFinder = new Finder();
                     $imagesPath = __DIR__ . '/../Resources/fixtures/banner';
 
-                    foreach ($imageFinder->files()->in($imagesPath)->name('0'.$imageIndex.'.png') as $img)
-                    {
+                    foreach ($imageFinder->files()->in($imagesPath)->name('0'.$imageIndex.'.png') as $img) {
                         /** @var string $path */
                         $path = $img->getRealPath();
                         /** @var string $filename */

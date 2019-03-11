@@ -21,7 +21,7 @@ class BannerType extends AbstractResourceType
 
         $builder
             ->addEventSubscriber(new AddCodeFormSubscriber())
-            ->add('enabled', CheckboxType::class , [
+            ->add('enabled', CheckboxType::class, [
                 'label' => 'sylius.ui.enabled',
             ])
             ->add('translations', ResourceTranslationsType::class, [

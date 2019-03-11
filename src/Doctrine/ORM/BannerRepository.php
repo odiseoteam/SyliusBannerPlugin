@@ -21,7 +21,7 @@ class BannerRepository extends EntityRepository implements BannerRepositoryInter
             ->setParameter('enabled', true)
         ;
 
-        if($taxon) {
+        if ($taxon) {
             $queryBuilder->innerJoin('b.taxons', 'taxon')
                 ->andWhere('taxon = :taxon')
                 ->setParameter('taxon', $taxon)
