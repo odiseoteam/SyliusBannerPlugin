@@ -84,6 +84,35 @@ php bin/console doctrine:schema:update --force
 php bin/console sylius:theme:assets:install
 ```
 
+## Usage
+
+For the administration you will have the Banner menu. And for the frontend you can go to the /{locale}/banner to see the banner images. 
+Feel free to modify the plugin templates like you want.
+
+You need to include in your layout:
+
+```twig
+{% include '@SyliusUi/_stylesheets.html.twig' with {'path': 'bundles/odiseosyliusbannerplugin/css/slider-pro.min.css'} %}
+```
+```twig
+{% include '@SyliusUi/_javascripts.html.twig' with {'path': 'bundles/odiseosyliusbannerplugin/js/jquery.sliderPro.min.js'} %}
+{% include '@SyliusUi/_javascripts.html.twig' with {'path': 'bundles/odiseosyliusbannerplugin/js/app.js'} %}
+```
+
+### Partial routes
+
+To render banner images you can do something like this:
+
+```twig
+{{ render(url('odiseo_sylius_banner_shop_partial_banner_index', {'template': '@OdiseoSyliusBannerPlugin/Shop/Banner/index.html.twig'})) }}
+``` 
+   
+And to render banner images by taxon:
+
+```twig
+{{ render(url('odiseo_sylius_banner_shop_partial_banner_index_by_taxon', {'taxon': taxon.slug, 'template': '@OdiseoSyliusBannerPlugin/Shop/Banner/index.html.twig'})) }}
+```
+
 ## Fixtures
 
 This plugin comes with fixtures:
