@@ -81,7 +81,7 @@ odiseo_sylius_banner_shop:
    
 ```
 php bin/console doctrine:schema:update --force
-php bin/console assets:install
+php bin/console sylius:theme:assets:install
 ```
 
 ## Fixtures

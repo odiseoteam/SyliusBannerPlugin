@@ -13,6 +13,7 @@ Odiseo\SyliusBannerPlugin\Model\BannerTranslation:
             column: image_name
         url:
             type: string
+            nullable: true
         createdAt:
             type: datetime
             column: created_at

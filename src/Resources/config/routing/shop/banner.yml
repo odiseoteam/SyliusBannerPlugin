@@ -4,7 +4,7 @@ odiseo_sylius_banner_shop_partial_banner_index:
     defaults:
         _controller: odiseo_sylius_banner.controller.banner:indexAction
         _sylius:
-            template: '@OdiseoSyliusBannerPlugin/Shop/Banner/index.html.twig'
+            template: $template
             repository:
                 method: findByChannel
                 arguments:
@@ -16,7 +16,7 @@ odiseo_sylius_banner_shop_partial_banner_index_by_taxon:
     defaults:
         _controller: odiseo_sylius_banner.controller.banner:indexAction
         _sylius:
-            template: '@OdiseoSyliusBannerPlugin/Shop/Banner/index.html.twig'
+            template: $template
             repository:
                 method: findByChannelAndTaxon
                 arguments:

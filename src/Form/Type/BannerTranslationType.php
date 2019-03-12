@@ -22,6 +22,7 @@ class BannerTranslationType extends AbstractResourceType
             ])
             ->add('url', TextType::class, [
                 'label' => 'odiseo_sylius_banner.form.banner.url',
+                'required' => false
             ])
         ;
     }
