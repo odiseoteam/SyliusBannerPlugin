@@ -1,4 +1,4 @@
-{% if banner.url %}
+{% if banner.url is not null %}
     <a href="{{ banner.url }}" target="_blank">
         <img src="{{ banner.imageName|imagine_filter('odiseo_sylius_banner_image') }}">
     </a>

@@ -4,13 +4,3 @@ Odiseo\SyliusBannerPlugin\Model\BannerTranslation:
             - NotBlank:
                 message: 'odiseo_sylius_banner.banner_translation.image_file.not_blank'
                 groups: ['odiseo']
-        url:
-            - NotBlank:
-                message: 'odiseo_sylius_banner.banner_translation.url.not_blank'
-                groups: ['odiseo']
-            - Length:
-                min: 5
-                max: 250
-                minMessage: 'odiseo_sylius_banner.banner_translation.url.min_length'
-                maxMessage: 'odiseo_sylius_banner.banner_translation.url.max_length'
-                groups: ['odiseo']
