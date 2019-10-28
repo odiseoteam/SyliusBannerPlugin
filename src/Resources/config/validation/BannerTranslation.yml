@@ -1,6 +1,0 @@
-Odiseo\SyliusBannerPlugin\Model\BannerTranslation:
-    properties:
-        imageFile:
-            - NotBlank:
-                message: 'odiseo_sylius_banner.banner_translation.image_file.not_blank'
-                groups: ['odiseo']

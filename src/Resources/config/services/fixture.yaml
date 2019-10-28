@@ -1,0 +1,13 @@
+services:
+    odiseo_sylius_banner_plugin.fixture.banner:
+        class: Odiseo\SyliusBannerPlugin\Fixture\BannerFixture
+        arguments:
+            - '@odiseo_sylius_banner_plugin.manager.banner'
+            - '@odiseo_sylius_banner_plugin.factory.banner'
+            - '@odiseo_sylius_banner_plugin.repository.banner'
+            - '@sylius.repository.channel'
+            - '@sylius.repository.locale'
+            - '@sylius.factory.taxon'
+            - '@sylius.repository.taxon'
+        tags:
+            - { name: sylius_fixtures }

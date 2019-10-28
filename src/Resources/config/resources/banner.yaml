@@ -1,0 +1,19 @@
+sylius_resource:
+    resources:
+        odiseo_sylius_banner_plugin.banner:
+            driver: doctrine/orm
+            classes:
+                model: Odiseo\SyliusBannerPlugin\Entity\Banner
+                interface: Odiseo\SyliusBannerPlugin\Entity\BannerInterface
+                form: Odiseo\SyliusBannerPlugin\Form\Type\BannerType
+                repository: Odiseo\SyliusBannerPlugin\Repository\BannerRepository
+                controller: Sylius\Bundle\ResourceBundle\Controller\ResourceController
+                factory: Sylius\Component\Resource\Factory\Factory
+            translation:
+                classes:
+                    model: Odiseo\SyliusBannerPlugin\Entity\BannerTranslation
+                    interface: Odiseo\SyliusBannerPlugin\Entity\BannerTranslationInterface
+                    form: Odiseo\SyliusBannerPlugin\Form\Type\BannerTranslationType
+                    repository: Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository
+                    controller: Sylius\Bundle\ResourceBundle\Controller\ResourceController
+                    factory: Sylius\Component\Resource\Factory\Factory

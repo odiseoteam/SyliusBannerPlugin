@@ -1,9 +1,9 @@
-odiseo_sylius_banner_admin:
-    resource: "@OdiseoSyliusBannerPlugin/Resources/config/routing/admin.yml"
+odiseo_sylius_banner_plugin_admin:
+    resource: "@OdiseoSyliusBannerPlugin/Resources/config/routing/admin.yaml"
     prefix: /admin
 
-odiseo_sylius_banner_shop:
-    resource: "@OdiseoSyliusBannerPlugin/Resources/config/routing/shop.yml"
+odiseo_sylius_banner_plugin_shop:
+    resource: "@OdiseoSyliusBannerPlugin/Resources/config/routing/shop.yaml"
     prefix: /{_locale}/banner
     requirements:
         _locale: ^[a-z]{2}(?:_[A-Z]{2})?$

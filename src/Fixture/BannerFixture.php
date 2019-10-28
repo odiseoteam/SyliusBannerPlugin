@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Odiseo\SyliusBannerPlugin\Fixture;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
-use Odiseo\SyliusBannerPlugin\Model\BannerInterface;
+use Odiseo\SyliusBannerPlugin\Entity\BannerInterface;
 use Sylius\Bundle\FixturesBundle\Fixture\AbstractFixture;
 use Sylius\Component\Channel\Model\ChannelInterface;
 use Sylius\Component\Channel\Repository\ChannelRepositoryInterface;
@@ -18,62 +20,35 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class BannerFixture extends AbstractFixture
+final class BannerFixture extends AbstractFixture
 {
-    /**
-     * @var ObjectManager
-     */
-    protected $objectManager;
+    /** @var ObjectManager */
+    private $objectManager;
 
-    /**
-     * @var FactoryInterface
-     */
-    protected $bannerFactory;
+    /** @var FactoryInterface */
+    private $bannerFactory;
 
-    /**
-     * @var RepositoryInterface
-     */
-    protected $bannerRepository;
+    /** @var RepositoryInterface */
+    private $bannerRepository;
 
-    /**
-     * @var ChannelRepositoryInterface
-     */
-    protected $channelRepository;
+    /** @var ChannelRepositoryInterface */
+    private $channelRepository;
 
-    /**
-     * @var RepositoryInterface
-     */
-    protected $localeRepository;
+    /** @var RepositoryInterface */
+    private $localeRepository;
 
-    /**
-     * @var FactoryInterface
-     */
-    protected $taxonFactory;
+    /** @var FactoryInterface */
+    private $taxonFactory;
 
-    /**
-     * @var TaxonRepositoryInterface
-     */
-    protected $taxonRepository;
+    /** @var TaxonRepositoryInterface */
+    private $taxonRepository;
 
-    /**
-     * @var \Faker\Generator
-     */
-    protected $faker;
+    /** @var \Faker\Generator */
+    private $faker;
 
-    /**
-     * @var OptionsResolver
-     */
-    protected $optionsResolver;
+    /** @var OptionsResolver */
+    private $optionsResolver;
 
-    /**
-     * @param ObjectManager $objectManager
-     * @param FactoryInterface $bannerFactory
-     * @param RepositoryInterface $bannerRepository
-     * @param ChannelRepositoryInterface $channelRepository
-     * @param RepositoryInterface $localeRepository
-     * @param FactoryInterface $taxonFactory
-     * @param TaxonRepositoryInterface $taxonRepository
-     */
     public function __construct(
         ObjectManager $objectManager,
         FactoryInterface $bannerFactory,
@@ -204,6 +179,9 @@ class BannerFixture extends AbstractFixture
         $this->objectManager->flush();
     }
 
+    /**
+     * @return \Generator
+     */
     private function getLocales()
     {
         /** @var LocaleInterface[] $locales */

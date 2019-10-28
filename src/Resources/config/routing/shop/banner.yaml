@@ -1,0 +1,24 @@
+odiseo_sylius_banner_plugin_shop_partial_banner_index:
+    path: /
+    methods: [GET]
+    defaults:
+        _controller: odiseo_sylius_banner_plugin.controller.banner:indexAction
+        _sylius:
+            template: $template
+            repository:
+                method: findByChannel
+                arguments:
+                    - "expr:service('sylius.context.channel').getChannel()"
+
+odiseo_sylius_banner_plugin_shop_partial_banner_index_by_taxon:
+    path: /by-taxon
+    methods: [GET]
+    defaults:
+        _controller: odiseo_sylius_banner_plugin.controller.banner:indexAction
+        _sylius:
+            template: $template
+            repository:
+                method: findByChannelAndTaxon
+                arguments:
+                    - "expr:service('sylius.context.channel').getChannel()"
+                    - "expr:service('sylius.repository.taxon').findOneBySlug($taxon, service('sylius.context.locale').getLocaleCode())"

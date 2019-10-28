@@ -1,0 +1,16 @@
+services:
+    odiseo_sylius_banner_plugin.form.type.banner:
+        class: Odiseo\SyliusBannerPlugin\Form\Type\BannerType
+        arguments:
+            - '%odiseo_sylius_banner_plugin.model.banner.class%'
+            - ['odiseo']
+        tags:
+            - { name: form.type, alias: odiseo_sylius_banner }
+
+    odiseo_sylius_banner_plugin.form.type.banner_translation:
+        class: Odiseo\SyliusBannerPlugin\Form\Type\BannerTranslationType
+        arguments:
+            - '%odiseo_sylius_banner_plugin.model.banner_translation.class%'
+            - ['odiseo']
+        tags:
+            - { name: form.type, alias: odiseo_sylius_banner_translation }

@@ -6,8 +6,8 @@ namespace Tests\Odiseo\SyliusBannerPlugin\Behat\Context\Setup;
 
 use Behat\Behat\Context\Context;
 use Doctrine\ORM\EntityManagerInterface;
-use Odiseo\SyliusBannerPlugin\Doctrine\ORM\BannerRepositoryInterface;
-use Odiseo\SyliusBannerPlugin\Model\BannerInterface;
+use Odiseo\SyliusBannerPlugin\Entity\BannerInterface;
+use Odiseo\SyliusBannerPlugin\Repository\BannerRepositoryInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -45,7 +45,6 @@ final class BannerContext implements Context
 
     /**
      * @param string $code
-     *
      * @return BannerInterface
      */
     private function createBanner(string $code): BannerInterface

@@ -4,4 +4,4 @@ parameters:
     locale: en_US
 
 imports:
-    - { resource: "@OdiseoSyliusBannerPlugin/Resources/config/config.yml" }
+    - { resource: "@OdiseoSyliusBannerPlugin/Resources/config/config.yaml" }

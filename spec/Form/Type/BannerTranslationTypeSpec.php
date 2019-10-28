@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace spec\Odiseo\SyliusBannerPlugin\Form\Type;
 
-use Odiseo\SyliusBannerPlugin\Model\BannerTranslation;
+use Odiseo\SyliusBannerPlugin\Entity\BannerTranslation;
+use Odiseo\SyliusBannerPlugin\Form\Type\BannerTranslationType;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
@@ -11,9 +14,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 
-/**
- * @author Diego D'amico <diego@odiseo.com.ar>
- */
 final class BannerTranslationTypeSpec extends ObjectBehavior
 {
     function let()
@@ -23,7 +23,7 @@ final class BannerTranslationTypeSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('Odiseo\SyliusBannerPlugin\Form\Type\BannerTranslationType');
+        $this->shouldHaveType(BannerTranslationType::class);
     }
 
     function it_should_be_abstract_resource_type_object()

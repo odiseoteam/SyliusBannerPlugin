@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace spec\Odiseo\SyliusBannerPlugin\Form\Type;
 
-use Odiseo\SyliusBannerPlugin\Model\Banner;
+use Odiseo\SyliusBannerPlugin\Entity\Banner;
+use Odiseo\SyliusBannerPlugin\Form\Type\BannerType;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Sylius\Bundle\ChannelBundle\Form\Type\ChannelChoiceType;
@@ -14,9 +17,6 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 
-/**
- * @author Diego D'amico <diego@odiseo.com.ar>
- */
 final class BannerTypeSpec extends ObjectBehavior
 {
     function let()
@@ -26,7 +26,7 @@ final class BannerTypeSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('Odiseo\SyliusBannerPlugin\Form\Type\BannerType');
+        $this->shouldHaveType(BannerType::class);
     }
 
     function it_should_be_abstract_resource_type_object()

@@ -6,7 +6,7 @@ namespace Tests\Odiseo\SyliusBannerPlugin\Behat\Context\Ui\Admin;
 
 use Behat\Behat\Context\Context;
 use FriendsOfBehat\PageObjectExtension\Page\SymfonyPageInterface;
-use Odiseo\SyliusBannerPlugin\Model\BannerInterface;
+use Odiseo\SyliusBannerPlugin\Entity\BannerInterface;
 use Sylius\Behat\Service\NotificationCheckerInterface;
 use Sylius\Behat\Service\Resolver\CurrentPageResolverInterface;
 use Tests\Odiseo\SyliusBannerPlugin\Behat\Page\Admin\Banner\CreatePageInterface;
@@ -31,13 +31,6 @@ final class ManagingBannersContext implements Context
     /** @var UpdatePageInterface */
     private $updatePage;
 
-    /**
-     * @param CurrentPageResolverInterface $currentPageResolver
-     * @param NotificationCheckerInterface $notificationChecker
-     * @param IndexPageInterface $indexPage
-     * @param CreatePageInterface $createPage
-     * @param UpdatePageInterface $updatePage
-     */
     public function __construct(
         CurrentPageResolverInterface $currentPageResolver,
         NotificationCheckerInterface $notificationChecker,
@@ -54,11 +47,11 @@ final class ManagingBannersContext implements Context
 
     /**
      * @Given I want to add a new banner
-     * @throws \Sylius\Behat\Page\UnexpectedPageException
+     * @throws \FriendsOfBehat\PageObjectExtension\Page\UnexpectedPageException
      */
-    public function iWantToAddNewBanner()
+    public function iWantToAddNewBanner(): void
     {
-        $this->createPage->open(); // This method will send request.
+        $this->createPage->open();
     }
 
     /**
@@ -66,7 +59,7 @@ final class ManagingBannersContext implements Context
      * @param $bannerCode
      * @throws \Behat\Mink\Exception\ElementNotFoundException
      */
-    public function iFillTheCodeWith($bannerCode)
+    public function iFillTheCodeWith($bannerCode): void
     {
         $this->createPage->fillCode($bannerCode);
     }
@@ -76,7 +69,7 @@ final class ManagingBannersContext implements Context
      * @param $bannerUrl
      * @throws \Behat\Mink\Exception\ElementNotFoundException
      */
-    public function iFillTheUrlWith($bannerUrl)
+    public function iFillTheUrlWith($bannerUrl): void
     {
         $this->createPage->fillUrl($bannerUrl);
     }
@@ -86,7 +79,7 @@ final class ManagingBannersContext implements Context
      * @param $bannerImage
      * @throws \Behat\Mink\Exception\ElementNotFoundException
      */
-    public function iUploadTheImage($bannerImage)
+    public function iUploadTheImage($bannerImage): void
     {
         $this->resolveCurrentPage()->uploadFile($bannerImage);
     }
@@ -95,7 +88,7 @@ final class ManagingBannersContext implements Context
      * @When I add it
      * @throws \Behat\Mink\Exception\ElementNotFoundException
      */
-    public function iAddIt()
+    public function iAddIt(): void
     {
         $this->createPage->create();
     }
@@ -103,9 +96,9 @@ final class ManagingBannersContext implements Context
     /**
      * @Then /^the (banner "([^"]+)") should appear in the admin/
      * @param BannerInterface $banner
-     * @throws \Sylius\Behat\Page\UnexpectedPageException
+     * @throws \FriendsOfBehat\PageObjectExtension\Page\UnexpectedPageException
      */
-    public function bannerShouldAppearInTheAdmin(BannerInterface $banner)
+    public function bannerShouldAppearInTheAdmin(BannerInterface $banner): void
     {
         $this->indexPage->open();
 

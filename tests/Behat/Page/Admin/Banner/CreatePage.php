@@ -8,14 +8,14 @@ use Sylius\Behat\Page\Admin\Crud\CreatePage as BaseCreatePage;
 use Tests\Odiseo\SyliusBannerPlugin\Behat\Behaviour\ContainsErrorTrait;
 use Webmozart\Assert\Assert;
 
-class CreatePage extends BaseCreatePage implements CreatePageInterface
+final class CreatePage extends BaseCreatePage implements CreatePageInterface
 {
     use ContainsErrorTrait;
 
     /**
      * @inheritdoc
      */
-    public function fillCode($code)
+    public function fillCode($code): void
     {
         $this->getDocument()->fillField('Code', $code);
     }
@@ -23,7 +23,7 @@ class CreatePage extends BaseCreatePage implements CreatePageInterface
     /**
      * @inheritdoc
      */
-    public function fillUrl($url)
+    public function fillUrl($url): void
     {
         $this->getDocument()->fillField('URL', $url);
     }
@@ -31,7 +31,7 @@ class CreatePage extends BaseCreatePage implements CreatePageInterface
     /**
      * {@inheritdoc}
      */
-    public function uploadFile($file)
+    public function uploadFile($file): void
     {
         $path = __DIR__.'/../../../Resources/images/'.$file;
         Assert::fileExists($path);

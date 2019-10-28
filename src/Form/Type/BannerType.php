@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Odiseo\SyliusBannerPlugin\Form\Type;
 
 use Sylius\Bundle\ChannelBundle\Form\Type\ChannelChoiceType;
@@ -10,12 +12,12 @@ use Sylius\Bundle\TaxonomyBundle\Form\Type\TaxonAutocompleteChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class BannerType extends AbstractResourceType
+final class BannerType extends AbstractResourceType
 {
     /**
      * {@inheritdoc}
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         parent::buildForm($builder, $options);
 
@@ -26,18 +28,18 @@ class BannerType extends AbstractResourceType
             ])
             ->add('translations', ResourceTranslationsType::class, [
                 'entry_type' => BannerTranslationType::class,
-                'label' => 'odiseo_sylius_banner.form.banner.translations',
+                'label' => 'odiseo_sylius_banner_plugin.form.banner.translations',
             ])
             ->add('taxons', TaxonAutocompleteChoiceType::class, [
                 'required' => false,
                 'multiple' => true,
-                'label' => 'odiseo_sylius_banner.form.banner.taxon',
+                'label' => 'odiseo_sylius_banner_plugin.form.banner.taxon',
             ])
             ->add('channels', ChannelChoiceType::class, [
                 'required' => false,
                 'multiple' => true,
                 'expanded' => true,
-                'label' => 'odiseo_sylius_banner.form.banner.channel',
+                'label' => 'odiseo_sylius_banner_plugin.form.banner.channel',
             ])
         ;
     }

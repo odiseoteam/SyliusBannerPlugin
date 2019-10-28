@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Odiseo\SyliusBannerPlugin\Behat\Page\Admin\Banner;
 
 use Sylius\Behat\Page\Admin\Crud\CreatePageInterface as BaseCreatePageInterface;
@@ -11,17 +13,17 @@ interface CreatePageInterface extends BaseCreatePageInterface, ContainsErrorInte
      * @param string $code
      * @throws \Behat\Mink\Exception\ElementNotFoundException
      */
-    public function fillCode($code);
+    public function fillCode($code): void;
 
     /**
      * @param string $url
      * @throws \Behat\Mink\Exception\ElementNotFoundException
      */
-    public function fillUrl($url);
+    public function fillUrl($url): void;
 
     /**
      * @param string $file
      * @throws \Behat\Mink\Exception\ElementNotFoundException
      */
-    public function uploadFile($file);
+    public function uploadFile($file): void;
 }

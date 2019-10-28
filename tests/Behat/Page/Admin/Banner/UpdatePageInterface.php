@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Odiseo\SyliusBannerPlugin\Behat\Page\Admin\Banner;
 
 use Sylius\Behat\Page\Admin\Crud\UpdatePageInterface as BaseUpdatePageInterface;
@@ -11,5 +13,5 @@ interface UpdatePageInterface extends BaseUpdatePageInterface, ContainsErrorInte
      * @param string $code
      * @throws \Behat\Mink\Exception\ElementNotFoundException
      */
-    public function fillCode($code);
+    public function fillCode($code): void;
 }

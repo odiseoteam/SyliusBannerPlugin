@@ -1,0 +1,16 @@
+odiseo_sylius_banner_plugin_admin_banner:
+    resource: |
+        alias: odiseo_sylius_banner_plugin.banner
+        section: admin
+        templates: SyliusAdminBundle:Crud
+        except: ['show']
+        redirect: index
+        grid: odiseo_sylius_banner_plugin_banner
+        permission: true
+        vars:
+            all:
+                templates:
+                    form: '@OdiseoSyliusBannerPlugin/Admin/Banner/_form.html.twig'
+            index:
+                icon: image
+    type: sylius.resource
