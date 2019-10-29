@@ -1,0 +1,7 @@
+services:
+    odiseo_sylius_banner_plugin.twig_extension.banner:
+        class: Odiseo\SyliusBannerPlugin\Twig\BannerExtension
+        arguments:
+            - '%odiseo_sylius_banner_plugin.slider%'
+        tags:
+            - { name: twig.extension }

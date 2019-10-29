@@ -33,6 +33,8 @@ Some of that features are:
 Now supporting Sylius 1.6 with Symfony 4 + Flex structure.
 
 <img src="https://github.com/odiseoteam/SyliusBannerPlugin/blob/master/screenshot_1.png" alt="Banners admin">
+<img src="https://github.com/odiseoteam/SyliusBannerPlugin/blob/master/screenshot_2.png" alt="Banners shop homepage">
+<img src="https://github.com/odiseoteam/SyliusBannerPlugin/blob/master/screenshot_3.png" alt="Banners shop taxon">
 
 ## Demo
 
@@ -99,7 +101,7 @@ You need to include in your layout:
 ```
 ```twig
 {% include '@SyliusUi/_javascripts.html.twig' with {'path': 'bundles/odiseosyliusbannerplugin/js/jquery.sliderPro.min.js'} %}
-{% include '@SyliusUi/_javascripts.html.twig' with {'path': 'bundles/odiseosyliusbannerplugin/js/app.js'} %}
+{% include '@SyliusUi/_javascripts.html.twig' with {'path': 'bundles/odiseosyliusbannerplugin/js/sliderPro.js'} %}
 ```
 
 ### Partial routes
@@ -107,13 +109,13 @@ You need to include in your layout:
 To render banner images you can do something like this:
 
 ```twig
-{{ render(url('odiseo_sylius_banner_shop_partial_banner_index', {'template': '@OdiseoSyliusBannerPlugin/Shop/Banner/index.html.twig'})) }}
+{{ render(url('odiseo_sylius_banner_plugin_shop_partial_banner', {'template': '@OdiseoSyliusBannerPlugin/Shop/Banner/_banner.html.twig'})) }}
 ``` 
    
 And to render banner images by taxon:
 
 ```twig
-{{ render(url('odiseo_sylius_banner_shop_partial_banner_index_by_taxon', {'taxon': taxon.slug, 'template': '@OdiseoSyliusBannerPlugin/Shop/Banner/index.html.twig'})) }}
+{{ render(url('odiseo_sylius_banner_plugin_shop_partial_banner_by_taxon', {'taxon': taxon.slug, 'template': '@OdiseoSyliusBannerPlugin/Shop/Banner/_banner.html.twig'})) }}
 ```
 
 ## Fixtures

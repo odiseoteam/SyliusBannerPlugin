@@ -3,3 +3,17 @@ services:
         class: Odiseo\SyliusBannerPlugin\Menu\AdminMenuListener
         tags:
             - { name: kernel.event_listener, event: sylius.menu.admin.main, method: addAdminMenuItems }
+
+    odiseo_sylius_banner_plugin.block_event_listener.layout.slider.stylesheets:
+        class: Odiseo\SyliusBannerPlugin\Block\SliderCssBlockListener
+        arguments:
+            - '%odiseo_sylius_banner_plugin.slider%'
+        tags:
+            - { name: kernel.event_listener, event: sonata.block.event.sylius.shop.layout.stylesheets, method: onBlockEvent }
+
+    odiseo_sylius_banner_plugin.block_event_listener.layout.slider.javascripts:
+        class: Odiseo\SyliusBannerPlugin\Block\SliderJsBlockListener
+        arguments:
+            - '%odiseo_sylius_banner_plugin.slider%'
+        tags:
+            - { name: kernel.event_listener, event: sonata.block.event.sylius.shop.layout.javascripts, method: onBlockEvent }

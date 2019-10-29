@@ -1,0 +1,20 @@
+<div class="glide" id="banner-slider">
+    <div class="glide__track" data-glide-el="track">
+        <ul class="glide__slides">
+            {% for banner in banners %}
+                <li class="glide__slide">
+                    {% include '@OdiseoSyliusBannerPlugin/Shop/Banner/_image.html.twig' with {'banner': banner} only %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="glide__arrows" data-glide-el="controls">
+        <button class="glide__arrow glide__arrow--left" data-glide-dir="<"><</button>
+        <button class="glide__arrow glide__arrow--right" data-glide-dir=">">></button>
+    </div>
+    <div class="glide__bullets" data-glide-el="controls[nav]">
+        {% for banner in banners %}
+            <button class="glide__bullet" data-glide-dir="={{ loop.index0 }}"></button>
+        {% endfor %}
+    </div>
+</div>

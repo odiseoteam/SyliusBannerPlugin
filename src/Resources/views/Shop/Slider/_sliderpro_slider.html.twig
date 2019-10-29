@@ -1,0 +1,9 @@
+<div class="slider-pro" id="banner-slider">
+    <div class="sp-slides">
+        {% for banner in banners %}
+            <div class="sp-slide">
+                {% include '@OdiseoSyliusBannerPlugin/Shop/Banner/_image.html.twig' with {'banner': banner} only %}
+            </div>
+        {% endfor %}
+    </div>
+</div>

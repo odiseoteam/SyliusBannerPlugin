@@ -1,0 +1,13 @@
+<div class="swiper-container" id="banner-slider">
+    <div class="swiper-wrapper">
+        {% for banner in banners %}
+            <div class="swiper-slide">
+                {% include '@OdiseoSyliusBannerPlugin/Shop/Banner/_image.html.twig' with {'banner': banner} only %}
+            </div>
+        {% endfor %}
+    </div>
+    <div class="swiper-pagination"></div>
+
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+</div>

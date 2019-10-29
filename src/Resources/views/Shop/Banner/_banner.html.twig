@@ -1,7 +1,10 @@
-{% if banner.url is not null %}
-    <a href="{{ banner.url }}" target="_blank">
-        <img src="{{ banner.imageName|imagine_filter('odiseo_sylius_banner_plugin_image') }}">
-    </a>
-{% else %}
-    <img src="{{ banner.imageName|imagine_filter('odiseo_sylius_banner_plugin_image') }}">
+{% if banners|length > 0 %}
+    {% if banners|length > 1 %}
+        {% set sliderName = banner_slider_name() %}
+
+        {% include '@OdiseoSyliusBannerPlugin/Shop/Slider/_'~sliderName~'_slider.html.twig' with {'banners': banners} only %}
+    {% else %}
+        {% set banner = banners|first %}
+        {% include '@OdiseoSyliusBannerPlugin/Shop/Banner/_image.html.twig' with {'banner': banner} only %}
+    {% endif %}
 {% endif %}

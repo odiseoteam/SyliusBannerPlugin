@@ -22,6 +22,12 @@ final class Configuration implements ConfigurationInterface
             $rootNode = $treeBuilder->root('odiseo_sylius_banner_plugin');
         }
 
+        $rootNode
+            ->children()
+                ->scalarNode('slider')->defaultValue('swiper')->end()
+            ->end()
+        ;
+
         return $treeBuilder;
     }
 }

@@ -1,0 +1,13 @@
+{% include '@SyliusShop/Taxon/_breadcrumb.html.twig' %}
+
+{{ sonata_block_render_event('sylius.shop.taxon.header.before', {'taxon': taxon}) }}
+
+<h1 class="ui monster section dividing header">
+    {{ taxon.name }}
+    <div class="sub header">{{ taxon.description }}</div>
+</h1>
+<h2 class="ui horizontal section">
+    {{ render(url('odiseo_sylius_banner_plugin_shop_partial_banner_by_taxon', {'taxon': taxon.slug, 'template': '@OdiseoSyliusBannerPlugin/Shop/Banner/_banner.html.twig'})) }}
+</h2>
+
+{{ sonata_block_render_event('sylius.shop.taxon.header.after', {'taxon': taxon}) }}
