@@ -80,9 +80,17 @@ odiseo_sylius_banner_plugin_shop:
         _locale: ^[a-z]{2}(?:_[A-Z]{2})?$
 ```
 
-5. Create banner folder: run `mkdir public/media/banner-image -p` and insert a .gitkeep file in that folder
+5. This plugin includes an API version. If you want to use it you have to add the route
 
-6. Finish the installation updating the database schema and installing assets
+```yml
+odiseo_sylius_banner_plugin_api:
+    resource: "@OdiseoSyliusBannerPlugin/Resources/config/routing/api.yaml"
+    prefix: /api
+```
+
+6. Create banner folder: run `mkdir public/media/banner-image -p` and insert a .gitkeep file in that folder
+
+7. Finish the installation updating the database schema and installing assets
 
 ```
 php bin/console doctrine:schema:update --force
@@ -91,7 +99,7 @@ php bin/console sylius:theme:assets:install
 
 ## Usage
 
-For the administration you will have the Banner menu. And for the frontend you can go to the /{locale}/banner to see the banner images. 
+For the administration you will have the Banner menu.
 Feel free to modify the plugin templates like you want.
 
 You need to include in your layout:

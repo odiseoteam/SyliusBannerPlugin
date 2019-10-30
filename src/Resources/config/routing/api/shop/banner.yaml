@@ -1,0 +1,9 @@
+odiseo_sylius_banner_plugin_api_shop_banner:
+    resource: |
+        identifier: code
+        alias: odiseo_sylius_banner_plugin.banner
+        section: shop_api
+        serialization_version: $version
+        criteria:
+            code: $code
+    type: sylius.resource_api
