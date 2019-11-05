@@ -8,7 +8,3 @@ odiseo_sylius_banner_plugin:
     banner_translation:
         image_file:
             not_blank: La imagen no puede ir vacía.
-        url:
-            not_blank: La url no puede ir vacía.
-            min_length: La url debe tener al menos {{ limit }} caracteres.
-            max_length: La url no puede tener más de {{ limit }} caracteres.
