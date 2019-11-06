@@ -10,4 +10,4 @@ services:
             - '@sylius.factory.taxon'
             - '@sylius.repository.taxon'
         tags:
-            - { name: sylius_fixtures }
+            - { name: sylius_fixtures.fixture }

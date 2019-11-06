@@ -21,6 +21,12 @@ class BannerTranslation extends AbstractTranslation implements BannerTranslation
     /** @var string */
     private $imageName;
 
+    /** @var File */
+    private $mobileImageFile;
+
+    /** @var string */
+    private $mobileImageName;
+
     /** @var string|null */
     private $url;
 
@@ -58,7 +64,7 @@ class BannerTranslation extends AbstractTranslation implements BannerTranslation
     /**
      * {@inheritdoc}
      */
-    public function setImageName($imageName): void
+    public function setImageName(string $imageName): void
     {
         $this->imageName = $imageName;
     }
@@ -73,16 +79,49 @@ class BannerTranslation extends AbstractTranslation implements BannerTranslation
     /**
      * {@inheritdoc}
      */
-    public function getUrl(): ?string
+    public function setMobileImageFile(File $file): void
     {
-        return $this->url;
+        $this->mobileImageFile = $file;
+
+        $this->setUpdatedAt(new \DateTime());
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setUrl($url): void
+    public function getMobileImageFile(): ?File
+    {
+        return $this->mobileImageFile;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setMobileImageName(string $mobileImageName): void
+    {
+        $this->mobileImageName = $mobileImageName;
+    }
+    /**
+     * {@inheritdoc}
+     */
+    public function getMobileImageName(): string
+    {
+        return $this->mobileImageName;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setUrl(?string $url): void
     {
         $this->url = $url;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUrl(): ?string
+    {
+        return $this->url;
     }
 }

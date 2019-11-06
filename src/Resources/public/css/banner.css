@@ -1,0 +1,15 @@
+.show-on-mobile{
+    display: none !important;
+}
+.hide-on-mobile{
+    display: block !important;
+}
+
+@media(max-width:767px) {
+    .show-on-mobile{
+        display: block !important;
+    }
+    .hide-on-mobile{
+        display: none !important;
+    }
+}

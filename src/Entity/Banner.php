@@ -71,6 +71,17 @@ class Banner implements BannerInterface
     /**
      * {@inheritdoc}
      */
+    public function setImageFile(File $file): void
+    {
+        /** @var BannerTranslationInterface $bannerTranslation */
+        $bannerTranslation = $this->getTranslation();
+
+        $bannerTranslation->setImageFile($file);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getImageFile(): ?File
     {
         /** @var BannerTranslationInterface $bannerTranslation */
@@ -82,12 +93,12 @@ class Banner implements BannerInterface
     /**
      * {@inheritdoc}
      */
-    public function setImageFile(File $file): void
+    public function setImageName(string $imageName): void
     {
         /** @var BannerTranslationInterface $bannerTranslation */
         $bannerTranslation = $this->getTranslation();
 
-        $bannerTranslation->setImageFile($file);
+        $bannerTranslation->setImageName($imageName);
     }
 
     /**
@@ -104,12 +115,56 @@ class Banner implements BannerInterface
     /**
      * {@inheritdoc}
      */
-    public function setImageName($imageName): void
+    public function setMobileImageFile(File $file): void
     {
         /** @var BannerTranslationInterface $bannerTranslation */
         $bannerTranslation = $this->getTranslation();
 
-        $bannerTranslation->setImageName($imageName);
+        $bannerTranslation->setMobileImageFile($file);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getMobileImageFile(): ?File
+    {
+        /** @var BannerTranslationInterface $bannerTranslation */
+        $bannerTranslation = $this->getTranslation();
+
+        return $bannerTranslation->getMobileImageFile();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setMobileImageName(string $imageName): void
+    {
+        /** @var BannerTranslationInterface $bannerTranslation */
+        $bannerTranslation = $this->getTranslation();
+
+        $bannerTranslation->setMobileImageName($imageName);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getMobileImageName(): string
+    {
+        /** @var BannerTranslationInterface $bannerTranslation */
+        $bannerTranslation = $this->getTranslation();
+
+        return $bannerTranslation->getMobileImageName();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setUrl(?string $url): void
+    {
+        /** @var BannerTranslationInterface $bannerTranslation */
+        $bannerTranslation = $this->getTranslation();
+
+        $bannerTranslation->setUrl($url);
     }
 
     /**
@@ -121,17 +176,6 @@ class Banner implements BannerInterface
         $bannerTranslation = $this->getTranslation();
 
         return $bannerTranslation->getUrl();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setUrl($url): void
-    {
-        /** @var BannerTranslationInterface $bannerTranslation */
-        $bannerTranslation = $this->getTranslation();
-
-        $bannerTranslation->setUrl($url);
     }
 
     /**

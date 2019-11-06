@@ -3,10 +3,12 @@ odiseo_sylius_banner_plugin:
         banners: Banners
         edit_banner: Edit banner
         new_banner: New banner
+        mobile_image: Mobile image
     form:
         banner:
             translations: Translations
             taxon: Taxon
             channel: Channel
             image: Image
+            mobile_image: Mobile image
             url: URL

@@ -4,6 +4,11 @@ services:
         tags:
             - { name: kernel.event_listener, event: sylius.menu.admin.main, method: addAdminMenuItems }
 
+    odiseo_sylius_banner_plugin.block_event_listener.layout.banner.stylesheets:
+        class: Odiseo\SyliusBannerPlugin\Block\BannerCssBlockListener
+        tags:
+            - { name: kernel.event_listener, event: sonata.block.event.sylius.shop.layout.stylesheets, method: onBlockEvent }
+
     odiseo_sylius_banner_plugin.block_event_listener.layout.slider.stylesheets:
         class: Odiseo\SyliusBannerPlugin\Block\SliderCssBlockListener
         arguments:

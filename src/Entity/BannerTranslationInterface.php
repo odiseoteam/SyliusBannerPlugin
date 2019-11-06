@@ -27,7 +27,7 @@ interface BannerTranslationInterface extends
     /**
      * @param string $imageName
      */
-    public function setImageName($imageName): void;
+    public function setImageName(string $imageName): void;
 
     /**
      * @return string
@@ -35,12 +35,32 @@ interface BannerTranslationInterface extends
     public function getImageName(): string;
 
     /**
-     * @return string|null
+     * @param File $file
      */
-    public function getUrl(): ?string;
+    public function setMobileImageFile(File $file): void;
+
+    /**
+     * @return File
+     */
+    public function getMobileImageFile(): ?File;
+
+    /**
+     * @param string $mobileImageName
+     */
+    public function setMobileImageName(string $mobileImageName): void;
+
+    /**
+     * @return string
+     */
+    public function getMobileImageName(): string;
 
     /**
      * @param string|null $url
      */
-    public function setUrl($url): void;
+    public function setUrl(?string $url): void;
+
+    /**
+     * @return string|null
+     */
+    public function getUrl(): ?string;
 }

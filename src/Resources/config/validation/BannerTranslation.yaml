@@ -4,3 +4,7 @@ Odiseo\SyliusBannerPlugin\Entity\BannerTranslation:
             - NotBlank:
                 message: 'odiseo_sylius_banner_plugin.banner_translation.image_file.not_blank'
                 groups: ['odiseo']
+        mobileImageFile:
+            - NotBlank:
+                message: 'odiseo_sylius_banner_plugin.banner_translation.image_file.not_blank'
+                groups: ['odiseo']

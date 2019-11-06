@@ -127,7 +127,9 @@ final class BannerFixture extends AbstractFixture
                 $banner->setUrl($this->faker->url);
 
                 $imageFinder = new Finder();
-                $imagesPath = __DIR__ . '/../Resources/fixtures/banner';
+
+                $imagesPath = __DIR__ . '/../Resources/fixtures/banner/images';
+                $mobileImagesPath = __DIR__ . '/../Resources/fixtures/banner/mobile-images';
 
                 foreach ($imageFinder->files()->in($imagesPath)->name('01.png') as $img) {
                     /** @var string $path */
@@ -137,6 +139,15 @@ final class BannerFixture extends AbstractFixture
                     $file = new UploadedFile($path, $filename);
                     $banner->setImageFile($file);
                 }
+
+                foreach ($imageFinder->files()->in($mobileImagesPath)->name('01.png') as $img) {
+                    /** @var string $path */
+                    $path = $img->getRealPath();
+                    /** @var string $filename */
+                    $filename = $img->getFilename();
+                    $file = new UploadedFile($path, $filename);
+                    $banner->setMobileImageFile($file);
+                }
             }
 
             $this->objectManager->persist($banner);
@@ -145,6 +156,7 @@ final class BannerFixture extends AbstractFixture
         /** @var ChannelInterface $channel */
         foreach ($channels as $channel) {
             $imageIndex = 1;
+            $mobileImageIndex = 1;
             for ($i=1; $i <= $options['banners_per_channel']; $i++) {
                 /** @var BannerInterface $banner */
                 $banner = $this->bannerFactory->createNew();
@@ -159,7 +171,9 @@ final class BannerFixture extends AbstractFixture
                     $banner->setUrl($this->faker->url);
 
                     $imageFinder = new Finder();
-                    $imagesPath = __DIR__ . '/../Resources/fixtures/banner';
+
+                    $imagesPath = __DIR__ . '/../Resources/fixtures/banner/images';
+                    $mobileImagesPath = __DIR__ . '/../Resources/fixtures/banner/mobile-images';
 
                     foreach ($imageFinder->files()->in($imagesPath)->name('0'.$imageIndex.'.png') as $img) {
                         /** @var string $path */
@@ -170,6 +184,16 @@ final class BannerFixture extends AbstractFixture
                         $banner->setImageFile($file);
                     }
                     $imageIndex = $imageIndex>=4?1:$imageIndex+1;
+
+                    foreach ($imageFinder->files()->in($mobileImagesPath)->name('0'.$mobileImageIndex.'.png') as $img) {
+                        /** @var string $path */
+                        $path = $img->getRealPath();
+                        /** @var string $filename */
+                        $filename = $img->getFilename();
+                        $file = new UploadedFile($path, $filename);
+                        $banner->setMobileImageFile($file);
+                    }
+                    $mobileImageIndex = $mobileImageIndex>=4?1:$mobileImageIndex+1;
                 }
 
                 $this->objectManager->persist($banner);
@@ -182,7 +206,7 @@ final class BannerFixture extends AbstractFixture
     /**
      * @return \Generator
      */
-    private function getLocales()
+    private function getLocales(): \Generator
     {
         /** @var LocaleInterface[] $locales */
         $locales = $this->localeRepository->findAll();
