@@ -12,17 +12,23 @@ use Sylius\Component\Taxonomy\Model\TaxonInterface;
 interface BannerRepositoryInterface extends RepositoryInterface
 {
     /**
-     * @param ChannelInterface $channel
-     * @param TaxonInterface $taxon
+     * @param ChannelInterface|null $channel
+     * @param TaxonInterface|null $taxon
      * @return QueryBuilder
      */
-    public function findByEnabledQueryBuilder(ChannelInterface $channel, TaxonInterface $taxon): QueryBuilder;
+    public function findByEnabledQueryBuilder(?ChannelInterface $channel, ?TaxonInterface $taxon): QueryBuilder;
 
     /**
      * @param ChannelInterface $channel
      * @return array
      */
     public function findByChannel(ChannelInterface $channel): array;
+
+    /**
+     * @param TaxonInterface $taxon
+     * @return array
+     */
+    public function findByTaxon(TaxonInterface $taxon): array;
 
     /**
      * @param ChannelInterface $channel

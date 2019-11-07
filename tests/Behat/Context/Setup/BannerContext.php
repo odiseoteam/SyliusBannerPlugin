@@ -58,6 +58,7 @@ final class BannerContext implements Context
         $path = __DIR__.'/../../Resources/images/';
         $filename = 'logo_odiseo.png';
         $banner->setImageFile(new UploadedFile($path.$filename, $filename));
+        $banner->setMobileImageFile(new UploadedFile($path.$filename, $filename));
         $banner->setUrl('https://odiseo.com.ar');
 
         return $banner;

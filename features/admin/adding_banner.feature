@@ -21,6 +21,7 @@ Feature: Adding a new banner
         When I fill the code with "banner_home"
         And I fill the url with "https://odiseo.com.ar"
         And I upload the "logo_odiseo.png" image
+        And I upload the "logo_odiseo.png" mobile image
         And I add it
         Then I should be notified that it has been successfully created
         And the banner "banner_home" should appear in the admin

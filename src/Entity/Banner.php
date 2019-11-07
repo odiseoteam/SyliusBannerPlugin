@@ -137,12 +137,12 @@ class Banner implements BannerInterface
     /**
      * {@inheritdoc}
      */
-    public function setMobileImageName(string $imageName): void
+    public function setMobileImageName(string $mobileImageName): void
     {
         /** @var BannerTranslationInterface $bannerTranslation */
         $bannerTranslation = $this->getTranslation();
 
-        $bannerTranslation->setMobileImageName($imageName);
+        $bannerTranslation->setMobileImageName($mobileImageName);
     }
 
     /**

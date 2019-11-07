@@ -81,7 +81,17 @@ final class ManagingBannersContext implements Context
      */
     public function iUploadTheImage($bannerImage): void
     {
-        $this->resolveCurrentPage()->uploadFile($bannerImage);
+        $this->resolveCurrentPage()->uploadFile($bannerImage, 'Image');
+    }
+
+    /**
+     * @When I upload the :file mobile image
+     * @param $bannerImage
+     * @throws \Behat\Mink\Exception\ElementNotFoundException
+     */
+    public function iUploadTheMobileImage($bannerImage): void
+    {
+        $this->resolveCurrentPage()->uploadFile($bannerImage, 'Mobile image');
     }
 
     /**

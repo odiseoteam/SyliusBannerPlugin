@@ -23,7 +23,8 @@ interface CreatePageInterface extends BaseCreatePageInterface, ContainsErrorInte
 
     /**
      * @param string $file
+     * @param string $locator
      * @throws \Behat\Mink\Exception\ElementNotFoundException
      */
-    public function uploadFile($file): void;
+    public function uploadFile($file, $locator): void;
 }
