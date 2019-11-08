@@ -7,6 +7,7 @@ namespace Odiseo\SyliusBannerPlugin\Entity;
 use Sylius\Component\Channel\Model\ChannelsAwareInterface;
 use Sylius\Component\Resource\Model\CodeAwareInterface;
 use Sylius\Component\Resource\Model\ResourceInterface;
+use Sylius\Component\Resource\Model\TimestampableInterface;
 use Sylius\Component\Resource\Model\ToggleableInterface;
 use Sylius\Component\Resource\Model\TranslatableInterface;
 use Sylius\Component\Resource\Model\TranslationInterface;
@@ -18,6 +19,7 @@ interface BannerInterface extends
     CodeAwareInterface,
     TranslatableInterface,
     ToggleableInterface,
+    TimestampableInterface,
     ChannelsAwareInterface,
     TaxonsAwareInterface
 {
