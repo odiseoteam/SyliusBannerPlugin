@@ -75,7 +75,7 @@ odiseo_sylius_banner_plugin_admin:
 
 odiseo_sylius_banner_plugin_shop:
     resource: "@OdiseoSyliusBannerPlugin/Resources/config/routing/shop.yaml"
-    prefix: /{_locale}/banner
+    prefix: /{_locale}/banners
     requirements:
         _locale: ^[a-z]{2}(?:_[A-Z]{2})?$
 ```
