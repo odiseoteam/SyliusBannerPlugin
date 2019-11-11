@@ -22,7 +22,8 @@ final class AdminMenuListener
             $item = $menu;
         }
 
-        $item->addChild('banners', ['route' => 'odiseo_sylius_banner_plugin_admin_banner_index'])
+        $item
+            ->addChild('banners', ['route' => 'odiseo_sylius_banner_plugin_admin_banner_index'])
             ->setLabel('odiseo_sylius_banner_plugin.ui.banners')
             ->setLabelAttribute('icon', 'image')
         ;
