@@ -29,10 +29,10 @@ class Banner implements BannerInterface
     /** @var string|null */
     private $code;
 
-    /** @var ArrayCollection|ChannelInterface[] */
+    /** @var Collection|ChannelInterface[] */
     private $channels;
 
-    /** @var ArrayCollection|TaxonInterface[] */
+    /** @var Collection|TaxonInterface[] */
     private $taxons;
 
     public function __construct()
