@@ -14,7 +14,7 @@ final class UpdatePage extends BaseUpdatePage implements UpdatePageInterface
     /**
      * @inheritdoc
      */
-    public function fillCode($code): void
+    public function fillCode(string $code): void
     {
         $this->getDocument()->fillField('Code', $code);
     }

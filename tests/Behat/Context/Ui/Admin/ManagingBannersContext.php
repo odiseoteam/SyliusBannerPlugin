@@ -56,40 +56,40 @@ final class ManagingBannersContext implements Context
 
     /**
      * @When I fill the code with :bannerCode
-     * @param $bannerCode
+     * @param string $bannerCode
      * @throws \Behat\Mink\Exception\ElementNotFoundException
      */
-    public function iFillTheCodeWith($bannerCode): void
+    public function iFillTheCodeWith(string $bannerCode): void
     {
         $this->createPage->fillCode($bannerCode);
     }
 
     /**
      * @When I fill the url with :bannerUrl
-     * @param $bannerUrl
+     * @param string $bannerUrl
      * @throws \Behat\Mink\Exception\ElementNotFoundException
      */
-    public function iFillTheUrlWith($bannerUrl): void
+    public function iFillTheUrlWith(string $bannerUrl): void
     {
         $this->createPage->fillUrl($bannerUrl);
     }
 
     /**
      * @When I upload the :file image
-     * @param $bannerImage
+     * @param string $bannerImage
      * @throws \Behat\Mink\Exception\ElementNotFoundException
      */
-    public function iUploadTheImage($bannerImage): void
+    public function iUploadTheImage(string $bannerImage): void
     {
         $this->resolveCurrentPage()->uploadFile($bannerImage, 'Image');
     }
 
     /**
      * @When I upload the :file mobile image
-     * @param $bannerImage
+     * @param string $bannerImage
      * @throws \Behat\Mink\Exception\ElementNotFoundException
      */
-    public function iUploadTheMobileImage($bannerImage): void
+    public function iUploadTheMobileImage(string $bannerImage): void
     {
         $this->resolveCurrentPage()->uploadFile($bannerImage, 'Mobile image');
     }

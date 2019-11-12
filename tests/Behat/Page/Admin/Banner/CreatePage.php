@@ -15,7 +15,7 @@ final class CreatePage extends BaseCreatePage implements CreatePageInterface
     /**
      * @inheritdoc
      */
-    public function fillCode($code): void
+    public function fillCode(string $code): void
     {
         $this->getDocument()->fillField('Code', $code);
     }
@@ -23,7 +23,7 @@ final class CreatePage extends BaseCreatePage implements CreatePageInterface
     /**
      * @inheritdoc
      */
-    public function fillUrl($url): void
+    public function fillUrl(string $url): void
     {
         $this->getDocument()->fillField('URL', $url);
     }
@@ -31,7 +31,7 @@ final class CreatePage extends BaseCreatePage implements CreatePageInterface
     /**
      * {@inheritdoc}
      */
-    public function uploadFile($file, $locator): void
+    public function uploadFile(string $file, string $locator): void
     {
         $path = __DIR__.'/../../../Resources/images/'.$file;
         Assert::fileExists($path);

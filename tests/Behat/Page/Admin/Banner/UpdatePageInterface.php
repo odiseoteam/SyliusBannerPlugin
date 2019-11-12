@@ -13,5 +13,5 @@ interface UpdatePageInterface extends BaseUpdatePageInterface, ContainsErrorInte
      * @param string $code
      * @throws \Behat\Mink\Exception\ElementNotFoundException
      */
-    public function fillCode($code): void;
+    public function fillCode(string $code): void;
 }

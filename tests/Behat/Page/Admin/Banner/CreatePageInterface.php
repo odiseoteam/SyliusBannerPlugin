@@ -13,18 +13,18 @@ interface CreatePageInterface extends BaseCreatePageInterface, ContainsErrorInte
      * @param string $code
      * @throws \Behat\Mink\Exception\ElementNotFoundException
      */
-    public function fillCode($code): void;
+    public function fillCode(string $code): void;
 
     /**
      * @param string $url
      * @throws \Behat\Mink\Exception\ElementNotFoundException
      */
-    public function fillUrl($url): void;
+    public function fillUrl(string $url): void;
 
     /**
      * @param string $file
      * @param string $locator
      * @throws \Behat\Mink\Exception\ElementNotFoundException
      */
-    public function uploadFile($file, $locator): void;
+    public function uploadFile(string $file, string $locator): void;
 }

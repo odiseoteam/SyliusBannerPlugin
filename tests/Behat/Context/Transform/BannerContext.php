@@ -23,10 +23,10 @@ final class BannerContext implements Context
     /**
      * @Transform /^banner "([^"]+)"$/
      * @Transform /^"([^"]+)" banner$/
-     * @param $bannerCode
+     * @param string $bannerCode
      * @return BannerInterface
      */
-    public function getBannerByCode($bannerCode): BannerInterface
+    public function getBannerByCode(string $bannerCode): BannerInterface
     {
         /** @var BannerInterface $banner */
         $banner = $this->bannerRepository->findOneBy(['code' => $bannerCode]);
