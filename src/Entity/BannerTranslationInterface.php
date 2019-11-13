@@ -15,44 +15,44 @@ interface BannerTranslationInterface extends
     TimestampableInterface
 {
     /**
-     * @param File $file
+     * @param File|null $file
      */
-    public function setImageFile(File $file): void;
+    public function setImageFile(?File $file): void;
 
     /**
-     * @return File
+     * @return File|null
      */
     public function getImageFile(): ?File;
 
     /**
-     * @param string $imageName
+     * @param string|null $imageName
      */
-    public function setImageName(string $imageName): void;
+    public function setImageName(?string $imageName): void;
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getImageName(): string;
+    public function getImageName(): ?string;
 
     /**
-     * @param File $file
+     * @param File|null $file
      */
-    public function setMobileImageFile(File $file): void;
+    public function setMobileImageFile(?File $file): void;
 
     /**
-     * @return File
+     * @return File|null
      */
     public function getMobileImageFile(): ?File;
 
     /**
-     * @param string $mobileImageName
+     * @param string|null $mobileImageName
      */
-    public function setMobileImageName(string $mobileImageName): void;
+    public function setMobileImageName(?string $mobileImageName): void;
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getMobileImageName(): string;
+    public function getMobileImageName(): ?string;
 
     /**
      * @param string|null $url

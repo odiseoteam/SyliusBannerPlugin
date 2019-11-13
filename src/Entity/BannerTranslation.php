@@ -15,16 +15,16 @@ class BannerTranslation extends AbstractTranslation implements BannerTranslation
     /** @var int|null */
     private $id;
 
-    /** @var File */
+    /** @var File|null */
     private $imageFile;
 
-    /** @var string */
+    /** @var string|null */
     private $imageName;
 
-    /** @var File */
+    /** @var File|null */
     private $mobileImageFile;
 
-    /** @var string */
+    /** @var string|null */
     private $mobileImageName;
 
     /** @var string|null */
@@ -46,7 +46,7 @@ class BannerTranslation extends AbstractTranslation implements BannerTranslation
     /**
      * {@inheritdoc}
      */
-    public function setImageFile(File $file): void
+    public function setImageFile(?File $file): void
     {
         $this->imageFile = $file;
 
@@ -64,14 +64,14 @@ class BannerTranslation extends AbstractTranslation implements BannerTranslation
     /**
      * {@inheritdoc}
      */
-    public function setImageName(string $imageName): void
+    public function setImageName(?string $imageName): void
     {
         $this->imageName = $imageName;
     }
     /**
      * {@inheritdoc}
      */
-    public function getImageName(): string
+    public function getImageName(): ?string
     {
         return $this->imageName;
     }
@@ -79,7 +79,7 @@ class BannerTranslation extends AbstractTranslation implements BannerTranslation
     /**
      * {@inheritdoc}
      */
-    public function setMobileImageFile(File $file): void
+    public function setMobileImageFile(?File $file): void
     {
         $this->mobileImageFile = $file;
 
@@ -97,14 +97,14 @@ class BannerTranslation extends AbstractTranslation implements BannerTranslation
     /**
      * {@inheritdoc}
      */
-    public function setMobileImageName(string $mobileImageName): void
+    public function setMobileImageName(?string $mobileImageName): void
     {
         $this->mobileImageName = $mobileImageName;
     }
     /**
      * {@inheritdoc}
      */
-    public function getMobileImageName(): string
+    public function getMobileImageName(): ?string
     {
         return $this->mobileImageName;
     }

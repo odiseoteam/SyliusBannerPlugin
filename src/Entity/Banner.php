@@ -71,7 +71,7 @@ class Banner implements BannerInterface
     /**
      * {@inheritdoc}
      */
-    public function setImageFile(File $file): void
+    public function setImageFile(?File $file): void
     {
         /** @var BannerTranslationInterface $bannerTranslation */
         $bannerTranslation = $this->getTranslation();
@@ -93,7 +93,7 @@ class Banner implements BannerInterface
     /**
      * {@inheritdoc}
      */
-    public function setImageName(string $imageName): void
+    public function setImageName(?string $imageName): void
     {
         /** @var BannerTranslationInterface $bannerTranslation */
         $bannerTranslation = $this->getTranslation();
@@ -104,7 +104,7 @@ class Banner implements BannerInterface
     /**
      * {@inheritdoc}
      */
-    public function getImageName(): string
+    public function getImageName(): ?string
     {
         /** @var BannerTranslationInterface $bannerTranslation */
         $bannerTranslation = $this->getTranslation();
@@ -115,7 +115,7 @@ class Banner implements BannerInterface
     /**
      * {@inheritdoc}
      */
-    public function setMobileImageFile(File $file): void
+    public function setMobileImageFile(?File $file): void
     {
         /** @var BannerTranslationInterface $bannerTranslation */
         $bannerTranslation = $this->getTranslation();
@@ -137,7 +137,7 @@ class Banner implements BannerInterface
     /**
      * {@inheritdoc}
      */
-    public function setMobileImageName(string $mobileImageName): void
+    public function setMobileImageName(?string $mobileImageName): void
     {
         /** @var BannerTranslationInterface $bannerTranslation */
         $bannerTranslation = $this->getTranslation();
@@ -148,7 +148,7 @@ class Banner implements BannerInterface
     /**
      * {@inheritdoc}
      */
-    public function getMobileImageName(): string
+    public function getMobileImageName(): ?string
     {
         /** @var BannerTranslationInterface $bannerTranslation */
         $bannerTranslation = $this->getTranslation();
