@@ -1,5 +1,5 @@
 odiseo_sylius_banner_plugin_shop_partial_banner:
-    path: /
+    path: /partial
     methods: [GET]
     defaults:
         _controller: odiseo_sylius_banner_plugin.controller.banner:indexAction
@@ -11,7 +11,7 @@ odiseo_sylius_banner_plugin_shop_partial_banner:
                     - "expr:service('sylius.context.channel').getChannel()"
 
 odiseo_sylius_banner_plugin_shop_partial_banner_by_taxon:
-    path: /by-taxon
+    path: /partial/by-taxon
     methods: [GET]
     defaults:
         _controller: odiseo_sylius_banner_plugin.controller.banner:indexAction

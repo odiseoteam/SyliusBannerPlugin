@@ -8,6 +8,9 @@ use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Valid;
 
 final class BannerTranslationType extends AbstractResourceType
 {
@@ -30,5 +33,28 @@ final class BannerTranslationType extends AbstractResourceType
                 'required' => false
             ])
         ;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        parent::configureOptions($resolver);
+
+        $resolver->setDefaults([
+            'validation_groups' => function (FormInterface $form) {
+                $bannerTranslation = $form->getData();
+
+                if (!$bannerTranslation || null === $bannerTranslation->getId()) {
+                    return array_merge($this->validationGroups, ['odiseo_image_create']);
+                }
+
+                return $this->validationGroups;
+            },
+            'constraints' => array(
+                new Valid()
+            )
+        ]);
     }
 }

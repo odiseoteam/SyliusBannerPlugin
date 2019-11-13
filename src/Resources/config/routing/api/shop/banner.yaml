@@ -10,7 +10,7 @@ odiseo_sylius_banner_plugin_api_shop_banner:
     type: sylius.resource_api
 
 odiseo_sylius_banner_plugin_shop_api_banner_by_taxon:
-    path: /by-taxon/{code}
+    path: /banners/by-taxon/{code}
     methods: [GET]
     defaults:
         _controller: odiseo_sylius_banner_plugin.controller.banner:indexAction

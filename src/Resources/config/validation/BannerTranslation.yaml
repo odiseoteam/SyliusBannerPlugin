@@ -3,8 +3,8 @@ Odiseo\SyliusBannerPlugin\Entity\BannerTranslation:
         imageFile:
             - NotBlank:
                 message: 'odiseo_sylius_banner_plugin.banner_translation.image_file.not_blank'
-                groups: ['odiseo']
+                groups: ['odiseo_image_create']
         mobileImageFile:
             - NotBlank:
                 message: 'odiseo_sylius_banner_plugin.banner_translation.image_file.not_blank'
-                groups: ['odiseo']
+                groups: ['odiseo_image_create']
