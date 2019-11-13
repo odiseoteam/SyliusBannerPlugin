@@ -24,13 +24,13 @@
 
 This is a Sylius Plugin that add banners to your store. The banners are fully customizable by the admin.
 
-Some of that features are:
+Features:
 
 * Templates: Show all images or by taxon.
 
-* Sliders: Provides sliders for the images ([Swiper](https://github.com/nolimits4web/swiper), [Glide](https://github.com/glidejs/glide)) or choose your own library.
+* Sliders: Provides sliders for the images ([Swiper](https://github.com/nolimits4web/swiper), [Glide](https://github.com/glidejs/glide), [SliderPro](https://github.com/bqworks/slider-pro)) or choose your own library.
 
-Now supporting Sylius 1.6 with Symfony 4 + Flex structure.
+Support Sylius version 1.3+.
 
 <img src="https://github.com/odiseoteam/SyliusBannerPlugin/blob/master/screenshot_1.png" alt="Banners admin">
 <img src="https://github.com/odiseoteam/SyliusBannerPlugin/blob/master/screenshot_2.png" alt="Banners shop homepage">
@@ -102,14 +102,11 @@ php bin/console sylius:theme:assets:install
 For the administration you will have the Banner menu.
 Feel free to modify the plugin templates like you want.
 
-You need to include in your layout:
+You can choose your js library by configuration:
 
-```twig
-{% include '@SyliusUi/_stylesheets.html.twig' with {'path': 'bundles/odiseosyliusbannerplugin/css/slider-pro.min.css'} %}
-```
-```twig
-{% include '@SyliusUi/_javascripts.html.twig' with {'path': 'bundles/odiseosyliusbannerplugin/js/jquery.sliderPro.min.js'} %}
-{% include '@SyliusUi/_javascripts.html.twig' with {'path': 'bundles/odiseosyliusbannerplugin/js/sliderPro.js'} %}
+```yml
+odiseo_sylius_banner:
+    slider: #swiper, glide, sliderpro. If you don't want any use ~
 ```
 
 ### Partial routes
