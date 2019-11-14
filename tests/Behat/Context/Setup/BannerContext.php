@@ -44,6 +44,17 @@ final class BannerContext implements Context
     }
 
     /**
+     * @param int $quantity
+     * @Given the store has( also) :quantity banners
+     */
+    public function theStoreHasBanners(int $quantity): void
+    {
+        for ($i = 1;$i <= $quantity;$i++) {
+            $this->saveBanner($this->createBanner('Test'.$i));
+        }
+    }
+
+    /**
      * @param string $code
      * @return BannerInterface
      */

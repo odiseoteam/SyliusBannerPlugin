@@ -46,6 +46,15 @@ final class ManagingBannersContext implements Context
     }
 
     /**
+     * @When I go to the banners page
+     * @throws \FriendsOfBehat\PageObjectExtension\Page\UnexpectedPageException
+     */
+    public function iGoToTheBannersPage(): void
+    {
+        $this->indexPage->open();
+    }
+
+    /**
      * @Given I want to add a new banner
      * @throws \FriendsOfBehat\PageObjectExtension\Page\UnexpectedPageException
      */
@@ -66,6 +75,7 @@ final class ManagingBannersContext implements Context
 
     /**
      * @When I fill the url with :bannerUrl
+     * @When I rename the url with :bannerUrl
      * @param string $bannerUrl
      * @throws \Behat\Mink\Exception\ElementNotFoundException
      */
@@ -101,6 +111,51 @@ final class ManagingBannersContext implements Context
     public function iAddIt(): void
     {
         $this->createPage->create();
+    }
+
+    /**
+     * @Given /^I want to modify the (banner "([^"]+)")/
+     * @param BannerInterface $banner
+     * @throws \FriendsOfBehat\PageObjectExtension\Page\UnexpectedPageException
+     */
+    public function iWantToModifyBanner(BannerInterface $banner): void
+    {
+        $this->updatePage->open(['id' => $banner->getId()]);
+    }
+
+    /**
+     * @When I save my changes
+     */
+    public function iSaveMyChanges(): void
+    {
+        $this->updatePage->saveChanges();
+    }
+
+    /**
+     * @When I want to browse banners
+     * @throws \FriendsOfBehat\PageObjectExtension\Page\UnexpectedPageException
+     */
+    public function iWantToBrowseBanners(): void
+    {
+        $this->indexPage->open();
+    }
+
+    /**
+     * @Then I should see :quantity banners in the list
+     * @param $quantity
+     */
+    public function iShouldSeeBannersInTheList(int $quantity = 1): void
+    {
+        Assert::same($this->indexPage->countItems(), (int) $quantity);
+    }
+
+    /**
+     * @When I delete the banner :code
+     * @param string $code
+     */
+    public function iDeleteTheBanner(string $code): void
+    {
+        $this->indexPage->deleteBanner($code);
     }
 
     /**
