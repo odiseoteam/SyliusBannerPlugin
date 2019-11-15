@@ -33,13 +33,13 @@ final class BannerType extends AbstractResourceType
             ->add('taxons', TaxonAutocompleteChoiceType::class, [
                 'required' => false,
                 'multiple' => true,
-                'label' => 'odiseo_sylius_banner_plugin.form.banner.taxon',
+                'label' => 'odiseo_sylius_banner_plugin.form.banner.taxons',
             ])
             ->add('channels', ChannelChoiceType::class, [
                 'required' => false,
                 'multiple' => true,
                 'expanded' => true,
-                'label' => 'odiseo_sylius_banner_plugin.form.banner.channel',
+                'label' => 'odiseo_sylius_banner_plugin.form.banner.channels',
             ])
         ;
     }

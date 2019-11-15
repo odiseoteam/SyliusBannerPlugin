@@ -10,8 +10,8 @@ odiseo_sylius_banner_plugin:
     form:
         banner:
             translations: Translations
-            taxon: Taxon
-            channel: Channel
+            taxons: Taxons
+            channels: Channels
             image: Image
             mobile_image: Mobile image
             url: URL
