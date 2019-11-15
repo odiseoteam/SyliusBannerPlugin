@@ -123,6 +123,8 @@ And to render banner images by taxon:
 {{ render(url('odiseo_sylius_banner_plugin_shop_partial_banner_by_taxon', {'taxon': taxon.slug, 'template': '@OdiseoSyliusBannerPlugin/Shop/Banner/_banner.html.twig'})) }}
 ```
 
+For forms use the validation group `odiseo`
+
 ## Fixtures
 
 This plugin comes with fixtures:
