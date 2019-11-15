@@ -4,6 +4,9 @@ odiseo_sylius_banner_plugin:
         edit_banner: Editar banner
         new_banner: Nuevo banner
         mobile_image: Imagen mobile
+    menu:
+        admin:
+            banners: Banners
     form:
         banner:
             translations: Traducciones
