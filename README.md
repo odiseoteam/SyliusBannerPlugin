@@ -1,4 +1,4 @@
-<h1 align="center">
+<p align="center">
     <a href="https://odiseo.com.ar/" target="_blank" title="Odiseo">
         <img src="https://github.com/odiseoteam/SyliusBannerPlugin/blob/master/sylius-banner-plugin.png" alt="Sylius Banner Plugin" />
     </a>
@@ -18,7 +18,7 @@
     <a href="https://packagist.org/packages/odiseoteam/sylius-banner-plugin" title="Total Downloads" target="_blank">
         <img src="https://poser.pugx.org/odiseoteam/sylius-banner-plugin/downloads" />
     </a>
-</h1>
+</p>
 
 ## Description
 
@@ -32,9 +32,11 @@ Features:
 
 Support Sylius version 1.3+.
 
-<img src="https://github.com/odiseoteam/SyliusBannerPlugin/blob/master/screenshot_1.png" alt="Banners admin">
-<img src="https://github.com/odiseoteam/SyliusBannerPlugin/blob/master/screenshot_2.png" alt="Banners shop homepage">
-<img src="https://github.com/odiseoteam/SyliusBannerPlugin/blob/master/screenshot_3.png" alt="Banners shop taxon">
+## Screenshots
+
+<img src="https://github.com/odiseoteam/SyliusBannerPlugin/blob/master/screenshot_1.png" alt="Banners admin" width="650">
+<img src="https://github.com/odiseoteam/SyliusBannerPlugin/blob/master/screenshot_2.png" alt="Banners shop homepage" width="650">
+<img src="https://github.com/odiseoteam/SyliusBannerPlugin/blob/master/screenshot_3.png" alt="Banners shop taxon" width="650">
 
 ## Demo
 
@@ -43,105 +45,14 @@ You can see this plugin in action in our Sylius Demo application.
 - Frontend: [sylius-demo.odiseo.com.ar](https://sylius-demo.odiseo.com.ar).
 - Administration: [sylius-demo.odiseo.com.ar/admin](https://sylius-demo.odiseo.com.ar/admin) with `odiseo: odiseo` credentials.
 
-## Installation
+## Documentation
 
-1. Run `composer require odiseoteam/sylius-banner-plugin`
+- [Installation](doc/installation.md)
+- [Usage](doc/usage.md)
+- [Fixtures](doc/fixtures.md)
+- [Customization](doc/customization.md)
+- [Tests](doc/tests.md)
 
-2. Enable the plugin in bundles.php
-
-```php
-<?php
-
-return [
-    // ...
-    Vich\UploaderBundle\VichUploaderBundle::class => ['all' => true],
-    Odiseo\SyliusBannerPlugin\OdiseoSyliusBannerPlugin::class => ['all' => true],
-];
-```
-
-3. Import the plugin configurations
-
-```yml
-imports:
-    - { resource: "@OdiseoSyliusBannerPlugin/Resources/config/config.yaml" }
-```
-
-4. Add the shop and admin routes
-
-```yml
-odiseo_sylius_banner_plugin_admin:
-    resource: "@OdiseoSyliusBannerPlugin/Resources/config/routing/admin.yaml"
-    prefix: /admin
-
-odiseo_sylius_banner_plugin_shop:
-    resource: "@OdiseoSyliusBannerPlugin/Resources/config/routing/shop.yaml"
-    prefix: /{_locale}/banners
-    requirements:
-        _locale: ^[a-z]{2}(?:_[A-Z]{2})?$
-```
-
-5. This plugin includes an API version. If you want to use it you have to add the route
-
-```yml
-odiseo_sylius_banner_plugin_api:
-    resource: "@OdiseoSyliusBannerPlugin/Resources/config/routing/api.yaml"
-    prefix: /api
-```
-
-6. Create banner folder: run `mkdir public/media/banner-image -p` and insert a .gitkeep file in that folder
-
-7. Finish the installation updating the database schema and installing assets
-
-```
-php bin/console doctrine:schema:update --force
-php bin/console sylius:theme:assets:install
-```
-
-## Usage
-
-For the administration you will have the Banner menu.
-Feel free to modify the plugin templates like you want.
-
-You can choose your js library by configuration:
-
-```yml
-odiseo_sylius_banner:
-    slider: #swiper, glide, sliderpro. If you don't want any use ~
-```
-
-### Partial routes
-
-To render banner images you can do something like this:
-
-```twig
-{{ render(url('odiseo_sylius_banner_plugin_shop_partial_banner', {'template': '@OdiseoSyliusBannerPlugin/Shop/Banner/_banner.html.twig'})) }}
-``` 
-   
-And to render banner images by taxon:
-
-```twig
-{{ render(url('odiseo_sylius_banner_plugin_shop_partial_banner_by_taxon', {'taxon': taxon.slug, 'template': '@OdiseoSyliusBannerPlugin/Shop/Banner/_banner.html.twig'})) }}
-```
-
-For forms use the validation group `odiseo`
-
-## Fixtures
-
-This plugin comes with fixtures:
-
-### Banners
-
-Simply add this configuration on your fixture suite:
-
-```yml
-banner:
-    options:
-        banners_per_channel: 12
-```
-
-## Test the plugin
-
-You can follow the instructions to test this plugins in the proper documentation page: [Test the plugin](doc/tests.md).
 
 ## Credits
 
