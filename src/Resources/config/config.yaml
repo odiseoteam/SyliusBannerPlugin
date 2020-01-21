@@ -30,7 +30,7 @@ liip_imagine:
     loaders:
         banner_image:
             filesystem:
-                data_root: "%kernel.project_dir%/public/media/banner-image"
+                data_root: "%sylius_core.public_dir%/media/banner-image"
     filter_sets:
         odiseo_sylius_banner_plugin_image:
             data_loader: banner_image
