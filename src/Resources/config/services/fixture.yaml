@@ -3,11 +3,14 @@ services:
         class: Odiseo\SyliusBannerPlugin\Fixture\BannerFixture
         arguments:
             - '@odiseo_sylius_banner_plugin.manager.banner'
-            - '@odiseo_sylius_banner_plugin.factory.banner'
-            - '@odiseo_sylius_banner_plugin.repository.banner'
-            - '@sylius.repository.channel'
-            - '@sylius.repository.locale'
-            - '@sylius.factory.taxon'
-            - '@sylius.repository.taxon'
+            - '@odiseo_sylius_banner_plugin.fixture.example_factory.banner'
         tags:
             - { name: sylius_fixtures.fixture }
+
+    odiseo_sylius_banner_plugin.fixture.example_factory.banner:
+        class: Odiseo\SyliusBannerPlugin\Fixture\Factory\BannerExampleFactory
+        arguments:
+            - '@odiseo_sylius_banner_plugin.factory.banner'
+            - '@sylius.repository.channel'
+            - '@sylius.repository.locale'
+            - '@file_locator'

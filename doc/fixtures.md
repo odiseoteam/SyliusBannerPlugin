@@ -8,7 +8,11 @@ Simply add this configuration on your fixture suite:
 
 ```yml
 # config/packages/_sylius.yaml
-banner:
-    options:
-        banners_per_channel: 12
+sylius_fixtures:
+    suites:
+        default:
+            fixtures:
+                banner:
+                    options:
+                        random: 3
 ```

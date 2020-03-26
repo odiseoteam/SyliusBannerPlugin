@@ -21,4 +21,4 @@ sylius_fixtures:
             fixtures:
                 banner:
                     options:
-                        banners_per_channel: 12
+                        random: 3
