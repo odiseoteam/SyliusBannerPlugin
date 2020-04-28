@@ -2,8 +2,12 @@
     <a href="{{ banner.url }}" target="_blank">
         <img class="ui image hide-on-mobile" src="{{ banner.imageName|imagine_filter('odiseo_sylius_banner_plugin_image') }}" alt="{{ banner.imageName }}">
         <img class="ui image show-on-mobile" src="{{ banner.mobileImageName|imagine_filter('odiseo_sylius_banner_plugin_mobile_image') }}" alt="{{ banner.mobileImageName }}">
+        <div class="main-text">{{ banner.mainText }}</div>
+        <div class="secondary-text">{{ banner.secondaryText }}</div>
     </a>
 {% else %}
     <img class="ui image hide-on-mobile" src="{{ banner.imageName|imagine_filter('odiseo_sylius_banner_plugin_image') }}" alt="{{ banner.imageName }}">
     <img class="ui image show-on-mobile" src="{{ banner.mobileImageName|imagine_filter('odiseo_sylius_banner_plugin_mobile_image') }}" alt="{{ banner.mobileImageName }}">
+    <div class="main-text">{{ banner.mainText }}</div>
+    <div class="secondary-text">{{ banner.secondaryText }}</div>
 {% endif %}

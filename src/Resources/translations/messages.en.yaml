@@ -15,3 +15,5 @@ odiseo_sylius_banner_plugin:
             image: Image
             mobile_image: Mobile image
             url: URL
+            main_text: Main text
+            secondary_text: Secondary text

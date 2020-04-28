@@ -30,6 +30,12 @@ class BannerTranslation extends AbstractTranslation implements BannerTranslation
     /** @var string|null */
     private $url;
 
+    /** @var string|null */
+    private $mainText;
+
+    /** @var string|null */
+    private $secondaryText;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();
@@ -123,5 +129,37 @@ class BannerTranslation extends AbstractTranslation implements BannerTranslation
     public function getUrl(): ?string
     {
         return $this->url;
+    }
+
+    /**
+     * @param string|null $mainText
+     */
+    public function setMainText(?string $mainText): void
+    {
+        $this->mainText = $mainText;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getMainText(): ?string
+    {
+        return $this->mainText;
+    }
+
+    /**
+     * @param string|null $secondaryText
+     */
+    public function setSecondaryText(?string $secondaryText): void
+    {
+        $this->secondaryText = $secondaryText;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSecondaryText(): ?string
+    {
+        return $this->secondaryText;
     }
 }

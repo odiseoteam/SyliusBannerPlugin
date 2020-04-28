@@ -181,6 +181,50 @@ class Banner implements BannerInterface
     /**
      * {@inheritdoc}
      */
+    public function setMainText(?string $mainText): void
+    {
+        /** @var BannerTranslationInterface $bannerTranslation */
+        $bannerTranslation = $this->getTranslation();
+
+        $bannerTranslation->setMainText($mainText);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getMainText(): ?string
+    {
+        /** @var BannerTranslationInterface $bannerTranslation */
+        $bannerTranslation = $this->getTranslation();
+
+        return $bannerTranslation->getMainText();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setSecondaryText(?string $secondaryText): void
+    {
+        /** @var BannerTranslationInterface $bannerTranslation */
+        $bannerTranslation = $this->getTranslation();
+
+        $bannerTranslation->setMainText($secondaryText);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSecondaryText(): ?string
+    {
+        /** @var BannerTranslationInterface $bannerTranslation */
+        $bannerTranslation = $this->getTranslation();
+
+        return $bannerTranslation->getSecondaryText();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getChannels(): Collection
     {
         return $this->channels;

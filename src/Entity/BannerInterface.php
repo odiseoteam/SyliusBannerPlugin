@@ -74,6 +74,26 @@ interface BannerInterface extends
     public function getUrl(): ?string;
 
     /**
+     * @param string|null $mainText
+     */
+    public function setMainText(?string $mainText): void;
+
+    /**
+     * @return string|null
+     */
+    public function getMainText(): ?string;
+
+    /**
+     * @param string|null $secondaryText
+     */
+    public function setSecondaryText(?string $secondaryText): void;
+
+    /**
+     * @return string|null
+     */
+    public function getSecondaryText(): ?string;
+
+    /**
      * @param string|null $locale
      * @return TranslationInterface
      */
