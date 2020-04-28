@@ -208,7 +208,7 @@ class Banner implements BannerInterface
         /** @var BannerTranslationInterface $bannerTranslation */
         $bannerTranslation = $this->getTranslation();
 
-        $bannerTranslation->setMainText($secondaryText);
+        $bannerTranslation->setSecondaryText($secondaryText);
     }
 
     /**

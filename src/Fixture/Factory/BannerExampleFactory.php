@@ -98,6 +98,8 @@ final class BannerExampleFactory extends AbstractExampleFactory
             $banner->setFallbackLocale($localeCode);
 
             $banner->setUrl($this->faker->url);
+            $banner->setMainText($this->faker->sentence(4));
+            $banner->setSecondaryText($this->faker->sentence(9));
 
             $banner->setImageFile($this->createImage($options['image']));
             $banner->setMobileImageFile($this->createImage($options['mobile_image']));
