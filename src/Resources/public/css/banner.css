@@ -5,6 +5,20 @@
     display: block !important;
 }
 
+.image-container {
+    position: relative;
+}
+.image-container .main-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.image-container .secondary-text {
+    position: absolute;
+    top: 40px;
+    left: 0;
+}
+
 @media(max-width:767px) {
     .show-on-mobile{
         display: block !important;

@@ -40,7 +40,8 @@ final class BannerTranslationTypeSpec extends ObjectBehavior
         $builder->add('imageFile', FileType::class, Argument::any())->shouldBeCalled()->willReturn($builder);
         $builder->add('mobileImageFile', FileType::class, Argument::any())->shouldBeCalled()->willReturn($builder);
         $builder->add('url', TextType::class, Argument::any())->shouldBeCalled()->willReturn($builder);
-
+        $builder->add('mainText', TextType::class, Argument::any())->shouldBeCalled()->willReturn($builder);
+        $builder->add('secondaryText', TextType::class, Argument::any())->shouldBeCalled()->willReturn($builder);
 
         $this->buildForm($builder, []);
     }

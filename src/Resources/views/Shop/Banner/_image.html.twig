@@ -1,3 +1,4 @@
+<div class="image-container">
 {% if banner.url is not null %}
     <a href="{{ banner.url }}" target="_blank">
         <img class="ui image hide-on-mobile" src="{{ banner.imageName|imagine_filter('odiseo_sylius_banner_plugin_image') }}" alt="{{ banner.imageName }}">
@@ -11,3 +12,4 @@
     <div class="main-text">{{ banner.mainText }}</div>
     <div class="secondary-text">{{ banner.secondaryText }}</div>
 {% endif %}
+</div>
