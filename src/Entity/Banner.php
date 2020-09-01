@@ -24,16 +24,24 @@ class Banner implements BannerInterface
     use ToggleableTrait;
 
     /** @var int|null */
-    private $id;
+    protected $id;
 
     /** @var string|null */
-    private $code;
+    protected $code;
 
-    /** @var Collection|ChannelInterface[] */
-    private $channels;
+    /**
+     * @var Collection|ChannelInterface[]
+     *
+     * @psalm-var Collection<array-key, ChannelInterface>
+     */
+    protected $channels;
 
-    /** @var Collection|TaxonInterface[] */
-    private $taxons;
+    /**
+     * @var Collection|TaxonInterface[]
+     *
+     * @psalm-var Collection<array-key, TaxonInterface>
+     */
+    protected $taxons;
 
     public function __construct()
     {

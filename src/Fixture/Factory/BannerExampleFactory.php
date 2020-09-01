@@ -115,8 +115,9 @@ final class BannerExampleFactory extends AbstractExampleFactory
     private function createImage(string $imagePath): UploadedFile
     {
         $imagePath = $this->fileLocator === null ? $imagePath : $this->fileLocator->locate($imagePath);
-        if(is_array($imagePath) && count($imagePath) > 0)
+        if (is_array($imagePath) && count($imagePath) > 0) {
             $imagePath = $imagePath[0];
+        }
 
         return new UploadedFile($imagePath, basename($imagePath));
     }
