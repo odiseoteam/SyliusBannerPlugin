@@ -21,14 +21,14 @@ class BannerRepository extends EntityRepository implements BannerRepositoryInter
             ->setParameter('enabled', true)
         ;
 
-        if ($channel) {
+        if ($channel instanceof ChannelInterface) {
             $queryBuilder->innerJoin('b.channels', 'channel')
                 ->andWhere('channel = :channel')
                 ->setParameter('channel', $channel)
             ;
         }
 
-        if ($taxon) {
+        if ($taxon instanceof TaxonInterface) {
             $queryBuilder->innerJoin('b.taxons', 'taxon')
                 ->andWhere('taxon = :taxon')
                 ->setParameter('taxon', $taxon)

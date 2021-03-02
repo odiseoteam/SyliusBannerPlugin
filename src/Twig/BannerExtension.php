@@ -19,7 +19,7 @@ final class BannerExtension extends AbstractExtension
     }
 
     /**
-     * @return array|TwigFunction[]
+     * @return TwigFunction[]
      */
     public function getFunctions(): array
     {
@@ -33,7 +33,7 @@ final class BannerExtension extends AbstractExtension
      */
     public function getBannerSliderName(): string
     {
-        return $this->slider ?: 'default';
+        return $this->slider !== null ? $this->slider : 'default';
     }
 
     /**

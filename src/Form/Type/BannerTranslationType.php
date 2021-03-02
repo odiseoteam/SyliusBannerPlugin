@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Odiseo\SyliusBannerPlugin\Form\Type;
 
+use Odiseo\SyliusBannerPlugin\Entity\BannerTranslationInterface;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -51,10 +52,10 @@ final class BannerTranslationType extends AbstractResourceType
         parent::configureOptions($resolver);
 
         $resolver->setDefaults([
-            'validation_groups' => function (FormInterface $form) {
+            'validation_groups' => function (FormInterface $form): array {
                 $bannerTranslation = $form->getData();
 
-                if (!$bannerTranslation || null === $bannerTranslation->getId()) {
+                if (!$bannerTranslation instanceof BannerTranslationInterface || null === $bannerTranslation->getId()) {
                     return array_merge($this->validationGroups, ['odiseo_image_create']);
                 }
 

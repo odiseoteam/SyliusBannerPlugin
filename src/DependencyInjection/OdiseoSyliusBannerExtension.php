@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Odiseo\SyliusBannerPlugin\DependencyInjection;
 
-use Sylius\Bundle\ResourceBundle\DependencyInjection\Extension\AbstractResourceExtension;
+use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
-final class OdiseoSyliusBannerExtension extends AbstractResourceExtension
+final class OdiseoSyliusBannerExtension extends Extension
 {
     /**
      * {@inheritdoc}
@@ -23,5 +24,13 @@ final class OdiseoSyliusBannerExtension extends AbstractResourceExtension
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
 
         $loader->load('services.yaml');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getConfiguration(array $config, ContainerBuilder $container): ConfigurationInterface
+    {
+        return new Configuration();
     }
 }

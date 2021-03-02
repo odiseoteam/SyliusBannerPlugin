@@ -23,13 +23,13 @@ final class SliderCssBlockListener
      */
     public function onBlockEvent(BlockEvent $event): void
     {
-        $template = '';
+        $template = null;
 
-        if ($this->slider) {
+        if (null !== $this->slider) {
             $template = '@OdiseoSyliusBannerPlugin/Shop/Slider/_'.$this->slider.'_css.html.twig';
         }
 
-        if ($template) {
+        if (null !== $template) {
             $block = new Block();
             $block->setId(uniqid('', true));
             $block->setSettings(array_replace($event->getSettings(), [
