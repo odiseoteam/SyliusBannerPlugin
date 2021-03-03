@@ -24,5 +24,6 @@
         <PossiblyNullArgument errorLevel="info" />
         <PossiblyUndefinedMethod errorLevel="info" />
         <MixedMethodCall errorLevel="info" />
+        <PossiblyInvalidArgument errorLevel="info" />
     </issueHandlers>
 </psalm>
