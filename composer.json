@@ -9,8 +9,8 @@
     "description": "This plugin add banners to your Sylius project",
     "license": "MIT",
     "require": {
-        "php": "^7.3 || ^8.0",
-        "sylius/sylius": "^1.8",
+        "php": "^7.4 || ^8.0",
+        "sylius/sylius": "^1.9",
         "vich/uploader-bundle": "^1.6"
     },
     "require-dev": {

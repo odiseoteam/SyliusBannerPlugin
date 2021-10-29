@@ -23,25 +23,18 @@ class Banner implements BannerInterface
     use TimestampableTrait;
     use ToggleableTrait;
 
-    /** @var int|null */
-    protected $id;
-
-    /** @var string|null */
-    protected $code;
+    protected ?int $id = null;
+    protected ?string $code = null;
 
     /**
-     * @var Collection|ChannelInterface[]
-     *
      * @psalm-var Collection<array-key, ChannelInterface>
      */
-    protected $channels;
+    protected Collection $channels;
 
     /**
-     * @var Collection|TaxonInterface[]
-     *
      * @psalm-var Collection<array-key, TaxonInterface>
      */
-    protected $taxons;
+    protected Collection $taxons;
 
     public function __construct()
     {
@@ -52,33 +45,21 @@ class Banner implements BannerInterface
         $this->createdAt = new \DateTime();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getCode(): ?string
     {
         return $this->code;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setCode(?string $code): void
     {
         $this->code = $code;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setImageFile(?File $file): void
     {
         /** @var BannerTranslationInterface $bannerTranslation */
@@ -87,9 +68,6 @@ class Banner implements BannerInterface
         $bannerTranslation->setImageFile($file);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getImageFile(): ?File
     {
         /** @var BannerTranslationInterface $bannerTranslation */
@@ -98,9 +76,6 @@ class Banner implements BannerInterface
         return $bannerTranslation->getImageFile();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setImageName(?string $imageName): void
     {
         /** @var BannerTranslationInterface $bannerTranslation */
@@ -109,9 +84,6 @@ class Banner implements BannerInterface
         $bannerTranslation->setImageName($imageName);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getImageName(): ?string
     {
         /** @var BannerTranslationInterface $bannerTranslation */
@@ -120,9 +92,6 @@ class Banner implements BannerInterface
         return $bannerTranslation->getImageName();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setMobileImageFile(?File $file): void
     {
         /** @var BannerTranslationInterface $bannerTranslation */
@@ -131,9 +100,6 @@ class Banner implements BannerInterface
         $bannerTranslation->setMobileImageFile($file);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getMobileImageFile(): ?File
     {
         /** @var BannerTranslationInterface $bannerTranslation */
@@ -142,9 +108,6 @@ class Banner implements BannerInterface
         return $bannerTranslation->getMobileImageFile();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setMobileImageName(?string $mobileImageName): void
     {
         /** @var BannerTranslationInterface $bannerTranslation */
@@ -153,9 +116,6 @@ class Banner implements BannerInterface
         $bannerTranslation->setMobileImageName($mobileImageName);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getMobileImageName(): ?string
     {
         /** @var BannerTranslationInterface $bannerTranslation */
@@ -164,9 +124,6 @@ class Banner implements BannerInterface
         return $bannerTranslation->getMobileImageName();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setUrl(?string $url): void
     {
         /** @var BannerTranslationInterface $bannerTranslation */
@@ -175,9 +132,6 @@ class Banner implements BannerInterface
         $bannerTranslation->setUrl($url);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getUrl(): ?string
     {
         /** @var BannerTranslationInterface $bannerTranslation */
@@ -186,9 +140,6 @@ class Banner implements BannerInterface
         return $bannerTranslation->getUrl();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setMainText(?string $mainText): void
     {
         /** @var BannerTranslationInterface $bannerTranslation */
@@ -197,9 +148,6 @@ class Banner implements BannerInterface
         $bannerTranslation->setMainText($mainText);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getMainText(): ?string
     {
         /** @var BannerTranslationInterface $bannerTranslation */
@@ -208,9 +156,6 @@ class Banner implements BannerInterface
         return $bannerTranslation->getMainText();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setSecondaryText(?string $secondaryText): void
     {
         /** @var BannerTranslationInterface $bannerTranslation */
@@ -219,9 +164,6 @@ class Banner implements BannerInterface
         $bannerTranslation->setSecondaryText($secondaryText);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getSecondaryText(): ?string
     {
         /** @var BannerTranslationInterface $bannerTranslation */
@@ -230,25 +172,16 @@ class Banner implements BannerInterface
         return $bannerTranslation->getSecondaryText();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getChannels(): Collection
     {
         return $this->channels;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function hasChannel(ChannelInterface $channel): bool
     {
         return $this->channels->contains($channel);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function addChannel(ChannelInterface $channel): void
     {
         if (!$this->hasChannel($channel)) {
@@ -256,9 +189,6 @@ class Banner implements BannerInterface
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function removeChannel(ChannelInterface $channel): void
     {
         if ($this->hasChannel($channel)) {
@@ -266,25 +196,16 @@ class Banner implements BannerInterface
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getTaxons(): Collection
     {
         return $this->taxons;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function hasTaxon(TaxonInterface $taxon): bool
     {
         return $this->taxons->contains($taxon);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function addTaxon(TaxonInterface $taxon): void
     {
         if (!$this->taxons->contains($taxon)) {
@@ -292,9 +213,6 @@ class Banner implements BannerInterface
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function removeTaxon(TaxonInterface $taxon): void
     {
         if ($this->taxons->contains($taxon)) {
@@ -302,9 +220,6 @@ class Banner implements BannerInterface
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getTranslation(?string $locale = null): TranslationInterface
     {
         /** @var BannerTranslation $translation */
@@ -313,9 +228,6 @@ class Banner implements BannerInterface
         return $translation;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function createTranslation(): TranslationInterface
     {
         return new BannerTranslation();

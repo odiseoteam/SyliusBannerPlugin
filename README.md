@@ -37,7 +37,7 @@ Features:
 
 * Sliders: Provides sliders for the images ([Swiper](https://github.com/nolimits4web/swiper), [Glide](https://github.com/glidejs/glide), [SliderPro](https://github.com/bqworks/slider-pro)) or choose your own library.
 
-Support Sylius version 1.8+.
+Support Sylius version 1.9+.
 
 ## Screenshots
 

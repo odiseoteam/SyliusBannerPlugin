@@ -9,8 +9,7 @@ use Twig\TwigFunction;
 
 final class BannerExtension extends AbstractExtension
 {
-    /** @var string|null */
-    private $slider;
+    private ?string $slider;
 
     public function __construct(
         ?string $slider
@@ -18,9 +17,6 @@ final class BannerExtension extends AbstractExtension
         $this->slider = $slider;
     }
 
-    /**
-     * @return TwigFunction[]
-     */
     public function getFunctions(): array
     {
         return [
@@ -28,17 +24,11 @@ final class BannerExtension extends AbstractExtension
         ];
     }
 
-    /**
-     * @return string
-     */
     public function getBannerSliderName(): string
     {
         return $this->slider !== null ? $this->slider : 'default';
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return 'banner';

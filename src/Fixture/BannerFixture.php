@@ -9,9 +9,6 @@ use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 
 final class BannerFixture extends AbstractResourceFixture
 {
-    /**
-     * {@inheritdoc}
-     */
     protected function configureResourceNode(ArrayNodeDefinition $resourceNode): void
     {
         $node = $resourceNode->children();
@@ -21,9 +18,6 @@ final class BannerFixture extends AbstractResourceFixture
         $node->scalarNode('mobile_image');
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName(): string
     {
         return 'banner';

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Odiseo\SyliusBannerPlugin\Fixture\Factory;
 
 use Faker\Factory;
+use Faker\Generator as FakerGenerator;
 use Generator;
 use Odiseo\SyliusBannerPlugin\Entity\BannerInterface;
 use Sylius\Bundle\CoreBundle\Fixture\Factory\AbstractExampleFactory;
@@ -20,23 +21,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class BannerExampleFactory extends AbstractExampleFactory
 {
-    /** @var FactoryInterface */
-    private $bannerFactory;
-
-    /** @var ChannelRepositoryInterface */
-    private $channelRepository;
-
-    /** @var RepositoryInterface */
-    private $localeRepository;
-
-    /** @var \Faker\Generator */
-    private $faker;
-
-    /** @var FileLocatorInterface|null */
-    private $fileLocator;
-
-    /** @var OptionsResolver */
-    private $optionsResolver;
+    private FactoryInterface $bannerFactory;
+    private ChannelRepositoryInterface $channelRepository;
+    private RepositoryInterface $localeRepository;
+    private FakerGenerator $faker;
+    private ?FileLocatorInterface $fileLocator;
+    private OptionsResolver $optionsResolver;
 
     public function __construct(
         FactoryInterface $bannerFactory,
@@ -55,9 +45,6 @@ final class BannerExampleFactory extends AbstractExampleFactory
         $this->configureOptions($this->optionsResolver);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
@@ -77,9 +64,6 @@ final class BannerExampleFactory extends AbstractExampleFactory
         ;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function create(array $options = []): BannerInterface
     {
         $options = $this->optionsResolver->resolve($options);
@@ -108,10 +92,6 @@ final class BannerExampleFactory extends AbstractExampleFactory
         return $banner;
     }
 
-    /**
-     * @param string $imagePath
-     * @return UploadedFile
-     */
     private function createImage(string $imagePath): UploadedFile
     {
         /** @var string $imagePath */
@@ -120,9 +100,6 @@ final class BannerExampleFactory extends AbstractExampleFactory
         return new UploadedFile($imagePath, basename($imagePath));
     }
 
-    /**
-     * @return Generator
-     */
     private function getLocales(): Generator
     {
         /** @var LocaleInterface[] $locales */

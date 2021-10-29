@@ -9,9 +9,6 @@ use Sonata\BlockBundle\Model\Block;
 
 final class BannerCssBlockListener
 {
-    /**
-     * @param BlockEvent $event
-     */
     public function onBlockEvent(BlockEvent $event): void
     {
         $template = '@OdiseoSyliusBannerPlugin/Shop/Banner/_banner_css.html.twig';
