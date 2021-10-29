@@ -21,7 +21,7 @@ final class OdiseoSyliusBannerExtension extends Extension
 
         $container->setParameter('odiseo_sylius_banner_plugin.slider', $config['slider']);
 
-        $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
 
         $loader->load('services.yaml');
     }

@@ -65,13 +65,13 @@ final class BannerExampleFactory extends AbstractExampleFactory
             ->setAllowedTypes('channels', 'array')
             ->setNormalizer('channels', LazyOption::findBy($this->channelRepository, 'code'))
 
-            ->setDefault('image', function (Options $options): string {
-                return __DIR__.'/../../Resources/fixtures/banner/images/0'.rand(1, 4).'.png';
+            ->setDefault('image', function (Options $_options): string {
+                return __DIR__ . '/../../Resources/fixtures/banner/images/0' . rand(1, 4) . '.png';
             })
             ->setAllowedTypes('image', ['string'])
 
-            ->setDefault('mobile_image', function (Options $options): string {
-                return __DIR__.'/../../Resources/fixtures/banner/mobile-images/0'.rand(1, 4).'.png';
+            ->setDefault('mobile_image', function (Options $_options): string {
+                return __DIR__ . '/../../Resources/fixtures/banner/mobile-images/0' . rand(1, 4) . '.png';
             })
             ->setAllowedTypes('mobile_image', ['string'])
         ;
@@ -86,7 +86,7 @@ final class BannerExampleFactory extends AbstractExampleFactory
 
         /** @var BannerInterface $banner */
         $banner = $this->bannerFactory->createNew();
-        $banner->setCode($this->faker->slug);
+        $banner->setCode($this->faker->slug());
 
         foreach ($options['channels'] as $channel) {
             $banner->addChannel($channel);
@@ -97,7 +97,7 @@ final class BannerExampleFactory extends AbstractExampleFactory
             $banner->setCurrentLocale($localeCode);
             $banner->setFallbackLocale($localeCode);
 
-            $banner->setUrl($this->faker->url);
+            $banner->setUrl($this->faker->url());
             $banner->setMainText($this->faker->sentence(4));
             $banner->setSecondaryText($this->faker->sentence(9));
 
@@ -114,10 +114,8 @@ final class BannerExampleFactory extends AbstractExampleFactory
      */
     private function createImage(string $imagePath): UploadedFile
     {
-        $imagePath = $this->fileLocator === null ? $imagePath : $this->fileLocator->locate($imagePath);
-        if (is_array($imagePath) && count($imagePath) > 0) {
-            $imagePath = $imagePath[0];
-        }
+        /** @var string $imagePath */
+        $imagePath = null === $this->fileLocator ? $imagePath : $this->fileLocator->locate($imagePath);
 
         return new UploadedFile($imagePath, basename($imagePath));
     }

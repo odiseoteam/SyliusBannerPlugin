@@ -26,7 +26,7 @@ final class SliderCssBlockListener
         $template = null;
 
         if (null !== $this->slider) {
-            $template = '@OdiseoSyliusBannerPlugin/Shop/Slider/_'.$this->slider.'_css.html.twig';
+            $template = '@OdiseoSyliusBannerPlugin/Shop/Slider/_' . $this->slider . '_css.html.twig';
         }
 
         if (null !== $template) {

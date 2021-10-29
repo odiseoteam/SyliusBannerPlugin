@@ -1,7 +1,3 @@
-odiseo_sylius_banner_plugin_api:
-    resource: "@OdiseoSyliusBannerPlugin/Resources/config/routing/api.yaml"
-    prefix: /api
-
 odiseo_sylius_banner_plugin_admin:
     resource: "@OdiseoSyliusBannerPlugin/Resources/config/routing/admin.yaml"
     prefix: /admin

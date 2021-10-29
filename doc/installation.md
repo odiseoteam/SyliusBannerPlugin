@@ -40,18 +40,9 @@ odiseo_sylius_banner_plugin_shop:
         _locale: ^[A-Za-z]{2,4}(_([A-Za-z]{4}|[0-9]{3}))?(_([A-Za-z]{2}|[0-9]{3}))?$
 ```
 
-5. This plugin includes an API version. If you want to use it you have to add the route
+5. Create banner folder: run `mkdir public/media/banner-image -p` and insert a .gitkeep file in that folder
 
-```yml
-# config/routes.yaml
-odiseo_sylius_banner_plugin_api:
-    resource: "@OdiseoSyliusBannerPlugin/Resources/config/routing/api.yaml"
-    prefix: /api
-```
-
-6. Create banner folder: run `mkdir public/media/banner-image -p` and insert a .gitkeep file in that folder
-
-7. Finish the installation updating the database schema and installing assets
+6. Finish the installation updating the database schema and installing assets
 
 ```
 php bin/console doctrine:schema:update --force
