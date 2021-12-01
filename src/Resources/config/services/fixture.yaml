@@ -12,5 +12,6 @@ services:
         arguments:
             - '@odiseo_sylius_banner_plugin.factory.banner'
             - '@sylius.repository.channel'
+            - '@sylius.repository.taxon'
             - '@sylius.repository.locale'
             - '@file_locator'

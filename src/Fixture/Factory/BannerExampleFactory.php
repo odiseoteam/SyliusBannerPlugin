@@ -13,6 +13,7 @@ use Sylius\Component\Channel\Repository\ChannelRepositoryInterface;
 use Sylius\Component\Locale\Model\LocaleInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
+use Sylius\Component\Taxonomy\Repository\TaxonRepositoryInterface;
 use Symfony\Component\Config\FileLocatorInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\OptionsResolver\Options;
@@ -25,6 +26,9 @@ final class BannerExampleFactory extends AbstractExampleFactory
 
     /** @var ChannelRepositoryInterface */
     private $channelRepository;
+
+    /** @var TaxonRepositoryInterface */
+    private $taxonRepository;
 
     /** @var RepositoryInterface */
     private $localeRepository;
@@ -41,11 +45,13 @@ final class BannerExampleFactory extends AbstractExampleFactory
     public function __construct(
         FactoryInterface $bannerFactory,
         ChannelRepositoryInterface $channelRepository,
+        TaxonRepositoryInterface $taxonRepository,
         RepositoryInterface $localeRepository,
         ?FileLocatorInterface $fileLocator = null
     ) {
         $this->bannerFactory = $bannerFactory;
         $this->channelRepository = $channelRepository;
+        $this->taxonRepository = $taxonRepository;
         $this->localeRepository = $localeRepository;
         $this->fileLocator = $fileLocator;
 
@@ -74,6 +80,10 @@ final class BannerExampleFactory extends AbstractExampleFactory
                 return __DIR__.'/../../Resources/fixtures/banner/mobile-images/0'.rand(1, 4).'.png';
             })
             ->setAllowedTypes('mobile_image', ['string'])
+
+            ->setDefault('taxons', [])
+            ->setAllowedTypes('taxons', 'array')
+            ->setNormalizer('taxons',  LazyOption::findBy($this->taxonRepository, 'code'))
         ;
     }
 
@@ -90,6 +100,10 @@ final class BannerExampleFactory extends AbstractExampleFactory
 
         foreach ($options['channels'] as $channel) {
             $banner->addChannel($channel);
+        }
+
+        foreach ($options['taxons'] as $taxon) {
+            $banner->addTaxon($taxon);
         }
 
         /** @var string $localeCode */
