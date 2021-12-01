@@ -14,6 +14,7 @@ use Sylius\Component\Channel\Repository\ChannelRepositoryInterface;
 use Sylius\Component\Locale\Model\LocaleInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
+use Sylius\Component\Taxonomy\Repository\TaxonRepositoryInterface;
 use Symfony\Component\Config\FileLocatorInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\OptionsResolver\Options;
@@ -23,6 +24,7 @@ final class BannerExampleFactory extends AbstractExampleFactory
 {
     private FactoryInterface $bannerFactory;
     private ChannelRepositoryInterface $channelRepository;
+    private TaxonRepositoryInterface $taxonRepository;
     private RepositoryInterface $localeRepository;
     private FakerGenerator $faker;
     private ?FileLocatorInterface $fileLocator;
@@ -31,11 +33,13 @@ final class BannerExampleFactory extends AbstractExampleFactory
     public function __construct(
         FactoryInterface $bannerFactory,
         ChannelRepositoryInterface $channelRepository,
+        TaxonRepositoryInterface $taxonRepository,
         RepositoryInterface $localeRepository,
         ?FileLocatorInterface $fileLocator = null
     ) {
         $this->bannerFactory = $bannerFactory;
         $this->channelRepository = $channelRepository;
+        $this->taxonRepository = $taxonRepository;
         $this->localeRepository = $localeRepository;
         $this->fileLocator = $fileLocator;
 
@@ -51,6 +55,10 @@ final class BannerExampleFactory extends AbstractExampleFactory
             ->setDefault('channels', LazyOption::randomOnes($this->channelRepository, 3))
             ->setAllowedTypes('channels', 'array')
             ->setNormalizer('channels', LazyOption::findBy($this->channelRepository, 'code'))
+
+            ->setDefault('taxons', [])
+            ->setAllowedTypes('taxons', 'array')
+            ->setNormalizer('taxons', LazyOption::findBy($this->taxonRepository, 'code'))
 
             ->setDefault('image', function (Options $_options): string {
                 return __DIR__ . '/../../Resources/fixtures/banner/images/0' . rand(1, 4) . '.png';
@@ -74,6 +82,10 @@ final class BannerExampleFactory extends AbstractExampleFactory
 
         foreach ($options['channels'] as $channel) {
             $banner->addChannel($channel);
+        }
+
+        foreach ($options['taxons'] as $taxon) {
+            $banner->addTaxon($taxon);
         }
 
         /** @var string $localeCode */
