@@ -49,6 +49,8 @@ final class OdiseoSyliusBannerExtension extends Extension implements PrependExte
 
     protected function getNamespacesOfMigrationsExecutedBefore(): array
     {
-        return ['Sylius\Bundle\CoreBundle\Migrations'];
+        return [
+            'Sylius\Bundle\CoreBundle\Migrations',
+        ];
     }
 }
