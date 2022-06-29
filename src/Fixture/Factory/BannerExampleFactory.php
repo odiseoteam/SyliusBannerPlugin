@@ -52,7 +52,9 @@ final class BannerExampleFactory extends AbstractExampleFactory
     protected function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
-            ->setDefault('code', '')
+            ->setDefault('code', function (Options $_options): string {
+                return $this->faker->slug();
+            })->setRequired('code')
             ->setAllowedTypes('code', ['string'])
 
             ->setDefault('channels', LazyOption::randomOnes($this->channelRepository, 3))
@@ -64,12 +66,21 @@ final class BannerExampleFactory extends AbstractExampleFactory
             ->setNormalizer('taxons', LazyOption::findBy($this->taxonRepository, 'code'))
 
             ->setDefault('main_text', '')
+            ->setDefault('main_text', function (Options $_options): string {
+                return $this->faker->sentence(4);
+            })
             ->setAllowedTypes('main_text', ['string'])
 
             ->setDefault('secondary_text', '')
+            ->setDefault('secondary_text', function (Options $_options): string {
+                return $this->faker->sentence(9);
+            })
             ->setAllowedTypes('main_text', ['string'])
 
             ->setDefault('url', '')
+            ->setDefault('url', function (Options $_options): string {
+                return $this->faker->url();
+            })
             ->setAllowedTypes('main_text', ['string'])
 
             ->setDefault('image', function (Options $_options): string {
