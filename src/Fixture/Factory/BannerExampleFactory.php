@@ -73,12 +73,12 @@ final class BannerExampleFactory extends AbstractExampleFactory
             ->setDefault('secondary_text', function (Options $_options): string {
                 return $this->faker->sentence(9);
             })
-            ->setAllowedTypes('main_text', ['string'])
+            ->setAllowedTypes('secondary_text', ['string'])
 
             ->setDefault('url', function (Options $_options): string {
                 return $this->faker->url();
             })
-            ->setAllowedTypes('main_text', ['string'])
+            ->setAllowedTypes('url', ['string'])
 
             ->setDefault('image', function (Options $_options): string {
                 return __DIR__ . '/../../Resources/fixtures/banner/images/0' . rand(1, 4) . '.png';
