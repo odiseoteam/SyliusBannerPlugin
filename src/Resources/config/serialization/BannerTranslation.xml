@@ -16,6 +16,14 @@
             <group>admin:banner:create</group>
             <group>shop:banner:read</group>
         </attribute>
+        <attribute name="imageName">
+            <group>admin:banner:create</group>
+            <group>shop:banner:read</group>
+        </attribute>
+        <attribute name="mobileImageName">
+            <group>admin:banner:create</group>
+            <group>shop:banner:read</group>
+        </attribute>
         <attribute name="mainText">
             <group>admin:banner:create</group>
             <group>shop:banner:read</group>

@@ -52,18 +52,11 @@ final class BannerExampleFactory extends AbstractExampleFactory
     protected function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
+            ->setRequired('code')
             ->setDefault('code', function (Options $_options): string {
                 return $this->faker->slug();
-            })->setRequired('code')
+            })
             ->setAllowedTypes('code', ['string'])
-
-            ->setDefault('channels', LazyOption::randomOnes($this->channelRepository, 3))
-            ->setAllowedTypes('channels', 'array')
-            ->setNormalizer('channels', LazyOption::findBy($this->channelRepository, 'code'))
-
-            ->setDefault('taxons', [])
-            ->setAllowedTypes('taxons', 'array')
-            ->setNormalizer('taxons', LazyOption::findBy($this->taxonRepository, 'code'))
 
             ->setDefault('main_text', function (Options $_options): string {
                 return $this->faker->sentence(4);
@@ -89,6 +82,14 @@ final class BannerExampleFactory extends AbstractExampleFactory
                 return __DIR__ . '/../../Resources/fixtures/banner/mobile-images/0' . rand(1, 4) . '.png';
             })
             ->setAllowedTypes('mobile_image', ['string'])
+
+            ->setDefault('channels', LazyOption::randomOnes($this->channelRepository, 3))
+            ->setAllowedTypes('channels', 'array')
+            ->setNormalizer('channels', LazyOption::findBy($this->channelRepository, 'code'))
+
+            ->setDefault('taxons', [])
+            ->setAllowedTypes('taxons', 'array')
+            ->setNormalizer('taxons', LazyOption::findBy($this->taxonRepository, 'code'))
         ;
     }
 
