@@ -65,19 +65,16 @@ final class BannerExampleFactory extends AbstractExampleFactory
             ->setAllowedTypes('taxons', 'array')
             ->setNormalizer('taxons', LazyOption::findBy($this->taxonRepository, 'code'))
 
-            ->setDefault('main_text', '')
             ->setDefault('main_text', function (Options $_options): string {
                 return $this->faker->sentence(4);
             })
             ->setAllowedTypes('main_text', ['string'])
 
-            ->setDefault('secondary_text', '')
             ->setDefault('secondary_text', function (Options $_options): string {
                 return $this->faker->sentence(9);
             })
             ->setAllowedTypes('main_text', ['string'])
 
-            ->setDefault('url', '')
             ->setDefault('url', function (Options $_options): string {
                 return $this->faker->url();
             })
