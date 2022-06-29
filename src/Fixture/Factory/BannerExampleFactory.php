@@ -52,6 +52,9 @@ final class BannerExampleFactory extends AbstractExampleFactory
     protected function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
+            ->setDefault('code', '')
+            ->setAllowedTypes('code', ['string'])
+
             ->setDefault('channels', LazyOption::randomOnes($this->channelRepository, 3))
             ->setAllowedTypes('channels', 'array')
             ->setNormalizer('channels', LazyOption::findBy($this->channelRepository, 'code'))
@@ -59,6 +62,15 @@ final class BannerExampleFactory extends AbstractExampleFactory
             ->setDefault('taxons', [])
             ->setAllowedTypes('taxons', 'array')
             ->setNormalizer('taxons', LazyOption::findBy($this->taxonRepository, 'code'))
+
+            ->setDefault('main_text', '')
+            ->setAllowedTypes('main_text', ['string'])
+
+            ->setDefault('secondary_text', '')
+            ->setAllowedTypes('main_text', ['string'])
+
+            ->setDefault('url', '')
+            ->setAllowedTypes('main_text', ['string'])
 
             ->setDefault('image', function (Options $_options): string {
                 return __DIR__ . '/../../Resources/fixtures/banner/images/0' . rand(1, 4) . '.png';
@@ -78,7 +90,7 @@ final class BannerExampleFactory extends AbstractExampleFactory
 
         /** @var BannerInterface $banner */
         $banner = $this->bannerFactory->createNew();
-        $banner->setCode($this->faker->slug());
+        $banner->setCode($options['code']);
 
         foreach ($options['channels'] as $channel) {
             $banner->addChannel($channel);
@@ -93,9 +105,9 @@ final class BannerExampleFactory extends AbstractExampleFactory
             $banner->setCurrentLocale($localeCode);
             $banner->setFallbackLocale($localeCode);
 
-            $banner->setUrl($this->faker->url());
-            $banner->setMainText($this->faker->sentence(4));
-            $banner->setSecondaryText($this->faker->sentence(9));
+            $banner->setUrl($options['url']);
+            $banner->setMainText($options['main_text']);
+            $banner->setSecondaryText($options['secondary_text']);
 
             $banner->setImageFile($this->createImage($options['image']));
             $banner->setMobileImageFile($this->createImage($options['mobile_image']));
