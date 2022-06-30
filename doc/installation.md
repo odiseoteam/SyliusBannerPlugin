@@ -1,6 +1,6 @@
 ## Installation
 
-1. Run `composer require odiseoteam/sylius-banner-plugin` --no-scripts`
+1. Run `composer require odiseoteam/sylius-banner-plugin --no-scripts`
 
 2. Enable the plugin in bundles.php
 
@@ -20,8 +20,7 @@ return [
 ```yml
 # config/packages/_sylius.yaml
 imports:
-    ...
-
+    # ...
     - { resource: "@OdiseoSyliusBannerPlugin/Resources/config/config.yaml" }
 ```
 
