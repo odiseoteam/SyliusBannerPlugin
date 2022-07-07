@@ -172,6 +172,22 @@ class Banner implements BannerInterface
         return $bannerTranslation->getSecondaryText();
     }
 
+    public function setButtonText(?string $buttonText): void
+    {
+        /** @var BannerTranslationInterface $bannerTranslation */
+        $bannerTranslation = $this->getTranslation();
+
+        $bannerTranslation->setButtonText($buttonText);
+    }
+
+    public function getButtonText(): ?string
+    {
+        /** @var BannerTranslationInterface $bannerTranslation */
+        $bannerTranslation = $this->getTranslation();
+
+        return $bannerTranslation->getButtonText();
+    }
+
     public function getChannels(): Collection
     {
         return $this->channels;

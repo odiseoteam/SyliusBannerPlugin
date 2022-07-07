@@ -19,6 +19,7 @@ final class BannerFixture extends AbstractResourceFixture
         $node->scalarNode('url');
         $node->scalarNode('main_text');
         $node->scalarNode('secondary_text');
+        $node->scalarNode('button_text');
         $node->scalarNode('image');
         $node->scalarNode('mobile_image');
     }

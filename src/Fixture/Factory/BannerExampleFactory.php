@@ -68,6 +68,9 @@ final class BannerExampleFactory extends AbstractExampleFactory
             })
             ->setAllowedTypes('secondary_text', ['string'])
 
+            ->setDefault('button_text', 'Buy Now')
+            ->setAllowedTypes('button_text', ['string'])
+
             ->setDefault('url', function (Options $_options): string {
                 return $this->faker->url();
             })
@@ -117,6 +120,7 @@ final class BannerExampleFactory extends AbstractExampleFactory
             $banner->setUrl($options['url']);
             $banner->setMainText($options['main_text']);
             $banner->setSecondaryText($options['secondary_text']);
+            $banner->setButtonText($options['button_text']);
 
             $banner->setImageFile($this->createImage($options['image']));
             $banner->setMobileImageFile($this->createImage($options['mobile_image']));

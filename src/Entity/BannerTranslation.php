@@ -20,6 +20,7 @@ class BannerTranslation extends AbstractTranslation implements BannerTranslation
     protected ?string $url = null;
     protected ?string $mainText = null;
     protected ?string $secondaryText = null;
+    protected ?string $buttonText = null;
 
     public function __construct()
     {
@@ -103,5 +104,15 @@ class BannerTranslation extends AbstractTranslation implements BannerTranslation
     public function getSecondaryText(): ?string
     {
         return $this->secondaryText;
+    }
+
+    public function setButtonText(?string $buttonText): void
+    {
+        $this->buttonText = $buttonText;
+    }
+
+    public function getButtonText(): ?string
+    {
+        return $this->buttonText;
     }
 }

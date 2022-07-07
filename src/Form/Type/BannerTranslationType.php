@@ -38,6 +38,10 @@ final class BannerTranslationType extends AbstractResourceType
                 'label' => 'odiseo_sylius_banner_plugin.form.banner.secondary_text',
                 'required' => false
             ])
+            ->add('buttonText', TextType::class, [
+                'label' => 'odiseo_sylius_banner_plugin.form.banner.button_text',
+                'required' => false
+            ])
         ;
     }
 
