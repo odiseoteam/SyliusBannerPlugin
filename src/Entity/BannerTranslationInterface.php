@@ -41,4 +41,8 @@ interface BannerTranslationInterface extends
     public function setSecondaryText(?string $secondaryText): void;
 
     public function getSecondaryText(): ?string;
+
+    public function setButtonText(?string $buttonText): void;
+
+    public function getButtonText(): ?string;
 }

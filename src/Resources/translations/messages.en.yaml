@@ -17,3 +17,4 @@ odiseo_sylius_banner_plugin:
             url: URL
             main_text: Main text
             secondary_text: Secondary text
+            button_text: Button text
