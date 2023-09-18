@@ -7,7 +7,7 @@ namespace Odiseo\SyliusBannerPlugin\Fixture;
 use Sylius\Bundle\CoreBundle\Fixture\AbstractResourceFixture;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 
-final class BannerFixture extends AbstractResourceFixture
+class BannerFixture extends AbstractResourceFixture
 {
     protected function configureResourceNode(ArrayNodeDefinition $resourceNode): void
     {

@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-final class BannerExampleFactory extends AbstractExampleFactory
+class BannerExampleFactory extends AbstractExampleFactory
 {
     private FactoryInterface $bannerFactory;
     private ChannelRepositoryInterface $channelRepository;
@@ -61,20 +61,20 @@ final class BannerExampleFactory extends AbstractExampleFactory
             ->setDefault('main_text', function (Options $_options): string {
                 return $this->faker->sentence(4);
             })
-            ->setAllowedTypes('main_text', ['string'])
+            ->setAllowedTypes('main_text', ['string', 'null'])
 
             ->setDefault('secondary_text', function (Options $_options): string {
                 return $this->faker->sentence(9);
             })
-            ->setAllowedTypes('secondary_text', ['string'])
+            ->setAllowedTypes('secondary_text', ['string', 'null'])
 
             ->setDefault('button_text', 'Buy Now')
-            ->setAllowedTypes('button_text', ['string'])
+            ->setAllowedTypes('button_text', ['string', 'null'])
 
             ->setDefault('url', function (Options $_options): string {
                 return $this->faker->url();
             })
-            ->setAllowedTypes('url', ['string'])
+            ->setAllowedTypes('url', ['string', 'null'])
 
             ->setDefault('image', function (Options $_options): string {
                 return __DIR__ . '/../../Resources/fixtures/banner/images/0' . rand(1, 4) . '.png';
@@ -84,7 +84,7 @@ final class BannerExampleFactory extends AbstractExampleFactory
             ->setDefault('mobile_image', function (Options $_options): string {
                 return __DIR__ . '/../../Resources/fixtures/banner/mobile-images/0' . rand(1, 4) . '.png';
             })
-            ->setAllowedTypes('mobile_image', ['string'])
+            ->setAllowedTypes('mobile_image', ['string', 'null'])
 
             ->setDefault('channels', LazyOption::randomOnes($this->channelRepository, 3))
             ->setAllowedTypes('channels', 'array')
@@ -117,19 +117,29 @@ final class BannerExampleFactory extends AbstractExampleFactory
             $banner->setCurrentLocale($localeCode);
             $banner->setFallbackLocale($localeCode);
 
-            $banner->setUrl($options['url']);
-            $banner->setMainText($options['main_text']);
-            $banner->setSecondaryText($options['secondary_text']);
-            $banner->setButtonText($options['button_text']);
-
             $banner->setImageFile($this->createImage($options['image']));
-            $banner->setMobileImageFile($this->createImage($options['mobile_image']));
+
+            if ($options['main_text']) {
+                $banner->setMainText($options['main_text']);
+            }
+            if ($options['url']) {
+                $banner->setUrl($options['url']);
+            }
+            if ($options['secondary_text']) {
+                $banner->setSecondaryText($options['secondary_text']);
+            }
+            if ($options['button_text']) {
+                $banner->setButtonText($options['button_text']);
+            }
+            if ($options['mobile_image']) {
+                $banner->setMobileImageFile($this->createImage($options['mobile_image']));
+            }
         }
 
         return $banner;
     }
 
-    private function createImage(string $imagePath): UploadedFile
+    protected function createImage(string $imagePath): UploadedFile
     {
         /** @var string $imagePath */
         $imagePath = null === $this->fileLocator ? $imagePath : $this->fileLocator->locate($imagePath);
@@ -137,7 +147,7 @@ final class BannerExampleFactory extends AbstractExampleFactory
         return new UploadedFile($imagePath, basename($imagePath));
     }
 
-    private function getLocales(): Generator
+    protected function getLocales(): Generator
     {
         /** @var LocaleInterface[] $locales */
         $locales = $this->localeRepository->findAll();

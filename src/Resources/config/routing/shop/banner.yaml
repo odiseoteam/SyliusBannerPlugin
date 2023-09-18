@@ -2,7 +2,7 @@ odiseo_sylius_banner_plugin_shop_partial_banner:
     path: /partial
     methods: [GET]
     defaults:
-        _controller: odiseo_sylius_banner_plugin.controller.banner:indexAction
+        _controller: odiseo_sylius_banner_plugin.controller.banner::indexAction
         _sylius:
             template: $template
             repository:
@@ -14,7 +14,7 @@ odiseo_sylius_banner_plugin_shop_partial_banner_by_taxon:
     path: /partial/by-taxon
     methods: [GET]
     defaults:
-        _controller: odiseo_sylius_banner_plugin.controller.banner:indexAction
+        _controller: odiseo_sylius_banner_plugin.controller.banner::indexAction
         _sylius:
             template: $template
             repository:
