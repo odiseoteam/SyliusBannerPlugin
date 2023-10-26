@@ -42,6 +42,7 @@ final class BannerTranslationTypeSpec extends ObjectBehavior
         $builder->add('url', TextType::class, Argument::any())->shouldBeCalled()->willReturn($builder);
         $builder->add('mainText', TextType::class, Argument::any())->shouldBeCalled()->willReturn($builder);
         $builder->add('secondaryText', TextType::class, Argument::any())->shouldBeCalled()->willReturn($builder);
+        $builder->add('buttonText', TextType::class, Argument::any())->shouldBeCalled()->willReturn($builder);
 
         $this->buildForm($builder, []);
     }

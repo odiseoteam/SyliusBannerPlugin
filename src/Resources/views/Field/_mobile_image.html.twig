@@ -1,1 +1,7 @@
-<img class="ui small image" src="{{ data|imagine_filter('odiseo_sylius_banner_plugin_mobile_image') }}" alt="{{ data }}">
+{% import '@SyliusUi/Macro/labels.html.twig' as label %}
+
+{% if data %}
+    <img class="ui small image" src="{{ data|imagine_filter('odiseo_sylius_banner_plugin_mobile_image') }}" alt="{{ data }}">
+{% else %}
+    {{ label.default('sylius.ui.empty'|trans) }}
+{% endif %}

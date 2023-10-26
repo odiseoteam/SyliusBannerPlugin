@@ -15,6 +15,9 @@ final class Configuration implements ConfigurationInterface
 
         $rootNode = $treeBuilder->getRootNode();
 
+        /**
+         * @psalm-suppress UndefinedMethod
+         */
         $rootNode
             ->children()
                 ->scalarNode('slider')->defaultValue('swiper')->end()
