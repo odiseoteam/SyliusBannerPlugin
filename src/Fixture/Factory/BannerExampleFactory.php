@@ -22,78 +22,20 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class BannerExampleFactory extends AbstractExampleFactory
 {
-    private FactoryInterface $bannerFactory;
-    private ChannelRepositoryInterface $channelRepository;
-    private TaxonRepositoryInterface $taxonRepository;
-    private RepositoryInterface $localeRepository;
-    private FakerGenerator $faker;
-    private ?FileLocatorInterface $fileLocator;
-    private OptionsResolver $optionsResolver;
+    protected FakerGenerator $faker;
+    protected OptionsResolver $optionsResolver;
 
     public function __construct(
-        FactoryInterface $bannerFactory,
-        ChannelRepositoryInterface $channelRepository,
-        TaxonRepositoryInterface $taxonRepository,
-        RepositoryInterface $localeRepository,
-        ?FileLocatorInterface $fileLocator = null
+        protected FactoryInterface $bannerFactory,
+        protected ChannelRepositoryInterface $channelRepository,
+        protected TaxonRepositoryInterface $taxonRepository,
+        protected RepositoryInterface $localeRepository,
+        protected ?FileLocatorInterface $fileLocator = null
     ) {
-        $this->bannerFactory = $bannerFactory;
-        $this->channelRepository = $channelRepository;
-        $this->taxonRepository = $taxonRepository;
-        $this->localeRepository = $localeRepository;
-        $this->fileLocator = $fileLocator;
-
         $this->faker = Factory::create();
         $this->optionsResolver = new OptionsResolver();
 
         $this->configureOptions($this->optionsResolver);
-    }
-
-    protected function configureOptions(OptionsResolver $resolver): void
-    {
-        $resolver
-            ->setRequired('code')
-            ->setDefault('code', function (Options $_options): string {
-                return $this->faker->slug();
-            })
-            ->setAllowedTypes('code', ['string'])
-
-            ->setDefault('main_text', function (Options $_options): string {
-                return $this->faker->sentence(4);
-            })
-            ->setAllowedTypes('main_text', ['string', 'null'])
-
-            ->setDefault('secondary_text', function (Options $_options): string {
-                return $this->faker->sentence(9);
-            })
-            ->setAllowedTypes('secondary_text', ['string', 'null'])
-
-            ->setDefault('button_text', 'Buy Now')
-            ->setAllowedTypes('button_text', ['string', 'null'])
-
-            ->setDefault('url', function (Options $_options): string {
-                return $this->faker->url();
-            })
-            ->setAllowedTypes('url', ['string', 'null'])
-
-            ->setDefault('image', function (Options $_options): string {
-                return __DIR__ . '/../../Resources/fixtures/banner/images/0' . rand(1, 4) . '.png';
-            })
-            ->setAllowedTypes('image', ['string'])
-
-            ->setDefault('mobile_image', function (Options $_options): string {
-                return __DIR__ . '/../../Resources/fixtures/banner/mobile-images/0' . rand(1, 4) . '.png';
-            })
-            ->setAllowedTypes('mobile_image', ['string', 'null'])
-
-            ->setDefault('channels', LazyOption::randomOnes($this->channelRepository, 3))
-            ->setAllowedTypes('channels', 'array')
-            ->setNormalizer('channels', LazyOption::findBy($this->channelRepository, 'code'))
-
-            ->setDefault('taxons', [])
-            ->setAllowedTypes('taxons', 'array')
-            ->setNormalizer('taxons', LazyOption::findBy($this->taxonRepository, 'code'))
-        ;
     }
 
     public function create(array $options = []): BannerInterface
@@ -154,5 +96,52 @@ class BannerExampleFactory extends AbstractExampleFactory
         foreach ($locales as $locale) {
             yield $locale->getCode();
         }
+    }
+
+    protected function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver
+            ->setRequired('code')
+            ->setDefault('code', function (Options $_options): string {
+                return $this->faker->slug();
+            })
+            ->setAllowedTypes('code', ['string'])
+
+            ->setDefault('main_text', function (Options $_options): string {
+                return $this->faker->sentence(4);
+            })
+            ->setAllowedTypes('main_text', ['string', 'null'])
+
+            ->setDefault('secondary_text', function (Options $_options): string {
+                return $this->faker->sentence(9);
+            })
+            ->setAllowedTypes('secondary_text', ['string', 'null'])
+
+            ->setDefault('button_text', 'Buy Now')
+            ->setAllowedTypes('button_text', ['string', 'null'])
+
+            ->setDefault('url', function (Options $_options): string {
+                return $this->faker->url();
+            })
+            ->setAllowedTypes('url', ['string', 'null'])
+
+            ->setDefault('image', function (Options $_options): string {
+                return __DIR__ . '/../../Resources/fixtures/banner/images/0' . rand(1, 4) . '.png';
+            })
+            ->setAllowedTypes('image', ['string'])
+
+            ->setDefault('mobile_image', function (Options $_options): string {
+                return __DIR__ . '/../../Resources/fixtures/banner/mobile-images/0' . rand(1, 4) . '.png';
+            })
+            ->setAllowedTypes('mobile_image', ['string', 'null'])
+
+            ->setDefault('channels', LazyOption::randomOnes($this->channelRepository, 3))
+            ->setAllowedTypes('channels', 'array')
+            ->setNormalizer('channels', LazyOption::findBy($this->channelRepository, 'code'))
+
+            ->setDefault('taxons', [])
+            ->setAllowedTypes('taxons', 'array')
+            ->setNormalizer('taxons', LazyOption::findBy($this->taxonRepository, 'code'))
+        ;
     }
 }

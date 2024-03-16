@@ -9,15 +9,15 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 final class Configuration implements ConfigurationInterface
 {
+    /**
+     * @psalm-suppress UndefinedMethod
+     */
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('odiseo_sylius_banner_plugin');
 
         $rootNode = $treeBuilder->getRootNode();
 
-        /**
-         * @psalm-suppress UndefinedMethod
-         */
         $rootNode
             ->children()
                 ->scalarNode('slider')->defaultValue('swiper')->end()

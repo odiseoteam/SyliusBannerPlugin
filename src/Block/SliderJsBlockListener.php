@@ -9,12 +9,9 @@ use Sonata\BlockBundle\Model\Block;
 
 final class SliderJsBlockListener
 {
-    private ?string $slider;
-
     public function __construct(
-        ?string $slider
+        private ?string $slider
     ) {
-        $this->slider = $slider;
     }
 
     public function onBlockEvent(BlockEvent $event): void

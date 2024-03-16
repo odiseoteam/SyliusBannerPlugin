@@ -7,9 +7,6 @@ namespace Odiseo\SyliusBannerPlugin\Migrations;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
-/**
- * Auto-generated Migration: Please modify to your needs!
- */
 final class Version20231026195446 extends AbstractMigration
 {
     public function getDescription(): string
@@ -19,7 +16,6 @@ final class Version20231026195446 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE TABLE odiseo_banner (id INT AUTO_INCREMENT NOT NULL, code VARCHAR(255) NOT NULL, enabled TINYINT(1) NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, UNIQUE INDEX UNIQ_2FB97E5E77153098 (code), PRIMARY KEY(id)) DEFAULT CHARACTER SET UTF8 COLLATE `UTF8_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE odiseo_banners_channels (banner_id INT NOT NULL, channel_id INT NOT NULL, INDEX IDX_AAD9CFD0684EC833 (banner_id), INDEX IDX_AAD9CFD072F5A1AA (channel_id), PRIMARY KEY(banner_id, channel_id)) DEFAULT CHARACTER SET UTF8 COLLATE `UTF8_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE odiseo_banners_taxons (banner_id INT NOT NULL, taxon_id INT NOT NULL, INDEX IDX_FB5C1345684EC833 (banner_id), INDEX IDX_FB5C1345DE13F470 (taxon_id), PRIMARY KEY(banner_id, taxon_id)) DEFAULT CHARACTER SET UTF8 COLLATE `UTF8_unicode_ci` ENGINE = InnoDB');
@@ -33,7 +29,6 @@ final class Version20231026195446 extends AbstractMigration
 
     public function down(Schema $schema): void
     {
-        // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE odiseo_banners_channels DROP FOREIGN KEY FK_AAD9CFD0684EC833');
         $this->addSql('ALTER TABLE odiseo_banners_channels DROP FOREIGN KEY FK_AAD9CFD072F5A1AA');
         $this->addSql('ALTER TABLE odiseo_banners_taxons DROP FOREIGN KEY FK_FB5C1345684EC833');
