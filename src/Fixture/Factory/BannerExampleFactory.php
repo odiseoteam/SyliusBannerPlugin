@@ -23,6 +23,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class BannerExampleFactory extends AbstractExampleFactory
 {
     protected FakerGenerator $faker;
+
     protected OptionsResolver $optionsResolver;
 
     public function __construct(
@@ -30,7 +31,7 @@ class BannerExampleFactory extends AbstractExampleFactory
         protected ChannelRepositoryInterface $channelRepository,
         protected TaxonRepositoryInterface $taxonRepository,
         protected RepositoryInterface $localeRepository,
-        protected ?FileLocatorInterface $fileLocator = null
+        protected ?FileLocatorInterface $fileLocator = null,
     ) {
         $this->faker = Factory::create();
         $this->optionsResolver = new OptionsResolver();
@@ -83,7 +84,11 @@ class BannerExampleFactory extends AbstractExampleFactory
 
     protected function createImage(string $imagePath): UploadedFile
     {
-        /** @var string $imagePath */
+        /**
+         * @var string $imagePath
+         *
+         * @psalm-suppress UnnecessaryVarAnnotation
+         */
         $imagePath = null === $this->fileLocator ? $imagePath : $this->fileLocator->locate($imagePath);
 
         return new UploadedFile($imagePath, basename($imagePath));

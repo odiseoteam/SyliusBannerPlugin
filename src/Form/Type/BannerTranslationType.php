@@ -25,23 +25,23 @@ final class BannerTranslationType extends AbstractResourceType
             ])
             ->add('mobileImageFile', FileType::class, [
                 'label' => 'odiseo_sylius_banner_plugin.form.banner.mobile_image',
-                'required' => false
+                'required' => false,
             ])
             ->add('url', TextType::class, [
                 'label' => 'odiseo_sylius_banner_plugin.form.banner.url',
-                'required' => false
+                'required' => false,
             ])
             ->add('mainText', TextType::class, [
                 'label' => 'odiseo_sylius_banner_plugin.form.banner.main_text',
-                'required' => false
+                'required' => false,
             ])
             ->add('secondaryText', TextType::class, [
                 'label' => 'odiseo_sylius_banner_plugin.form.banner.secondary_text',
-                'required' => false
+                'required' => false,
             ])
             ->add('buttonText', TextType::class, [
                 'label' => 'odiseo_sylius_banner_plugin.form.banner.button_text',
-                'required' => false
+                'required' => false,
             ])
         ;
     }
@@ -60,9 +60,9 @@ final class BannerTranslationType extends AbstractResourceType
 
                 return $this->validationGroups;
             },
-            'constraints' => array(
-                new Valid()
-            )
+            'constraints' => [
+                new Valid(),
+            ],
         ]);
     }
 }

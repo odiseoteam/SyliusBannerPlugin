@@ -10,7 +10,7 @@ use Sonata\BlockBundle\Model\Block;
 final class SliderCssBlockListener
 {
     public function __construct(
-        private ?string $slider
+        private ?string $slider,
     ) {
     }
 

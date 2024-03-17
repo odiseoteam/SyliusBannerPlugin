@@ -13,13 +13,21 @@ class BannerTranslation extends AbstractTranslation implements BannerTranslation
     use TimestampableTrait;
 
     protected ?int $id = null;
+
     protected ?File $imageFile = null;
+
     protected ?string $imageName = null;
+
     protected ?File $mobileImageFile = null;
+
     protected ?string $mobileImageName = null;
+
     protected ?string $url = null;
+
     protected ?string $mainText = null;
+
     protected ?string $secondaryText = null;
+
     protected ?string $buttonText = null;
 
     public function __construct()

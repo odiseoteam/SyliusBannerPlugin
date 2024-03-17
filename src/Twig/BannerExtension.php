@@ -10,14 +10,14 @@ use Twig\TwigFunction;
 final class BannerExtension extends AbstractExtension
 {
     public function __construct(
-        private ?string $slider
+        private ?string $slider,
     ) {
     }
 
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('banner_slider_name', [$this, 'getBannerSliderName'])
+            new TwigFunction('banner_slider_name', [$this, 'getBannerSliderName']),
         ];
     }
 
