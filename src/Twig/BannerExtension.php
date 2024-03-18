@@ -9,18 +9,15 @@ use Twig\TwigFunction;
 
 final class BannerExtension extends AbstractExtension
 {
-    private ?string $slider;
-
     public function __construct(
-        ?string $slider
+        private ?string $slider,
     ) {
-        $this->slider = $slider;
     }
 
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('banner_slider_name', [$this, 'getBannerSliderName'])
+            new TwigFunction('banner_slider_name', [$this, 'getBannerSliderName']),
         ];
     }
 

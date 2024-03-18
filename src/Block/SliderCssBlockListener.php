@@ -9,12 +9,9 @@ use Sonata\BlockBundle\Model\Block;
 
 final class SliderCssBlockListener
 {
-    private ?string $slider;
-
     public function __construct(
-        ?string $slider
+        private ?string $slider,
     ) {
-        $this->slider = $slider;
     }
 
     public function onBlockEvent(BlockEvent $event): void

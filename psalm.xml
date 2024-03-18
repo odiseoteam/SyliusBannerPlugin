@@ -31,7 +31,5 @@
         <TooManyArguments errorLevel="info" />
         <MixedOperand errorLevel="info" />
         <MixedArrayAccess errorLevel="info" />
-        <DeprecatedClass errorLevel="info" />
-        <DeprecatedInterface errorLevel="info" />
     </issueHandlers>
 </psalm>
