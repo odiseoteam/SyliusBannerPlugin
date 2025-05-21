@@ -25,18 +25,18 @@ final class BannerType extends AbstractResourceType
             ])
             ->add('translations', ResourceTranslationsType::class, [
                 'entry_type' => BannerTranslationType::class,
-                'label' => 'odiseo_sylius_banner_plugin.form.banner.translations',
+                'label' => 'odiseo_sylius_banner.form.banner.translations',
             ])
             ->add('taxons', TaxonAutocompleteChoiceType::class, [
                 'required' => false,
                 'multiple' => true,
-                'label' => 'odiseo_sylius_banner_plugin.form.banner.taxons',
+                'label' => 'odiseo_sylius_banner.form.banner.taxons',
             ])
             ->add('channels', ChannelChoiceType::class, [
                 'required' => false,
                 'multiple' => true,
                 'expanded' => true,
-                'label' => 'odiseo_sylius_banner_plugin.form.banner.channels',
+                'label' => 'odiseo_sylius_banner.form.banner.channels',
             ])
         ;
     }

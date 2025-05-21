@@ -1,0 +1,11 @@
+sylius_twig_hooks:
+    hooks:
+        'sylius_shop.base#stylesheets':
+            custom_styles:
+                template: '@OdiseoSyliusBannerPlugin/shop/shared/layout/base/styles.html.twig'
+                priority: -100
+
+        'sylius_shop.base#javascripts':
+            custom_scripts:
+                template: '@OdiseoSyliusBannerPlugin/shop/shared/layout/base/scripts.html.twig'
+                priority: -100

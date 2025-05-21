@@ -131,12 +131,12 @@ class BannerExampleFactory extends AbstractExampleFactory
             ->setAllowedTypes('url', ['string', 'null'])
 
             ->setDefault('image', function (Options $_options): string {
-                return __DIR__ . '/../../Resources/fixtures/banner/images/0' . rand(1, 4) . '.png';
+                return __DIR__ . '/../../config/app/fixtures/banner/images/0' . rand(1, 4) . '.png';
             })
             ->setAllowedTypes('image', ['string'])
 
             ->setDefault('mobile_image', function (Options $_options): string {
-                return __DIR__ . '/../../Resources/fixtures/banner/mobile-images/0' . rand(1, 4) . '.png';
+                return __DIR__ . '/../../config/app/fixtures/banner/mobile-images/0' . rand(1, 4) . '.png';
             })
             ->setAllowedTypes('mobile_image', ['string', 'null'])
 

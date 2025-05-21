@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+
+    <services>
+        <service id="odiseo_sylius_banner.fixture.banner" class="Odiseo\SyliusBannerPlugin\Fixture\BannerFixture">
+            <argument type="service" id="odiseo_sylius_banner.manager.banner"/>
+            <argument type="service" id="odiseo_sylius_banner.fixture.example_factory.banner"/>
+            <tag name="sylius_fixtures.fixture"/>
+        </service>
+
+        <service id="odiseo_sylius_banner.fixture.example_factory.banner" class="Odiseo\SyliusBannerPlugin\Fixture\Factory\BannerExampleFactory">
+            <argument type="service" id="odiseo_sylius_banner.factory.banner"/>
+            <argument type="service" id="sylius.repository.channel"/>
+            <argument type="service" id="sylius.repository.taxon"/>
+            <argument type="service" id="sylius.repository.locale"/>
+            <argument type="service" id="file_locator"/>
+        </service>
+    </services>
+
+</container>

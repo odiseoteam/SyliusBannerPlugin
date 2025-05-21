@@ -1,0 +1,20 @@
+odiseo_sylius_banner:
+    ui:
+        banners: Banners
+        edit_banner: Edit banner
+        new_banner: New banner
+        mobile_image: Mobile image
+    menu:
+        admin:
+            banners: Banners
+    form:
+        banner:
+            translations: Translations
+            taxons: Taxons
+            channels: Channels
+            image: Image
+            mobile_image: Mobile image
+            url: URL
+            main_text: Main text
+            secondary_text: Secondary text
+            button_text: Button text
