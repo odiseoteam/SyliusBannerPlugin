@@ -6,25 +6,25 @@ imports:
 knp_gaufrette:
     stream_wrapper: ~
     adapters:
-        banner_image:
+        odiseo_banner_image:
             local:
                 directory: "%sylius_core.public_dir%/media/banner-image"
                 create: true
     filesystems:
-        banner_image_fs:
-            adapter: banner_image
+        odiseo_banner_image:
+            adapter: odiseo_banner_image
 
 liip_imagine:
     loaders:
-        banner_image:
+        odiseo_banner_image:
             filesystem:
                 data_root: "%sylius_core.public_dir%/media/banner-image"
     filter_sets:
-        odiseo_sylius_banner_image:
-            data_loader: banner_image
+        odiseo_banner_image:
+            data_loader: odiseo_banner_image
             filters:
-                thumbnail: { size: [1127, 300], mode: outbound }
-        odiseo_sylius_banner_mobile_image:
-            data_loader: banner_image
+                thumbnail: { size: [1920, 600], mode: inset }
+        odiseo_banner_mobile_image:
+            data_loader: odiseo_banner_image
             filters:
-                thumbnail: { size: [540, 146], mode: outbound }
+                thumbnail: { size: [768, 1000], mode: inset }

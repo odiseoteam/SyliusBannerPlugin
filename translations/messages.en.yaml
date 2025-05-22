@@ -1,5 +1,6 @@
-odiseo_sylius_banner:
+odiseo_banner:
     ui:
+        banner: Banner
         banners: Banners
         edit_banner: Edit banner
         new_banner: New banner

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <services>
+        <service id="odiseo_banner.filesystem.banner_image" class="Gaufrette\Filesystem">
+            <argument>odiseo_banner_image</argument>
+            <factory service="knp_gaufrette.filesystem_map" method="get" />
+        </service>
+
+        <service id="odiseo_banner.uploader.banner_image" class="Odiseo\SyliusBannerPlugin\Uploader\BannerImageUploader">
+            <argument type="service" id="odiseo_banner.filesystem.banner_image" />
+        </service>
+    </services>
+</container>

@@ -1,0 +1,10 @@
+{% if banners|length > 0 %}
+    {% if banners|length > 1 %}
+        <!-- install your favorite slider carousel -->
+        {% set banner = banners|first %}
+        {% include '@OdiseoSyliusBannerPlugin/shop/banner/image.html.twig' with {'banner': banner} %}
+    {% else %}
+        {% set banner = banners|first %}
+        {% include '@OdiseoSyliusBannerPlugin/shop/banner/image.html.twig' with {'banner': banner} %}
+    {% endif %}
+{% endif %}

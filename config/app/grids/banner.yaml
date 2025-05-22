@@ -1,10 +1,10 @@
 sylius_grid:
     grids:
-        odiseo_sylius_banner_banner:
+        odiseo_banner_banner:
             driver:
                 name: doctrine/orm
                 options:
-                    class: "%odiseo_sylius_banner.model.banner.class%"
+                    class: "%odiseo_banner.model.banner.class%"
             sorting:
                 createdAt: desc
             fields:
@@ -17,19 +17,19 @@ sylius_grid:
                     label: sylius.ui.image
                     path: imageName
                     options:
-                        template: "@OdiseoSyliusBannerPlugin/Field/_image.html.twig"
+                        template: "@OdiseoSyliusBannerPlugin/admin/banner/grid/field/image.html.twig"
                 mobileImage:
                     type: twig
-                    label: odiseo_sylius_banner.ui.mobile_image
+                    label: odiseo_banner.ui.mobile_image
                     path: mobileImageName
                     options:
-                        template: "@OdiseoSyliusBannerPlugin/Field/_mobile_image.html.twig"
+                        template: "@OdiseoSyliusBannerPlugin/admin/banner/grid/field/mobile_image.html.twig"
                 enabled:
                     type: twig
                     label: sylius.ui.enabled
                     sortable: ~
                     options:
-                        template: "@SyliusUi/Grid/Field/enabled.html.twig"
+                        template: "@SyliusUi/grid/field/enabled.html.twig"
                 createdAt:
                     type: datetime
                     label: sylius.ui.creation_date

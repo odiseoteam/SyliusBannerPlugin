@@ -1,6 +1,6 @@
 sylius_resource:
     resources:
-        odiseo_sylius_banner.banner:
+        odiseo_banner.banner:
             driver: doctrine/orm
             classes:
                 model: Odiseo\SyliusBannerPlugin\Entity\Banner

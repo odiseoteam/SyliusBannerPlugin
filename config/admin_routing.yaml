@@ -1,2 +1,2 @@
-odiseo_sylius_banner_admin_banner:
+odiseo_banner_admin_banner:
     resource: routes/admin/banner.yaml
