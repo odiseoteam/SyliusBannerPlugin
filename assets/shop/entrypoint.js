@@ -1,1 +1,2 @@
-import './css/banner.scss'
+import './js';
+import './css/main.scss'

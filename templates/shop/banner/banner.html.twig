@@ -1,10 +1,3 @@
-{% if banners|length > 0 %}
-    {% if banners|length > 1 %}
-        <!-- install your favorite slider carousel -->
-        {% set banner = banners|first %}
-        {% include '@OdiseoSyliusBannerPlugin/shop/banner/image.html.twig' with {'banner': banner} %}
-    {% else %}
-        {% set banner = banners|first %}
-        {% include '@OdiseoSyliusBannerPlugin/shop/banner/image.html.twig' with {'banner': banner} %}
-    {% endif %}
-{% endif %}
+<div class="mb-4">
+    {{ render(url('odiseo_banner_shop_partial_banner', {'template': '@OdiseoSyliusBannerPlugin/shop/banner/content/index.html.twig'})) }}
+</div>

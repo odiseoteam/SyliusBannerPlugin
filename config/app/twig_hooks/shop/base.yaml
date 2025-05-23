@@ -13,5 +13,4 @@ sylius_twig_hooks:
         'sylius_shop.homepage.index':
             banner:
                 template: '@OdiseoSyliusBannerPlugin/shop/banner/banner.html.twig'
-                priority: -100
 

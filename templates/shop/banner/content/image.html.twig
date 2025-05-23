@@ -1,7 +1,7 @@
 {% macro box(banner) %}
-    <img class="ui image {{ banner.mobileImageName ? 'hide-on-mobile' : '' }}" src="{{ banner.imageName|imagine_filter('odiseo_banner_image') }}" alt="{{ banner.imageName }}">
+    <img class="ui image {{ banner.mobileImageName ? 'd-none d-md-block' : '' }}" src="{{ banner.imageName|imagine_filter('odiseo_banner_image') }}" alt="{{ banner.imageName }}">
     {% if banner.mobileImageName is not null %}
-        <img class="ui image show-on-mobile" src="{{ banner.mobileImageName|imagine_filter('odiseo_banner_mobile_image') }}" alt="{{ banner.mobileImageName }}">
+        <img class="ui image d-block d-md-none" src="{{ banner.mobileImageName|imagine_filter('odiseo_banner_mobile_image') }}" alt="{{ banner.mobileImageName }}">
     {% endif %}
     {% if banner.mainText is not null %}
         <div class="main-text">{{ banner.mainText }}</div>

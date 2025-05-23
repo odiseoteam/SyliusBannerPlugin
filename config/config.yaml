@@ -1,7 +1,8 @@
 imports:
-    - { resource: "app/twig_hooks/**/*.yaml" }
-    - { resource: "app/grids/**/*.yaml" }
-    - { resource: "app/resources/**/*.yaml" }
+    - { resource: "@OdiseoSyliusBannerPlugin/config/app/twig_hooks/**/*.yaml" }
+    - { resource: "@OdiseoSyliusBannerPlugin/config/app/grids/**/*.yaml" }
+    - { resource: "@OdiseoSyliusBannerPlugin/config/app/resources/**/*.yaml" }
+    - { resource: "@OdiseoSyliusBannerPlugin/config/app/fixtures/*.yaml"}
 
 knp_gaufrette:
     stream_wrapper: ~
