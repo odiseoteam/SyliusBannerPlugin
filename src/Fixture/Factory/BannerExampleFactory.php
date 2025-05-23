@@ -12,6 +12,8 @@ use Sylius\Bundle\CoreBundle\Fixture\Factory\AbstractExampleFactory;
 use Sylius\Bundle\CoreBundle\Fixture\OptionsResolver\LazyOption;
 use Sylius\Bundle\ResourceBundle\Event\ResourceControllerEvent;
 use Sylius\Component\Channel\Repository\ChannelRepositoryInterface;
+use Sylius\Component\Core\Model\ChannelInterface;
+use Sylius\Component\Core\Model\TaxonInterface;
 use Sylius\Component\Locale\Model\LocaleInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
@@ -28,6 +30,10 @@ class BannerExampleFactory extends AbstractExampleFactory
 
     protected OptionsResolver $optionsResolver;
 
+     /**
+     * @param RepositoryInterface<T> $channelRepository
+     * @param RepositoryInterface<T> $taxonRepository
+     */
     public function __construct(
         protected FactoryInterface $bannerFactory,
         protected ChannelRepositoryInterface $channelRepository,
