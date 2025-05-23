@@ -1,0 +1,29 @@
+sylius_twig_hooks:
+    hooks:
+        'odiseo_banner.admin.banner.update.content':
+            form:
+                component: 'sylius_admin:banner:form'
+                props:
+                    resource: '@=_context.resource'
+                    form: '@=_context.form'
+                    template: '@OdiseoSyliusBannerPlugin/admin/banner/form.html.twig'
+                configuration:
+                    method: 'PUT'
+                priority: 0
+
+        'odiseo_banner.admin.banner.update.content.form':
+            sections:
+                template: '@OdiseoSyliusBannerPlugin/admin/banner/form/sections.html.twig'
+                priority: 0
+
+        'odiseo_banner.admin.banner.update.content.form.sections':
+            general:
+                template: '@OdiseoSyliusBannerPlugin/admin/banner/form/sections/general.html.twig'
+                configuration:
+                    active: true
+                priority: 200
+
+        'odiseo_banner.admin.banner.update.content.form.sections.translations':
+            name:
+                template: '@OdiseoSyliusBannerPlugin/admin/banner/form/sections/translations/fields.html.twig'
+                priority: 0

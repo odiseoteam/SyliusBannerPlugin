@@ -5,31 +5,22 @@ declare(strict_types=1);
 namespace Odiseo\SyliusBannerPlugin\DependencyInjection;
 
 use Sylius\Bundle\CoreBundle\DependencyInjection\PrependDoctrineMigrationsTrait;
-use Symfony\Component\Config\Definition\ConfigurationInterface;
+use Sylius\Bundle\ResourceBundle\DependencyInjection\Extension\AbstractResourceExtension;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
-use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
-final class OdiseoSyliusBannerExtension extends Extension implements PrependExtensionInterface
+final class OdiseoSyliusBannerExtension extends AbstractResourceExtension implements PrependExtensionInterface
 {
     use PrependDoctrineMigrationsTrait;
 
+    /** @psalm-suppress UnusedVariable */
     public function load(array $configs, ContainerBuilder $container): void
     {
-        $config = $this->processConfiguration($this->getConfiguration([], $container), $configs);
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../../config'));
 
-        $container->setParameter('odiseo_sylius_banner_plugin.slider', $config['slider']);
-
-        $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
-
-        $loader->load('services.yaml');
-    }
-
-    public function getConfiguration(array $config, ContainerBuilder $container): ConfigurationInterface
-    {
-        return new Configuration();
+        $loader->load('services.xml');
     }
 
     public function prepend(ContainerBuilder $container): void
@@ -39,12 +30,12 @@ final class OdiseoSyliusBannerExtension extends Extension implements PrependExte
 
     protected function getMigrationsNamespace(): string
     {
-        return 'Odiseo\SyliusBannerPlugin\Migrations';
+        return 'DoctrineMigrations';
     }
 
     protected function getMigrationsDirectory(): string
     {
-        return '@OdiseoSyliusBannerPlugin/Migrations';
+        return '@OdiseoSyliusBannerPlugin/src/Migrations';
     }
 
     protected function getNamespacesOfMigrationsExecutedBefore(): array

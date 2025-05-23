@@ -1,0 +1,17 @@
+Odiseo\SyliusBannerPlugin\Entity\Banner:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: [code]
+            message: 'odiseo_banner.banner.code.unique'
+            groups: ['odiseo']
+    properties:
+        code:
+            - NotBlank:
+                message: 'odiseo_banner.banner.code.not_blank'
+                groups: ['odiseo']
+            - Length:
+                min: 2
+                max: 250
+                minMessage: 'odiseo_banner.banner.code.min_length'
+                maxMessage: 'odiseo_banner.banner.code.max_length'
+                groups: ['odiseo']

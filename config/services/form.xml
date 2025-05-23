@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <services>
+        <service id="odiseo_banner.form.type.banner" class="Odiseo\SyliusBannerPlugin\Form\Type\BannerType">
+            <argument>%odiseo_banner.model.banner.class%</argument>
+            <argument type="collection">
+                <argument>odiseo</argument>
+            </argument>
+            <tag name="form.type" alias="odiseo_banner"/>
+        </service>
+
+        <service id="odiseo_banner.form.type.banner_translation" class="Odiseo\SyliusBannerPlugin\Form\Type\BannerTranslationType">
+            <argument>%odiseo_banner.model.banner_translation.class%</argument>
+            <argument type="collection">
+                <argument>odiseo</argument>
+            </argument>
+            <tag name="form.type" alias="odiseo_banner_translation"/>
+        </service>
+    </services>
+</container>

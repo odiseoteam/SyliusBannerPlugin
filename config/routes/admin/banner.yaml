@@ -1,0 +1,17 @@
+odiseo_banner_admin_banner:
+    resource: |
+        alias: odiseo_banner.banner
+        section: admin
+        templates: "@SyliusAdmin\\shared\\crud"
+        except: ['show']
+        redirect: index
+        grid: odiseo_banner_banner
+        permission: true
+        form:
+            type: Odiseo\SyliusBannerPlugin\Form\Type\BannerType
+        vars:
+            all:
+                hook_prefix: 'odiseo_banner.admin.banner'
+            index:
+                icon: image
+    type: sylius.resource

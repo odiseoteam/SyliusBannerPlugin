@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <services>
+        <service id="odiseo_banner.event_listener.admin.menu_builder" class="Odiseo\SyliusBannerPlugin\Menu\AdminMenuListener">
+            <tag name="kernel.event_listener" event="sylius.menu.admin.main" method="addAdminMenuItems"/>
+        </service>
+
+        <service id="odiseo_banner.event_listener.banner_image_upload" class="Odiseo\SyliusBannerPlugin\EventListener\BannerImageUploadListener">
+            <argument type="service" id="odiseo_banner.uploader.banner_image" />
+            <tag name="kernel.event_listener" event="odiseo_banner.banner.pre_create" method="uploadImage" />
+            <tag name="kernel.event_listener" event="odiseo_banner.banner.pre_update" method="uploadImage" />
+        </service>
+    </services>
+</container>

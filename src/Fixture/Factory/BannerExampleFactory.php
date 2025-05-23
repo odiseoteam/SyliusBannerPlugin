@@ -10,7 +10,10 @@ use Generator;
 use Odiseo\SyliusBannerPlugin\Entity\BannerInterface;
 use Sylius\Bundle\CoreBundle\Fixture\Factory\AbstractExampleFactory;
 use Sylius\Bundle\CoreBundle\Fixture\OptionsResolver\LazyOption;
+use Sylius\Bundle\ResourceBundle\Event\ResourceControllerEvent;
 use Sylius\Component\Channel\Repository\ChannelRepositoryInterface;
+use Sylius\Component\Core\Model\ChannelInterface;
+use Sylius\Component\Core\Model\TaxonInterface;
 use Sylius\Component\Locale\Model\LocaleInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
@@ -19,6 +22,7 @@ use Symfony\Component\Config\FileLocatorInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 class BannerExampleFactory extends AbstractExampleFactory
 {
@@ -26,11 +30,16 @@ class BannerExampleFactory extends AbstractExampleFactory
 
     protected OptionsResolver $optionsResolver;
 
+     /**
+     * @param RepositoryInterface<T> $channelRepository
+     * @param RepositoryInterface<T> $taxonRepository
+     */
     public function __construct(
         protected FactoryInterface $bannerFactory,
         protected ChannelRepositoryInterface $channelRepository,
         protected TaxonRepositoryInterface $taxonRepository,
         protected RepositoryInterface $localeRepository,
+        protected EventDispatcherInterface $eventDispatcher,
         protected ?FileLocatorInterface $fileLocator = null,
     ) {
         $this->faker = Factory::create();
@@ -79,6 +88,9 @@ class BannerExampleFactory extends AbstractExampleFactory
             }
         }
 
+        $event = new ResourceControllerEvent($banner);
+        $this->eventDispatcher->dispatch($event, 'odiseo_banner.banner.pre_create');
+
         return $banner;
     }
 
@@ -112,17 +124,13 @@ class BannerExampleFactory extends AbstractExampleFactory
             })
             ->setAllowedTypes('code', ['string'])
 
-            ->setDefault('main_text', function (Options $_options): string {
-                return $this->faker->sentence(4);
-            })
+            ->setDefault('main_text', null)
             ->setAllowedTypes('main_text', ['string', 'null'])
 
-            ->setDefault('secondary_text', function (Options $_options): string {
-                return $this->faker->sentence(9);
-            })
+            ->setDefault('secondary_text', null)
             ->setAllowedTypes('secondary_text', ['string', 'null'])
 
-            ->setDefault('button_text', 'Buy Now')
+            ->setDefault('button_text', null)
             ->setAllowedTypes('button_text', ['string', 'null'])
 
             ->setDefault('url', function (Options $_options): string {
@@ -131,12 +139,12 @@ class BannerExampleFactory extends AbstractExampleFactory
             ->setAllowedTypes('url', ['string', 'null'])
 
             ->setDefault('image', function (Options $_options): string {
-                return __DIR__ . '/../../Resources/fixtures/banner/images/0' . rand(1, 4) . '.png';
+                return __DIR__ . '/../../../config/app/fixtures/images/banner1.png';
             })
             ->setAllowedTypes('image', ['string'])
 
             ->setDefault('mobile_image', function (Options $_options): string {
-                return __DIR__ . '/../../Resources/fixtures/banner/mobile-images/0' . rand(1, 4) . '.png';
+                return __DIR__ . '/../../../config/app/fixtures/images/banner1.png';
             })
             ->setAllowedTypes('mobile_image', ['string', 'null'])
 

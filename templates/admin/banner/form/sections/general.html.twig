@@ -1,0 +1,23 @@
+{% import '@SyliusAdmin/shared/helper/translations.html.twig' as translations %}
+
+{% set form = hookable_metadata.context.form %}
+{% set prefixes = hookable_metadata.prefixes %}
+
+<div class="card mb-3">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                {{ form_row(form.code) }}
+                {{ form_row(form.enabled) }}
+                {#            {{ form_row(form.taxons) }}#}
+            </div>
+            <div class="col-12 col-md-6">
+                {{ form_row(form.channels) }}
+            </div>
+        </div>
+
+        <div class="border">
+            {{ translations.with_hook(form.translations, prefixes, null, {accordion_id: 'banner-translations', accordion_flush: true}) }}
+        </div>
+    </div>
+</div>

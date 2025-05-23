@@ -1,0 +1,17 @@
+<div class="banner-wrapper py-md-4">
+    <div class="container-md">
+        <div class="swiper mw-100 rounded-3" id="homepage-main-banner">
+            <div class="swiper-wrapper">
+                {% for banner in banners %}
+                <div class="swiper-slide">
+                    {% include '@OdiseoSyliusBannerPlugin/shop/banner/content/image.html.twig' with {'banner': banner} %}
+                </div>
+                {% endfor %}
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev d-none d-lg-block"></div>
+            <div class="swiper-button-next d-none d-lg-block"></div>
+            <div class="swiper-scrollbar"></div>
+        </div>
+    </div>
+</div>

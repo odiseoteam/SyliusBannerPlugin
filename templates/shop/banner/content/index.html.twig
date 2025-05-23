@@ -1,0 +1,8 @@
+{% if banners|length > 0 %}
+    {% if banners|length > 1 %}
+        {% include '@OdiseoSyliusBannerPlugin/shop/banner/content/slider.html.twig' with {'banners': banners} %}
+    {% else %}
+        {% set banner = banners|first %}
+        {% include '@OdiseoSyliusBannerPlugin/shop/banner/content/image.html.twig' with {'banner': banner} %}
+    {% endif %}
+{% endif %}

@@ -1,0 +1,29 @@
+{% macro box(banner) %}
+    <img class="ui image {{ banner.mobileImageName ? 'd-none d-md-block' : '' }}" src="{{ banner.imageName|imagine_filter('odiseo_banner_image') }}" alt="{{ banner.imageName }}">
+    {% if banner.mobileImageName is not null %}
+        <img class="ui image d-block d-md-none" src="{{ banner.mobileImageName|imagine_filter('odiseo_banner_mobile_image') }}" alt="{{ banner.mobileImageName }}">
+    {% endif %}
+    {% if banner.mainText is not null %}
+        <div class="main-text">{{ banner.mainText }}</div>
+    {% endif %}
+    {% if banner.secondaryText is not null %}
+        <div class="secondary-text">{{ banner.secondaryText }}</div>
+    {% endif %}
+{% endmacro %}
+
+{% import _self as macros %}
+
+<div class="banner-image-container">
+    {% if banner.url is not null %}
+        {% if banner.buttonText is null %}
+            <a href="{{ banner.url }}" target="_blank">
+                {{ macros.box(banner) }}
+            </a>
+        {% else %}
+            {{ macros.box(banner) }}
+            <a href="{{ banner.url }}" class="ui button">{{ banner.buttonText }}</a>
+        {% endif %}
+    {% else %}
+        {{ macros.box(banner) }}
+    {% endif %}
+</div>

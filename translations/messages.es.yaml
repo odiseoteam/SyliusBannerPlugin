@@ -1,0 +1,21 @@
+odiseo_banner:
+    ui:
+        banner: Banner
+        banners: Banners
+        edit_banner: Editar banner
+        new_banner: Nuevo banner
+        mobile_image: Imagen mobile
+    menu:
+        admin:
+            banners: Banners
+    form:
+        banner:
+            translations: Traducciones
+            taxons: Taxones
+            channels: Tiendas
+            image: Imagen
+            mobile_image: Imagen mobile
+            url: URL
+            main_text: Texto principal
+            secondary_text: Texto secundario
+            button_text: Texto del botón

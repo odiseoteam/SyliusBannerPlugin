@@ -1,0 +1,25 @@
+{% set form = hookable_metadata.context.form %}
+{% set locale = hookable_metadata.context.locale %}
+
+<div class="col-12">
+    {{ form_row(form.imageFile, sylius_test_form_attribute('imageFile', locale)) }}
+    {% if form.vars.value and form.vars.value.imageName %}
+        <div class="mb-3">
+            <img src="{{ form.vars.value.imageName|imagine_filter('odiseo_banner_image') }}"
+                 style="max-width: 200px; height: auto;"
+            >
+        </div>
+    {% endif %}
+    {{ form_row(form.mobileImageFile, sylius_test_form_attribute('mobileImageFile', locale)) }}
+    {% if form.vars.value and form.vars.value.mobileImageName  %}
+        <div class="mb-3">
+            <img src="{{ form.vars.value.mobileImageName|imagine_filter('odiseo_banner_mobile_image') }}"
+                 style="max-width: 200px; height: auto;"
+            >
+        </div>
+    {% endif %}
+    {{ form_row(form.url, sylius_test_form_attribute('url', locale)) }}
+    {{ form_row(form.mainText, sylius_test_form_attribute('mainText', locale)) }}
+    {{ form_row(form.secondaryText, sylius_test_form_attribute('secondaryText', locale)) }}
+    {{ form_row(form.buttonText, sylius_test_form_attribute('buttonText', locale)) }}
+</div>

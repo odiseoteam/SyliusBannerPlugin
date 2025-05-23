@@ -1,0 +1,7 @@
+{% import '@SyliusUi/macro/labels.html.twig' as label %}
+
+{% if data %}
+    <img class="img-thumbnail"  src="{{ data|imagine_filter('odiseo_banner_mobile_image') }}" alt="{{ data }}" style="width: 100px;">
+{% else %}
+    {{ label.default('sylius.ui.empty'|trans) }}
+{% endif %}

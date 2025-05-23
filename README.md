@@ -35,30 +35,31 @@ Features:
 
 * Templates: Show all images or by taxon.
 
-* Sliders: Provides sliders for the images ([Swiper](https://github.com/nolimits4web/swiper), [Glide](https://github.com/glidejs/glide), [SliderPro](https://github.com/bqworks/slider-pro)) or choose your own library.
+* Sliders: We are providing the integration with [Swiper.js](https://github.com/nolimits4web/swiper). 
 
-Support Sylius version 1.9+.
+Supported versions:
+
+| Package       | Version |
+|---------------|---------|
+| PHP           | ^8.2    |
+| sylius/sylius | ^2.0    |
 
 ## Screenshots
 
 <img src="https://github.com/odiseoteam/SyliusBannerPlugin/blob/master/screenshot_1.png" alt="Banners admin" width="650">
-<img src="https://github.com/odiseoteam/SyliusBannerPlugin/blob/master/screenshot_2.png" alt="Banners shop homepage" width="650">
-<img src="https://github.com/odiseoteam/SyliusBannerPlugin/blob/master/screenshot_3.png" alt="Banners shop taxon" width="650">
+<img src="https://github.com/odiseoteam/SyliusBannerPlugin/blob/master/screenshot_2.png" alt="Banners admin edit" width="650">
+<img src="https://github.com/odiseoteam/SyliusBannerPlugin/blob/master/screenshot_3.png" alt="Banners shop homepage" width="650">
 
 ## Demo
 
 You can see this plugin in action in our Sylius Demo application.
 
-- Frontend: [sylius-demo.odiseo.com.ar](https://sylius-demo.odiseo.com.ar).
-- Administration: [sylius-demo.odiseo.com.ar/admin](https://sylius-demo.odiseo.com.ar/admin) with `odiseo: odiseo` credentials.
+- Frontend: [sylius-demo.odiseo.io](https://sylius-demo.odiseo.io).
+- Administration: [sylius-demo.odiseo.io/admin](https://sylius-demo.odiseo.io/admin) with `odiseo: odiseo` credentials.
 
 ## Documentation
 
 - [Installation](doc/installation.md)
-- [Usage](doc/usage.md)
-- [Fixtures](doc/fixtures.md)
-- [Customization](doc/customization.md)
-- [Tests](doc/tests.md)
 
 ## Credits
 

@@ -1,0 +1,24 @@
+odiseo_banner_shop_partial_banner:
+    path: /partial
+    methods: [GET]
+    defaults:
+        _controller: odiseo_banner.controller.banner::indexAction
+        _sylius:
+            template: $template
+            repository:
+                method: findByChannel
+                arguments:
+                    - "expr:service('sylius.context.channel').getChannel()"
+
+odiseo_banner_shop_partial_banner_by_taxon:
+    path: /partial/by-taxon
+    methods: [GET]
+    defaults:
+        _controller: odiseo_banner.controller.banner::indexAction
+        _sylius:
+            template: $template
+            repository:
+                method: findByChannelAndTaxon
+                arguments:
+                    - "expr:service('sylius.context.channel').getChannel()"
+                    - "expr:service('sylius.repository.taxon').findOneBySlug($taxon, service('sylius.context.locale').getLocaleCode())"
