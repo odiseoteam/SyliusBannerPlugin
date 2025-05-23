@@ -1,50 +1,45 @@
 ## Installation
 
-1. Run `composer require odiseoteam/sylius-banner-plugin --no-scripts`
+1. Run `composer require odiseoteam/sylius-banner-plugin`
 
-2. Enable the plugin in bundles.php
+2. Run `yarn add swiper@^11.2.7`
 
-```php
-<?php
-// config/bundles.php
+3. Run `yarn encore dev` or `yarn encore production`
 
-return [
-    // ...
-    Vich\UploaderBundle\VichUploaderBundle::class => ['all' => true],
-    Odiseo\SyliusBannerPlugin\OdiseoSyliusBannerPlugin::class => ['all' => true],
-];
-```
-
-3. Import the plugin configurations
+4. Import the plugin configurations
 
 ```yml
 # config/packages/_sylius.yaml
 imports:
     # ...
-    - { resource: "@OdiseoSyliusBannerPlugin/Resources/config/config.yaml" }
+    - { resource: "@OdiseoSyliusBannerPlugin/config/config.yaml" }
 ```
 
-4. Add the shop and admin routes
+5. Add the shop and admin routes
 
 ```yml
 # config/routes.yaml
-odiseo_sylius_banner_plugin_admin:
-    resource: "@OdiseoSyliusBannerPlugin/Resources/config/routing/admin.yaml"
+odiseo_sylius_banner_admin:
+    resource: "@OdiseoSyliusBannerPlugin/config/admin_routing.yaml"
     prefix: /admin
 
-odiseo_sylius_banner_plugin_shop:
-    resource: "@OdiseoSyliusBannerPlugin/Resources/config/routing/shop.yaml"
+odiseo_sylius_banner_shop:
+    resource: "@OdiseoSyliusBannerPlugin/config/shop_routing.yaml"
     prefix: /{_locale}/banners
     requirements:
         _locale: ^[A-Za-z]{2,4}(_([A-Za-z]{4}|[0-9]{3}))?(_([A-Za-z]{2}|[0-9]{3}))?$
 ```
 
-5. Create banner folder: run `mkdir public/media/banner-image -p` and insert a .gitkeep file in that folder
-
-6. Finish the installation updating the database schema and installing assets
+6. Finish the installation updating by runing migrations
 
 ```
 php bin/console doctrine:migrations:migrate
-php bin/console sylius:theme:assets:install
 php bin/console cache:clear
 ```
+Optional, run fixtures to load one banner: 
+
+```
+php bin/console sylius:fixtures:load -n
+```
+
+7. Installation complete! Now you will see the new section under "Catalog" menu on the admin panel. Also you will see the banner on the homepage.
