@@ -1,5 +1,5 @@
 <p align="center">
-    <a href="https://odiseo.com.ar/" target="_blank" title="Odiseo">
+    <a href="https://odiseo.io/en?utm_source=github&utm_medium=readme&utm_campaign=sylius-banner-plugin" target="_blank" title="Odiseo">
         <img src="https://github.com/odiseoteam/SyliusBannerPlugin/blob/master/sylius-banner-plugin.png" alt="Sylius Banner Plugin" />
     </a>
     <br />
@@ -20,9 +20,6 @@
     </a>
     <a href="https://sylius-devs.slack.com" title="Slack" target="_blank">
         <img src="https://img.shields.io/badge/community%20chat-slack-FF1493.svg" />
-    </a>
-    <a href="https://odiseo.io/contact-us" title="Support" target="_blank">
-        <img src="https://img.shields.io/badge/support-contact%20author-blue" />
     </a>
 </p>
 <p align="center"><a href="https://sylius.com/partners/odiseo/" target="_blank"><img src="https://github.com/odiseoteam/SyliusBannerPlugin/blob/master/badge-partner-by-sylius.png" width="140"></a></p>
@@ -52,10 +49,7 @@ Supported versions:
 
 ## Demo
 
-You can see this plugin in action in our Sylius Demo application.
-
-- Frontend: [sylius-demo.odiseo.io](https://sylius-demo.odiseo.io).
-- Administration: [sylius-demo.odiseo.io/admin](https://sylius-demo.odiseo.io/admin) with `odiseo: odiseo` credentials.
+Want a live walkthrough of this plugin? [Get in touch](https://odiseo.io/en/contact-us?utm_source=github&utm_medium=readme&utm_campaign=sylius-banner-plugin) — or browse all our Sylius plugins at [odiseo.io](https://odiseo.io/en/products/sylius-plugins?utm_source=github&utm_medium=readme&utm_campaign=sylius-banner-plugin).
 
 ## Documentation
 
@@ -63,4 +57,4 @@ You can see this plugin in action in our Sylius Demo application.
 
 ## Credits
 
-This plugin is maintained by <a href="https://odiseo.io">Odiseo</a>. Want us to help you with this plugin or any Sylius project? Contact us on <a href="mailto:team@odiseo.com.ar">team@odiseo.com.ar</a>.
+This plugin is maintained by [Odiseo](https://odiseo.io/en?utm_source=github&utm_medium=readme&utm_campaign=sylius-banner-plugin). Want us to help you with this plugin or any Sylius project? [Get in touch](https://odiseo.io/en/contact-us?utm_source=github&utm_medium=readme&utm_campaign=sylius-banner-plugin).
