@@ -17,6 +17,16 @@ Releases previous to 2.1.0 are only listed on the
 - Migration `Version20260918120000`, which adds the column and backfills it with the banner id so
   existing installations keep their current order.
 
+### Fixed
+
+- Uploading a banner image no longer hangs. The uploader named the file after `uniqid()`, which
+  starts with the timestamp in hexadecimal, and kept generating names until one contained no `ad`,
+  so that ad blockers would not hide the image. Whenever that hexadecimal timestamp itself contains
+  `ad` — an eighteen hour window recurring roughly every two hundred days, and the current one
+  started on 2026-09-18 — no name could ever satisfy the condition: the loop spun forever on a CPU
+  core, silently, without an error or a log entry. The substring is now rewritten instead of
+  retried. This affected every image upload from the admin panel, and `sylius:fixtures:load`.
+
 ### Changed
 
 - **Banner images are now served as WebP with quality 80 (75 for the mobile filter set).** Until now
