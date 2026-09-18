@@ -70,7 +70,11 @@ jobs:
 
             -
                 name: Install certificates
-                run: symfony server:ca:install
+                run: |
+                    sudo apt-get install -y libnss3-tools
+                    mkdir -p "$HOME/.pki/nssdb"
+                    certutil -d "sql:$HOME/.pki/nssdb" -N --empty-password
+                    symfony server:ca:install
 
             -
                 name: Run Chrome Headless
@@ -99,6 +103,13 @@ jobs:
                 run: |
                     composer global config --no-plugins allow-plugins.symfony/flex true
                     composer global require --no-progress --no-scripts --no-plugins "symfony/flex:^2.2.2"
+
+            -
+                # composer install runs composer audit through the auto-scripts, and it
+                # exits with an error on any advisory inherited from the test application
+                # dependencies, which this package does not control.
+                name: Allow advisories inherited from the test application
+                run: composer config --no-plugins --global policy.advisories.block false
 
             -
                 name: Restrict Symfony version
