@@ -51,7 +51,7 @@ final class BannerImageUploader implements BannerImageUploaderInterface
             // Generate a new path
             do {
                 $path = $this->name($file);
-            } while ($this->isAdBlockingProne($path) || $this->filesystem->has($path));
+            } while ($this->filesystem->has($path));
 
             $bannerTranslation->$setNameMethod($path);
 
@@ -81,7 +81,7 @@ final class BannerImageUploader implements BannerImageUploaderInterface
 
     private function name(File $file): string
     {
-        $name = \str_replace('.', '', \uniqid('', true));
+        $name = $this->withoutAdBlockingSubstring(\str_replace('.', '', \uniqid('', true)));
         $extension = $file->guessExtension();
 
         if (\is_string($extension) && '' !== $extension) {
@@ -91,8 +91,9 @@ final class BannerImageUploader implements BannerImageUploaderInterface
         return $name;
     }
 
-    private function isAdBlockingProne(string $path): bool
+    /** uniqid() starts with the timestamp in hexadecimal, so there are windows of hours in which every name would contain "ad". */
+    private function withoutAdBlockingSubstring(string $name): string
     {
-        return str_contains($path, 'ad');
+        return \str_replace('ad', 'a0', $name);
     }
 }

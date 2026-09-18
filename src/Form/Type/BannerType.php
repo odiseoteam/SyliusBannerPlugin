@@ -10,6 +10,7 @@ use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Sylius\Bundle\ResourceBundle\Form\Type\ResourceTranslationsType;
 use Sylius\Bundle\TaxonomyBundle\Form\Type\TaxonAutocompleteChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 final class BannerType extends AbstractResourceType
@@ -22,6 +23,11 @@ final class BannerType extends AbstractResourceType
             ->addEventSubscriber(new AddCodeFormSubscriber())
             ->add('enabled', CheckboxType::class, [
                 'label' => 'sylius.ui.enabled',
+            ])
+            ->add('position', IntegerType::class, [
+                'required' => false,
+                'empty_data' => '0',
+                'label' => 'sylius.ui.position',
             ])
             ->add('translations', ResourceTranslationsType::class, [
                 'entry_type' => BannerTranslationType::class,

@@ -16,6 +16,9 @@ return static function (ECSConfig $ecsConfig): void {
 
     $ecsConfig->skip([
         VisibilityRequiredFixer::class => ['*Spec.php'],
+
+        // Scaffolded by the Symfony Flex recipes when installing without --no-plugins.
+        __DIR__ . '/src/Kernel.php',
     ]);
 };
 

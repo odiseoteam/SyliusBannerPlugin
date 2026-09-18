@@ -6,7 +6,7 @@ sylius_grid:
                 options:
                     class: "%odiseo_banner.model.banner.class%"
             sorting:
-                createdAt: desc
+                position: asc
             fields:
                 code:
                     type: string
@@ -24,6 +24,10 @@ sylius_grid:
                     path: mobileImageName
                     options:
                         template: "@OdiseoSyliusBannerPlugin/admin/banner/grid/field/mobile_image.html.twig"
+                position:
+                    type: string
+                    label: sylius.ui.position
+                    sortable: ~
                 enabled:
                     type: twig
                     label: sylius.ui.enabled

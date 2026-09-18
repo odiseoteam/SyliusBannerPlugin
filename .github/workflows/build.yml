@@ -2,8 +2,8 @@ name: Build
 
 on:
     push:
-        branches-ignore:
-            - 'dependabot/**'
+        branches:
+            - master
     pull_request: ~
     release:
         types: [created]
@@ -12,11 +12,17 @@ on:
             cron: "0 1 * * 6" # Run at 1am every Saturday
     workflow_dispatch: ~
 
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: ${{ github.ref != 'refs/heads/master' }}
+
 jobs:
     tests:
         runs-on: ubuntu-latest
 
-        name: "Sylius ${{ matrix.sylius }}, PHP ${{ matrix.php }}, Symfony ${{ matrix.symfony }}, MySQL ${{ matrix.mysql }}"
+        timeout-minutes: 30
+
+        name: "PHP ${{ matrix.php }}, Symfony ${{ matrix.symfony }}, MySQL ${{ matrix.mysql }}"
 
         strategy:
             fail-fast: false
@@ -28,6 +34,9 @@ jobs:
 
         env:
             APP_ENV: test
+            # tests/Application/.env sets APP_DEBUG=1: with debug on, Doctrine keeps
+            # every executed query in memory, which drags the fixture load down.
+            APP_DEBUG: 0
             DATABASE_URL: "mysql://root:root@127.0.0.1/sylius?serverVersion=${{ matrix.mysql }}"
 
         steps:
@@ -66,7 +75,11 @@ jobs:
 
             -
                 name: Install certificates
-                run: symfony server:ca:install
+                run: |
+                    sudo apt-get install -y libnss3-tools
+                    mkdir -p "$HOME/.pki/nssdb"
+                    certutil -d "sql:$HOME/.pki/nssdb" -N --empty-password
+                    symfony server:ca:install
 
             -
                 name: Run Chrome Headless
@@ -97,15 +110,17 @@ jobs:
                     composer global require --no-progress --no-scripts --no-plugins "symfony/flex:^2.2.2"
 
             -
+                # composer install runs composer audit through the auto-scripts, and it
+                # exits with an error on any advisory inherited from the test application
+                # dependencies, which this package does not control.
+                name: Allow advisories inherited from the test application
+                run: composer config --no-plugins --global policy.advisories.block false
+
+            -
                 name: Restrict Symfony version
                 if: matrix.symfony != ''
                 run: |
                     composer config extra.symfony.require "${{ matrix.symfony }}"
-
-            -
-                name: Restrict Sylius version
-                if: matrix.sylius != ''
-                run: composer require "sylius/sylius:${{ matrix.sylius }}" --no-update --no-scripts --no-interaction
 
             -
                 name: Install PHP dependencies
@@ -158,6 +173,18 @@ jobs:
             -
                 name: Validate database schema
                 run: (cd tests/Application && bin/console doctrine:schema:validate)
+
+            -
+                name: Run ECS
+                run: vendor/bin/ecs check src --ansi
+
+            -
+                name: Run PHPStan
+                run: vendor/bin/phpstan analyse -c phpstan.neon --no-progress --ansi
+
+            -
+                name: Run PHPSpec
+                run: vendor/bin/phpspec run --ansi -f progress --no-interaction
 
             -
                 name: Run PHPUnit

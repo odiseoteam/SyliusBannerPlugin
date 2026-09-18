@@ -23,6 +23,10 @@ interface BannerInterface extends
     ChannelsAwareInterface,
     TaxonsAwareInterface
 {
+    public function getPosition(): int;
+
+    public function setPosition(int $position): void;
+
     public function setImageFile(?File $file): void;
 
     public function getImageFile(): ?File;

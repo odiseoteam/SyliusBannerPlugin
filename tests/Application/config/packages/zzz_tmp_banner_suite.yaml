@@ -1,0 +1,7 @@
+sylius_fixtures:
+    suites:
+        banner_only:
+            fixtures:
+                banner:
+                    options:
+                        random: 1

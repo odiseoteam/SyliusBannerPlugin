@@ -1,0 +1,86 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Method Odiseo\\\\SyliusBannerPlugin\\\\Fixture\\\\Factory\\\\BannerExampleFactory\\:\\:__construct\\(\\) has parameter \\$channelRepository with generic interface Sylius\\\\Component\\\\Channel\\\\Repository\\\\ChannelRepositoryInterface but does not specify its types\\: T$#"
+			count: 1
+			path: src/Fixture/Factory/BannerExampleFactory.php
+
+		-
+			message: "#^Method Odiseo\\\\SyliusBannerPlugin\\\\Fixture\\\\Factory\\\\BannerExampleFactory\\:\\:__construct\\(\\) has parameter \\$taxonRepository with generic interface Sylius\\\\Component\\\\Taxonomy\\\\Repository\\\\TaxonRepositoryInterface but does not specify its types\\: T$#"
+			count: 1
+			path: src/Fixture/Factory/BannerExampleFactory.php
+
+		-
+			message: "#^PHPDoc tag @param for parameter \\$channelRepository contains generic type Sylius\\\\Component\\\\Resource\\\\Repository\\\\RepositoryInterface\\<Odiseo\\\\SyliusBannerPlugin\\\\Fixture\\\\Factory\\\\T\\> but interface Sylius\\\\Component\\\\Resource\\\\Repository\\\\RepositoryInterface is not generic\\.$#"
+			count: 1
+			path: src/Fixture/Factory/BannerExampleFactory.php
+
+		-
+			message: "#^PHPDoc tag @param for parameter \\$channelRepository with type Sylius\\\\Component\\\\Resource\\\\Repository\\\\RepositoryInterface\\<Odiseo\\\\SyliusBannerPlugin\\\\Fixture\\\\Factory\\\\T\\> is not subtype of native type Sylius\\\\Component\\\\Channel\\\\Repository\\\\ChannelRepositoryInterface\\.$#"
+			count: 1
+			path: src/Fixture/Factory/BannerExampleFactory.php
+
+		-
+			message: "#^PHPDoc tag @param for parameter \\$taxonRepository contains generic type Sylius\\\\Component\\\\Resource\\\\Repository\\\\RepositoryInterface\\<Odiseo\\\\SyliusBannerPlugin\\\\Fixture\\\\Factory\\\\T\\> but interface Sylius\\\\Component\\\\Resource\\\\Repository\\\\RepositoryInterface is not generic\\.$#"
+			count: 1
+			path: src/Fixture/Factory/BannerExampleFactory.php
+
+		-
+			message: "#^PHPDoc tag @param for parameter \\$taxonRepository with type Sylius\\\\Component\\\\Resource\\\\Repository\\\\RepositoryInterface\\<Odiseo\\\\SyliusBannerPlugin\\\\Fixture\\\\Factory\\\\T\\> is not subtype of native type Sylius\\\\Component\\\\Taxonomy\\\\Repository\\\\TaxonRepositoryInterface\\.$#"
+			count: 1
+			path: src/Fixture/Factory/BannerExampleFactory.php
+
+		-
+			message: "#^PHPDoc type for property Odiseo\\\\SyliusBannerPlugin\\\\Fixture\\\\Factory\\\\BannerExampleFactory\\:\\:\\$channelRepository contains generic type Sylius\\\\Component\\\\Resource\\\\Repository\\\\RepositoryInterface\\<Odiseo\\\\SyliusBannerPlugin\\\\Fixture\\\\Factory\\\\T\\> but interface Sylius\\\\Component\\\\Resource\\\\Repository\\\\RepositoryInterface is not generic\\.$#"
+			count: 1
+			path: src/Fixture/Factory/BannerExampleFactory.php
+
+		-
+			message: "#^PHPDoc type for property Odiseo\\\\SyliusBannerPlugin\\\\Fixture\\\\Factory\\\\BannerExampleFactory\\:\\:\\$channelRepository with type Sylius\\\\Component\\\\Resource\\\\Repository\\\\RepositoryInterface\\<Odiseo\\\\SyliusBannerPlugin\\\\Fixture\\\\Factory\\\\T\\> is not subtype of native type Sylius\\\\Component\\\\Channel\\\\Repository\\\\ChannelRepositoryInterface\\.$#"
+			count: 1
+			path: src/Fixture/Factory/BannerExampleFactory.php
+
+		-
+			message: "#^PHPDoc type for property Odiseo\\\\SyliusBannerPlugin\\\\Fixture\\\\Factory\\\\BannerExampleFactory\\:\\:\\$taxonRepository contains generic type Sylius\\\\Component\\\\Resource\\\\Repository\\\\RepositoryInterface\\<Odiseo\\\\SyliusBannerPlugin\\\\Fixture\\\\Factory\\\\T\\> but interface Sylius\\\\Component\\\\Resource\\\\Repository\\\\RepositoryInterface is not generic\\.$#"
+			count: 1
+			path: src/Fixture/Factory/BannerExampleFactory.php
+
+		-
+			message: "#^PHPDoc type for property Odiseo\\\\SyliusBannerPlugin\\\\Fixture\\\\Factory\\\\BannerExampleFactory\\:\\:\\$taxonRepository with type Sylius\\\\Component\\\\Resource\\\\Repository\\\\RepositoryInterface\\<Odiseo\\\\SyliusBannerPlugin\\\\Fixture\\\\Factory\\\\T\\> is not subtype of native type Sylius\\\\Component\\\\Taxonomy\\\\Repository\\\\TaxonRepositoryInterface\\.$#"
+			count: 1
+			path: src/Fixture/Factory/BannerExampleFactory.php
+
+		-
+			message: "#^Parameter \\$channelRepository of method Odiseo\\\\SyliusBannerPlugin\\\\Fixture\\\\Factory\\\\BannerExampleFactory\\:\\:__construct\\(\\) has invalid type Odiseo\\\\SyliusBannerPlugin\\\\Fixture\\\\Factory\\\\T\\.$#"
+			count: 1
+			path: src/Fixture/Factory/BannerExampleFactory.php
+
+		-
+			message: "#^Parameter \\$taxonRepository of method Odiseo\\\\SyliusBannerPlugin\\\\Fixture\\\\Factory\\\\BannerExampleFactory\\:\\:__construct\\(\\) has invalid type Odiseo\\\\SyliusBannerPlugin\\\\Fixture\\\\Factory\\\\T\\.$#"
+			count: 1
+			path: src/Fixture/Factory/BannerExampleFactory.php
+
+		-
+			message: "#^Property Odiseo\\\\SyliusBannerPlugin\\\\Fixture\\\\Factory\\\\BannerExampleFactory\\:\\:\\$channelRepository has unknown class Odiseo\\\\SyliusBannerPlugin\\\\Fixture\\\\Factory\\\\T as its type\\.$#"
+			count: 1
+			path: src/Fixture/Factory/BannerExampleFactory.php
+
+		-
+			message: "#^Property Odiseo\\\\SyliusBannerPlugin\\\\Fixture\\\\Factory\\\\BannerExampleFactory\\:\\:\\$taxonRepository has unknown class Odiseo\\\\SyliusBannerPlugin\\\\Fixture\\\\Factory\\\\T as its type\\.$#"
+			count: 1
+			path: src/Fixture/Factory/BannerExampleFactory.php
+
+		-
+			message: "#^Method Odiseo\\\\SyliusBannerPlugin\\\\Repository\\\\BannerRepository\\:\\:findByChannel\\(\\) should return array but returns mixed\\.$#"
+			count: 1
+			path: src/Repository/BannerRepository.php
+
+		-
+			message: "#^Method Odiseo\\\\SyliusBannerPlugin\\\\Repository\\\\BannerRepository\\:\\:findByChannelAndTaxon\\(\\) should return array but returns mixed\\.$#"
+			count: 1
+			path: src/Repository/BannerRepository.php
+
+		-
+			message: "#^Method Odiseo\\\\SyliusBannerPlugin\\\\Repository\\\\BannerRepository\\:\\:findByTaxon\\(\\) should return array but returns mixed\\.$#"
+			count: 1
+			path: src/Repository/BannerRepository.php
