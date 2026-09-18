@@ -2,8 +2,8 @@ name: Build
 
 on:
     push:
-        branches-ignore:
-            - 'dependabot/**'
+        branches:
+            - master
     pull_request: ~
     release:
         types: [created]
@@ -12,11 +12,15 @@ on:
             cron: "0 1 * * 6" # Run at 1am every Saturday
     workflow_dispatch: ~
 
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: ${{ github.ref != 'refs/heads/master' }}
+
 jobs:
     tests:
         runs-on: ubuntu-latest
 
-        name: "Sylius ${{ matrix.sylius }}, PHP ${{ matrix.php }}, Symfony ${{ matrix.symfony }}, MySQL ${{ matrix.mysql }}"
+        name: "PHP ${{ matrix.php }}, Symfony ${{ matrix.symfony }}, MySQL ${{ matrix.mysql }}"
 
         strategy:
             fail-fast: false
@@ -103,11 +107,6 @@ jobs:
                     composer config extra.symfony.require "${{ matrix.symfony }}"
 
             -
-                name: Restrict Sylius version
-                if: matrix.sylius != ''
-                run: composer require "sylius/sylius:${{ matrix.sylius }}" --no-update --no-scripts --no-interaction
-
-            -
                 name: Install PHP dependencies
                 run: composer install --no-interaction
                 env:
@@ -158,6 +157,18 @@ jobs:
             -
                 name: Validate database schema
                 run: (cd tests/Application && bin/console doctrine:schema:validate)
+
+            -
+                name: Run ECS
+                run: vendor/bin/ecs check src --ansi
+
+            -
+                name: Run PHPStan
+                run: vendor/bin/phpstan analyse -c phpstan.neon --no-progress --ansi
+
+            -
+                name: Run PHPSpec
+                run: vendor/bin/phpspec run --ansi -f progress --no-interaction
 
             -
                 name: Run PHPUnit
