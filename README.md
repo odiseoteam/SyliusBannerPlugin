@@ -51,6 +51,33 @@ Supported versions:
 
 Want a live walkthrough of this plugin? [Get in touch](https://odiseo.io/en/contact-us?utm_source=github&utm_medium=readme&utm_campaign=sylius-banner-plugin) — or browse all our Sylius plugins at [odiseo.io](https://odiseo.io/en/products/sylius-plugins?utm_source=github&utm_medium=readme&utm_campaign=sylius-banner-plugin).
 
+## Configuration
+
+### Images
+
+The banner images are rendered through LiipImagine. By default the plugin serves them as WebP,
+with quality 80 for the desktop filter set and 75 for the mobile one. You can change it from your
+application:
+
+```yml
+# config/packages/odiseo_sylius_banner.yaml
+odiseo_sylius_banner:
+    images:
+        format: webp # null keeps the format of the uploaded file
+        quality: 80
+        mobile_quality: 75
+```
+
+> **Upgrading from 2.0**: previously no format or quality was declared, so the images were served
+> in their original format with quality 100. Set `format: null` and `quality: 100` to keep the
+> old behaviour. The uploaded file is always stored as it is, only the rendered image changes.
+
+### Order
+
+Banners have a `position` field. They are rendered from the lowest position to the highest one,
+using the id as a tie-breaker, and the position is editable from the admin panel. The admin grid
+is sorted by position as well.
+
 ## Documentation
 
 - [Installation](doc/installation.md)

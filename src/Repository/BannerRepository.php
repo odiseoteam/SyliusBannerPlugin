@@ -16,6 +16,8 @@ class BannerRepository extends EntityRepository implements BannerRepositoryInter
         $queryBuilder = $this->createQueryBuilder('b')
             ->andWhere('b.enabled = :enabled')
             ->setParameter('enabled', true)
+            ->orderBy('b.position', 'ASC')
+            ->addOrderBy('b.id', 'ASC')
         ;
 
         if ($channel instanceof ChannelInterface) {

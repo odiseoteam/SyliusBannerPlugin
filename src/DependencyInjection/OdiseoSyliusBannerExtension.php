@@ -15,6 +15,8 @@ final class OdiseoSyliusBannerExtension extends AbstractResourceExtension implem
 {
     use PrependDoctrineMigrationsTrait;
 
+    private const IMAGE_DATA_ROOT = '%sylius_core.public_dir%/media/banner-image';
+
     /** @psalm-suppress UnusedVariable */
     public function load(array $configs, ContainerBuilder $container): void
     {
@@ -26,6 +28,65 @@ final class OdiseoSyliusBannerExtension extends AbstractResourceExtension implem
     public function prepend(ContainerBuilder $container): void
     {
         $this->prependDoctrineMigrations($container);
+        $this->prependLiipImagine($container);
+    }
+
+    private function prependLiipImagine(ContainerBuilder $container): void
+    {
+        /** @var array{images: array{format: string|null, quality: int, mobile_quality: int}} $config */
+        $config = $this->processConfiguration(
+            new Configuration(),
+            $container->getExtensionConfig($this->getAlias()),
+        );
+
+        $images = $config['images'];
+
+        $container->prependExtensionConfig('liip_imagine', [
+            'loaders' => [
+                'odiseo_banner_image' => [
+                    'filesystem' => [
+                        'data_root' => self::IMAGE_DATA_ROOT,
+                    ],
+                ],
+            ],
+            'filter_sets' => [
+                'odiseo_banner_image' => $this->createFilterSet(
+                    [1920, 600],
+                    $images['quality'],
+                    $images['format'],
+                ),
+                'odiseo_banner_mobile_image' => $this->createFilterSet(
+                    [768, 1000],
+                    $images['mobile_quality'],
+                    $images['format'],
+                ),
+            ],
+        ]);
+    }
+
+    /**
+     * @param array{int, int} $size
+     *
+     * @return array<string, mixed>
+     */
+    private function createFilterSet(array $size, int $quality, ?string $format): array
+    {
+        $filterSet = [
+            'data_loader' => 'odiseo_banner_image',
+            'quality' => $quality,
+            'filters' => [
+                'thumbnail' => [
+                    'size' => $size,
+                    'mode' => 'inset',
+                ],
+            ],
+        ];
+
+        if (null !== $format) {
+            $filterSet['format'] = $format;
+        }
+
+        return $filterSet;
     }
 
     protected function getMigrationsNamespace(): string

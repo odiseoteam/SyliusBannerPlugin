@@ -27,6 +27,8 @@ class Banner implements BannerInterface
 
     protected ?string $code = null;
 
+    protected int $position = 0;
+
     /** @psalm-var Collection<array-key, ChannelInterface> */
     protected Collection $channels;
 
@@ -55,6 +57,16 @@ class Banner implements BannerInterface
     public function setCode(?string $code): void
     {
         $this->code = $code;
+    }
+
+    public function getPosition(): int
+    {
+        return $this->position;
+    }
+
+    public function setPosition(int $position): void
+    {
+        $this->position = $position;
     }
 
     public function setImageFile(?File $file): void
