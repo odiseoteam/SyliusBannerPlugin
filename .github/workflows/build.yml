@@ -20,6 +20,8 @@ jobs:
     tests:
         runs-on: ubuntu-latest
 
+        timeout-minutes: 30
+
         name: "PHP ${{ matrix.php }}, Symfony ${{ matrix.symfony }}, MySQL ${{ matrix.mysql }}"
 
         strategy:
@@ -32,6 +34,9 @@ jobs:
 
         env:
             APP_ENV: test
+            # tests/Application/.env sets APP_DEBUG=1: with debug on, Doctrine keeps
+            # every executed query in memory, which drags the fixture load down.
+            APP_DEBUG: 0
             DATABASE_URL: "mysql://root:root@127.0.0.1/sylius?serverVersion=${{ matrix.mysql }}"
 
         steps:
