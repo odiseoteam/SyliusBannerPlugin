@@ -47,6 +47,84 @@ final class BannerImageUploaderSpec extends ObjectBehavior
         $this->upload($bannerTranslation);
     }
 
+    public function it_keeps_the_stored_file_when_the_translation_is_saved_without_a_new_one(
+        FilesystemInterface $filesystem,
+        BannerTranslationInterface $bannerTranslation,
+    ): void {
+        $filesystem->has(Argument::any())->willReturn(false);
+        $filesystem->has('stored.png')->willReturn(true);
+
+        $bannerTranslation->getImageFile()->willReturn(null);
+        $bannerTranslation->getImageName()->willReturn('stored.png');
+        $bannerTranslation->getMobileImageFile()->willReturn(null);
+        $bannerTranslation->getMobileImageName()->willReturn(null);
+
+        $filesystem->delete(Argument::any())->willReturn(true)->shouldNotBeCalled();
+        $filesystem->write(Argument::cetera())->shouldNotBeCalled();
+        $bannerTranslation->setImageName(Argument::any())->shouldNotBeCalled();
+
+        $this->upload($bannerTranslation);
+    }
+
+    public function it_keeps_the_stored_mobile_file_when_the_translation_is_saved_without_a_new_one(
+        FilesystemInterface $filesystem,
+        BannerTranslationInterface $bannerTranslation,
+    ): void {
+        $filesystem->has(Argument::any())->willReturn(false);
+        $filesystem->has('stored-mobile.png')->willReturn(true);
+
+        $bannerTranslation->getImageFile()->willReturn(null);
+        $bannerTranslation->getImageName()->willReturn(null);
+        $bannerTranslation->getMobileImageFile()->willReturn(null);
+        $bannerTranslation->getMobileImageName()->willReturn('stored-mobile.png');
+
+        $filesystem->delete(Argument::any())->willReturn(true)->shouldNotBeCalled();
+        $filesystem->write(Argument::cetera())->shouldNotBeCalled();
+        $bannerTranslation->setMobileImageName(Argument::any())->shouldNotBeCalled();
+
+        $this->upload($bannerTranslation);
+    }
+
+    public function it_replaces_the_stored_file_when_a_new_one_is_uploaded(
+        FilesystemInterface $filesystem,
+        BannerTranslationInterface $bannerTranslation,
+    ): void {
+        $filesystem->has(Argument::any())->willReturn(false);
+        $filesystem->has('stored.png')->willReturn(true);
+        $filesystem->delete('stored.png')->willReturn(true);
+        $filesystem->write(Argument::cetera())->willReturn(1);
+
+        $bannerTranslation->getImageFile()->willReturn(new File(self::IMAGE));
+        $bannerTranslation->getImageName()->willReturn('stored.png');
+        $bannerTranslation->getMobileImageFile()->willReturn(null);
+        $bannerTranslation->getMobileImageName()->willReturn(null);
+
+        $filesystem->delete('stored.png')->shouldBeCalled();
+        $bannerTranslation->setImageName(Argument::that(
+            static fn (string $name): bool => 'stored.png' !== $name,
+        ))->shouldBeCalled();
+        $filesystem->write(Argument::cetera())->shouldBeCalled();
+
+        $this->upload($bannerTranslation);
+    }
+
+    public function it_does_nothing_when_there_is_neither_a_stored_file_nor_a_new_one(
+        FilesystemInterface $filesystem,
+        BannerTranslationInterface $bannerTranslation,
+    ): void {
+        $filesystem->has(Argument::any())->willReturn(false);
+
+        $bannerTranslation->getImageFile()->willReturn(null);
+        $bannerTranslation->getImageName()->willReturn(null);
+        $bannerTranslation->getMobileImageFile()->willReturn(null);
+        $bannerTranslation->getMobileImageName()->willReturn(null);
+
+        $filesystem->delete(Argument::any())->willReturn(true)->shouldNotBeCalled();
+        $filesystem->write(Argument::cetera())->shouldNotBeCalled();
+
+        $this->upload($bannerTranslation);
+    }
+
     public function it_keeps_the_file_extension(
         FilesystemInterface $filesystem,
         BannerTranslationInterface $bannerTranslation,
