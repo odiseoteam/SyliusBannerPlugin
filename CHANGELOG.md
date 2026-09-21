@@ -7,6 +7,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Releases previous to 2.1.0 are only listed on the
 [GitHub releases page](https://github.com/odiseoteam/SyliusBannerPlugin/releases).
 
+## [2.1.1] - 2026-09-18
+
+### Fixed
+
+- Editing a banner no longer destroys the stored image. The uploader removed the stored file before
+  checking whether a new one had been uploaded, so any edit that did not upload an image again —
+  changing the link, fixing a text, editing another translation — deleted the original for good.
+  The damage stayed invisible, because the name was kept in the database and LiipImagine went on
+  serving its cached version; it only surfaced once that cache was regenerated. The stored file is
+  now removed only when there is a replacement for it.
+- The migrations are now found by the applications that install the plugin. They declared the
+  `App\Migrations` namespace, which belongs to the project and, in a standard Symfony application,
+  points at the project's own migrations directory, while the extension registered the plugin's
+  directory under a third namespace, `DoctrineMigrations`. Nothing ever matched:
+  `doctrine:migrations:status` reported no new migrations and the schema stayed out of sync, so
+  installing the plugin meant generating the migration by hand with `doctrine:migrations:diff`.
+  They now live in `Odiseo\SyliusBannerPlugin\Migrations`, which is what the extension registers.
+
+### Upgrading from 2.1.0
+
+There is nothing to run. Changing the namespace makes Doctrine see both migrations as new, so each
+one checks the schema first and skips itself when the tables, or the `position` column, are already
+there.
+
+The rows recorded under the old namespace are left behind. Doctrine only warns about them, so they
+can stay; to clean them up, in the migrations table (`sylius_migrations` in a Sylius application):
+
+```sql
+DELETE FROM sylius_migrations WHERE version LIKE 'App\\Migrations\\%';
+```
+
 ## [2.1.0] - 2026-09-18
 
 ### Added
@@ -39,4 +70,5 @@ Releases previous to 2.1.0 are only listed on the
   order given by the database.
 - The admin grid is sorted by `position: asc` by default, instead of `createdAt: desc`.
 
+[2.1.1]: https://github.com/odiseoteam/SyliusBannerPlugin/compare/v2.1.0...v2.1.1
 [2.1.0]: https://github.com/odiseoteam/SyliusBannerPlugin/compare/v2.0.0...v2.1.0

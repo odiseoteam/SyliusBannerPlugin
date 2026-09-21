@@ -34,18 +34,15 @@ final class BannerImageUploader implements BannerImageUploaderInterface
             /** @var File|null $file */
             $file = $bannerTranslation->$getFileMethod();
 
-            // Skip if no file uploaded and no name exists
-            if ($file === null && $bannerTranslation->$getNameMethod() === null) {
+            // Nothing to do until a new file comes in: removing the stored one first would
+            // destroy it on any edit that does not upload an image again.
+            if ($file === null) {
                 continue;
             }
 
             // Remove existing file if needed
             if (null !== $bannerTranslation->$getNameMethod() && $this->has($bannerTranslation->$getNameMethod())) {
                 $this->remove($bannerTranslation->$getNameMethod());
-            }
-
-            if ($file === null) {
-                continue; // No new file uploaded
             }
 
             // Generate a new path

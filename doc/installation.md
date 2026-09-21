@@ -36,6 +36,17 @@ odiseo_sylius_banner_shop:
 php bin/console doctrine:migrations:migrate
 php bin/console cache:clear
 ```
+
+The plugin registers its own migrations, so there is nothing to configure. If your application does
+not use `sylius-labs/doctrine-migrations-extra-bundle`, register them yourself:
+
+```yml
+# config/packages/doctrine_migrations.yaml
+doctrine_migrations:
+    migrations_paths:
+        # ...
+        'Odiseo\SyliusBannerPlugin\Migrations': '%kernel.project_dir%/vendor/odiseoteam/sylius-banner-plugin/src/Migrations'
+```
 Optional, run fixtures to load one banner: 
 
 ```

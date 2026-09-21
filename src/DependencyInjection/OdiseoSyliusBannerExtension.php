@@ -91,7 +91,7 @@ final class OdiseoSyliusBannerExtension extends AbstractResourceExtension implem
 
     protected function getMigrationsNamespace(): string
     {
-        return 'DoctrineMigrations';
+        return 'Odiseo\\SyliusBannerPlugin\\Migrations';
     }
 
     protected function getMigrationsDirectory(): string

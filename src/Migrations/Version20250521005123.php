@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Migrations;
+namespace Odiseo\SyliusBannerPlugin\Migrations;
 
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
@@ -19,7 +19,9 @@ final class Version20250521005123 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        // this up() migration is auto-generated, please modify it to your needs
+        // Applied under the App\Migrations namespace before 2.1.1.
+        $this->skipIf($schema->hasTable('odiseo_banner'), 'The banner tables are already there.');
+
         $this->addSql(<<<'SQL'
             CREATE TABLE odiseo_banner (id INT AUTO_INCREMENT NOT NULL, code VARCHAR(255) NOT NULL, enabled TINYINT(1) NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, UNIQUE INDEX UNIQ_2FB97E5E77153098 (code), PRIMARY KEY(id)) DEFAULT CHARACTER SET UTF8 COLLATE `UTF8_unicode_ci` ENGINE = InnoDB
         SQL);
