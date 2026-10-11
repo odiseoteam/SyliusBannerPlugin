@@ -30,7 +30,7 @@ jobs:
                 php: ["8.2", "8.3"]
                 symfony: ["^6.4", "^7.1"]
                 sylius: ["~2.0.0", "~2.1.0", "~2.2.0", "~2.3.0"]
-                node: ["20.x"]
+                node: ["22.x"]
                 mysql: ["8.0"]
 
                 exclude:
@@ -127,6 +127,12 @@ jobs:
                 if: matrix.symfony != ''
                 run: |
                     composer config extra.symfony.require "${{ matrix.symfony }}"
+
+            -
+                # Sylius 2.1 mappings do not validate against doctrine/orm 3.7+.
+                name: Restrict Doctrine ORM version
+                if: matrix.sylius == '~2.1.0'
+                run: composer require "doctrine/orm:<3.7" --no-update --no-scripts --no-interaction
 
             -
                 name: Restrict Sylius version
