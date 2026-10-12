@@ -30,7 +30,7 @@ Releases previous to 2.1.0 are only listed on the
 - **An API for the admin and the shop**, on the API Platform version of each Sylius release (4.0 to
   5.0). The admin can list, filter, read, create, update and delete banners under
   `/api/v2/admin/banners`, and upload their images; the shop reads the enabled banners of its channel
-  under `/api/v2/shop/banners`, with the URLs of the rendered images. See the README.
+  under `/api/v2/shop/banners`, with the URLs of the rendered images. See `doc/api.md`.
 - Uploaded files have to be images, both in the admin panel and in the API.
 
 ### Changed

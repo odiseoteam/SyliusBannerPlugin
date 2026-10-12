@@ -1,30 +1,46 @@
-## Installation
+[Docs index](README.md) · [Managing banners →](managing-banners.md)
 
-1. Run `composer require odiseoteam/sylius-banner-plugin`
+# Installation
 
-2. Run `yarn add swiper@^11.2.7`
+## 1. Require the plugin
 
-3. Import the plugin assets in your shop entrypoint and build them
+```bash
+composer require odiseoteam/sylius-banner-plugin
+```
+
+## 2. Add the slider
+
+Several banners in the same place are rendered as a [Swiper.js](https://github.com/nolimits4web/swiper) slider:
+
+```bash
+yarn add swiper@^11.2.7
+```
+
+## 3. Import the assets
+
+Import the assets of the plugin in the entrypoint of your shop, and build them:
 
 ```js
 // assets/shop/entrypoint.js
 import '../../vendor/odiseoteam/sylius-banner-plugin/assets/shop/entrypoint';
 ```
 
-Then run `yarn encore dev` or `yarn encore production`.
+```bash
+yarn encore dev # or: yarn encore production
+```
 
-4. Import the plugin configurations
+## 4. Import the configuration
 
-```yml
+```yaml
 # config/packages/_sylius.yaml
 imports:
     # ...
     - { resource: "@OdiseoSyliusBannerPlugin/config/config.yaml" }
 ```
 
-5. Add the shop and admin routes
+## 5. Add the routes
 
-```yml
+```yaml
 # config/routes.yaml
 odiseo_sylius_banner_admin:
     resource: "@OdiseoSyliusBannerPlugin/config/admin_routing.yaml"
@@ -37,27 +53,43 @@ odiseo_sylius_banner_shop:
         _locale: ^[A-Za-z]{2,4}(_([A-Za-z]{4}|[0-9]{3}))?(_([A-Za-z]{2}|[0-9]{3}))?$
 ```
 
-6. Finish the installation updating by runing migrations
+## 6. Run the migrations
 
+```bash
+bin/console doctrine:migrations:migrate
+bin/console cache:clear
 ```
-php bin/console doctrine:migrations:migrate
-php bin/console cache:clear
-```
 
-The plugin registers its own migrations, so there is nothing to configure. If your application does
-not use `sylius-labs/doctrine-migrations-extra-bundle`, register them yourself:
+The plugin registers its own migrations, for MySQL and PostgreSQL, so there is nothing to
+configure. If your application does not use `sylius-labs/doctrine-migrations-extra-bundle`,
+register them yourself:
 
-```yml
+```yaml
 # config/packages/doctrine_migrations.yaml
 doctrine_migrations:
     migrations_paths:
         # ...
         'Odiseo\SyliusBannerPlugin\Migrations': '%kernel.project_dir%/vendor/odiseoteam/sylius-banner-plugin/src/Migrations'
 ```
-Optional, run fixtures to load four example banners:
 
-```
-php bin/console sylius:fixtures:load -n
+## Done
+
+There is a new **Banners** section under **Catalog** in the admin panel. Create a banner there and
+it shows up on the homepage: see [Managing banners](managing-banners.md).
+
+## Example banners
+
+The default fixtures of Sylius get four banners for the homepage and one for each of its main
+taxons:
+
+```bash
+bin/console sylius:fixtures:load
 ```
 
-7. Installation complete! Now you will see the new section under "Catalog" menu on the admin panel. Also you will see the banner on the homepage.
+> [!WARNING]
+> This reloads every fixture of the suite and replaces the data of the store. Use it on a
+> development database only.
+
+---
+
+[Docs index](README.md) · [Managing banners →](managing-banners.md)
