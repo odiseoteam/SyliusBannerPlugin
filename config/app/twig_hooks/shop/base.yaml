@@ -14,3 +14,8 @@ sylius_twig_hooks:
             banner:
                 template: '@OdiseoSyliusBannerPlugin/shop/banner/banner.html.twig'
 
+        'sylius_shop.product.index.content':
+            banner:
+                template: '@OdiseoSyliusBannerPlugin/shop/banner/taxon_banner.html.twig'
+                priority: 50
+

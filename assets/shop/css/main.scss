@@ -19,6 +19,19 @@
     }
 }
 
+// The banner of a taxon keeps its height when the page gets wider, and sits close to the products.
+.odiseo-taxon-banner {
+    > .banner-image-container,
+    > .banner-wrapper {
+        margin-bottom: -1.5rem;
+    }
+
+    .banner-image-container img {
+        height: auto;
+        max-height: 280px;
+    }
+}
+
 .show-on-mobile{
     display: none !important;
 }
@@ -27,7 +40,20 @@
 }
 
 @media(max-width:767px) {
-    .show-on-mobile{
+    // The banner of a taxon keeps its height when the page gets wider, and sits close to the products.
+.odiseo-taxon-banner {
+    > .banner-image-container,
+    > .banner-wrapper {
+        margin-bottom: -1.5rem;
+    }
+
+    .banner-image-container img {
+        height: auto;
+        max-height: 280px;
+    }
+}
+
+.show-on-mobile{
         display: block !important;
     }
     .hide-on-mobile{

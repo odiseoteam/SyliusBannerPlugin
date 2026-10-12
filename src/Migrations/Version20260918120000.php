@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace Odiseo\SyliusBannerPlugin\Migrations;
 
 use Doctrine\DBAL\Schema\Schema;
-use Doctrine\Migrations\AbstractMigration;
+use Sylius\Bundle\CoreBundle\Doctrine\Migrations\AbstractMigration;
 
+/** MySQL/MariaDB. Version20260918120001 is the PostgreSQL twin. */
 final class Version20260918120000 extends AbstractMigration
 {
     public function getDescription(): string

@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Odiseo\SyliusBannerPlugin\Form\Type;
 
+use Sylius\Bundle\AdminBundle\Form\Type\TaxonAutocompleteType;
 use Sylius\Bundle\ChannelBundle\Form\Type\ChannelChoiceType;
 use Sylius\Bundle\ResourceBundle\Form\EventSubscriber\AddCodeFormSubscriber;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Sylius\Bundle\ResourceBundle\Form\Type\ResourceTranslationsType;
-use Sylius\Bundle\TaxonomyBundle\Form\Type\TaxonAutocompleteChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -22,6 +22,7 @@ final class BannerType extends AbstractResourceType
         $builder
             ->addEventSubscriber(new AddCodeFormSubscriber())
             ->add('enabled', CheckboxType::class, [
+                'required' => false,
                 'label' => 'sylius.ui.enabled',
             ])
             ->add('position', IntegerType::class, [
@@ -33,10 +34,13 @@ final class BannerType extends AbstractResourceType
                 'entry_type' => BannerTranslationType::class,
                 'label' => 'odiseo_banner.form.banner.translations',
             ])
-            ->add('taxons', TaxonAutocompleteChoiceType::class, [
+            ->add('taxons', TaxonAutocompleteType::class, [
                 'required' => false,
                 'multiple' => true,
+                // Sylius 2.0 identifies the taxons by code and later versions by id.
+                'choice_value' => 'code',
                 'label' => 'odiseo_banner.form.banner.taxons',
+                'help' => 'odiseo_banner.ui.taxons_help',
             ])
             ->add('channels', ChannelChoiceType::class, [
                 'required' => false,

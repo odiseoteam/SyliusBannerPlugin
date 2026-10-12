@@ -19,7 +19,6 @@ final class BannerImageUploadListener
 
     public function uploadImage(GenericEvent $event): void
     {
-        /** @var BannerInterface $banner */
         $banner = $event->getSubject();
         Assert::isInstanceOf($banner, BannerInterface::class);
 

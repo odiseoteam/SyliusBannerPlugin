@@ -22,9 +22,11 @@ final class BannerTranslationType extends AbstractResourceType
         $builder
             ->add('imageFile', FileType::class, [
                 'label' => 'odiseo_banner.form.banner.image',
+                'help' => 'odiseo_banner.ui.image_help',
             ])
             ->add('mobileImageFile', FileType::class, [
                 'label' => 'odiseo_banner.form.banner.mobile_image',
+                'help' => 'odiseo_banner.ui.mobile_image_help',
                 'required' => false,
             ])
             ->add('url', TextType::class, [

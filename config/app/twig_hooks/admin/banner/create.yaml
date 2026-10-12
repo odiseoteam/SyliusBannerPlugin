@@ -9,19 +9,74 @@ sylius_twig_hooks:
                     template: '@OdiseoSyliusBannerPlugin/admin/banner/form.html.twig'
                 priority: 0
 
+        # The generic sections of the Sylius CRUD would render the whole form again.
         'odiseo_banner.admin.banner.create.content.form':
             sections:
-                template: '@OdiseoSyliusBannerPlugin/admin/banner/form/sections.html.twig'
+                enabled: false
+
+        'odiseo_banner.admin.banner.create.content.form#left':
+            translations:
+                template: '@OdiseoSyliusBannerPlugin/admin/banner/form/translations.html.twig'
                 priority: 0
 
-        'odiseo_banner.admin.banner.create.content.form.sections':
+        'odiseo_banner.admin.banner.create.content.form#right':
             general:
-                template: '@OdiseoSyliusBannerPlugin/admin/banner/form/sections/general.html.twig'
-                configuration:
-                    active: true
-                priority: 200
+                template: '@OdiseoSyliusBannerPlugin/admin/banner/form/general.html.twig'
+                priority: 100
+            visibility:
+                template: '@OdiseoSyliusBannerPlugin/admin/banner/form/visibility.html.twig'
+                priority: 0
 
-        'odiseo_banner.admin.banner.create.content.form.sections.translations':
-            name:
-                template: '@OdiseoSyliusBannerPlugin/admin/banner/form/sections/translations/fields.html.twig'
+        'odiseo_banner.admin.banner.create.content.form.general':
+            code:
+                template: '@OdiseoSyliusBannerPlugin/admin/banner/form/general/code.html.twig'
+                priority: 200
+            enabled:
+                template: '@OdiseoSyliusBannerPlugin/admin/banner/form/general/enabled.html.twig'
+                priority: 100
+            position:
+                template: '@OdiseoSyliusBannerPlugin/admin/banner/form/general/position.html.twig'
+                priority: 0
+
+        'odiseo_banner.admin.banner.create.content.form.visibility':
+            channels:
+                template: '@OdiseoSyliusBannerPlugin/admin/banner/form/visibility/channels.html.twig'
+                priority: 100
+            taxons:
+                template: '@OdiseoSyliusBannerPlugin/admin/banner/form/visibility/taxons.html.twig'
+                priority: 0
+
+        'odiseo_banner.admin.banner.create.content.form.translations':
+            images:
+                template: '@OdiseoSyliusBannerPlugin/admin/banner/form/translations/images.html.twig'
+                priority: 200
+            texts:
+                template: '@OdiseoSyliusBannerPlugin/admin/banner/form/translations/texts.html.twig'
+                priority: 100
+            link:
+                template: '@OdiseoSyliusBannerPlugin/admin/banner/form/translations/link.html.twig'
+                priority: 0
+
+        'odiseo_banner.admin.banner.create.content.form.translations.images':
+            image:
+                template: '@OdiseoSyliusBannerPlugin/admin/banner/form/translations/images/image.html.twig'
+                priority: 100
+            mobile_image:
+                template: '@OdiseoSyliusBannerPlugin/admin/banner/form/translations/images/mobile_image.html.twig'
+                priority: 0
+
+        'odiseo_banner.admin.banner.create.content.form.translations.texts':
+            main_text:
+                template: '@OdiseoSyliusBannerPlugin/admin/banner/form/translations/texts/main_text.html.twig'
+                priority: 100
+            secondary_text:
+                template: '@OdiseoSyliusBannerPlugin/admin/banner/form/translations/texts/secondary_text.html.twig'
+                priority: 0
+
+        'odiseo_banner.admin.banner.create.content.form.translations.link':
+            url:
+                template: '@OdiseoSyliusBannerPlugin/admin/banner/form/translations/link/url.html.twig'
+                priority: 100
+            button_text:
+                template: '@OdiseoSyliusBannerPlugin/admin/banner/form/translations/link/button_text.html.twig'
                 priority: 0

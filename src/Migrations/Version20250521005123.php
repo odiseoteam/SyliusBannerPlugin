@@ -5,16 +5,14 @@ declare(strict_types=1);
 namespace Odiseo\SyliusBannerPlugin\Migrations;
 
 use Doctrine\DBAL\Schema\Schema;
-use Doctrine\Migrations\AbstractMigration;
+use Sylius\Bundle\CoreBundle\Doctrine\Migrations\AbstractMigration;
 
-/**
- * Auto-generated Migration: Please modify to your needs!
- */
+/** MySQL/MariaDB. Version20250521005124 is the PostgreSQL twin. */
 final class Version20250521005123 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return '';
+        return 'Creates the banner tables.';
     }
 
     public function up(Schema $schema): void
@@ -53,7 +51,6 @@ final class Version20250521005123 extends AbstractMigration
 
     public function down(Schema $schema): void
     {
-        // this down() migration is auto-generated, please modify it to your needs
         $this->addSql(<<<'SQL'
             ALTER TABLE odiseo_banners_channels DROP FOREIGN KEY FK_AAD9CFD0684EC833
         SQL);

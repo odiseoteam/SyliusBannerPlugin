@@ -4,7 +4,14 @@
 
 2. Run `yarn add swiper@^11.2.7`
 
-3. Run `yarn encore dev` or `yarn encore production`
+3. Import the plugin assets in your shop entrypoint and build them
+
+```js
+// assets/shop/entrypoint.js
+import '../../vendor/odiseoteam/sylius-banner-plugin/assets/shop/entrypoint';
+```
+
+Then run `yarn encore dev` or `yarn encore production`.
 
 4. Import the plugin configurations
 
@@ -21,7 +28,7 @@ imports:
 # config/routes.yaml
 odiseo_sylius_banner_admin:
     resource: "@OdiseoSyliusBannerPlugin/config/admin_routing.yaml"
-    prefix: /admin
+    prefix: '/%sylius_admin.path_name%'
 
 odiseo_sylius_banner_shop:
     resource: "@OdiseoSyliusBannerPlugin/config/shop_routing.yaml"
@@ -47,7 +54,7 @@ doctrine_migrations:
         # ...
         'Odiseo\SyliusBannerPlugin\Migrations': '%kernel.project_dir%/vendor/odiseoteam/sylius-banner-plugin/src/Migrations'
 ```
-Optional, run fixtures to load one banner: 
+Optional, run fixtures to load four example banners:
 
 ```
 php bin/console sylius:fixtures:load -n

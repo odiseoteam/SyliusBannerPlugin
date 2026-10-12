@@ -46,11 +46,11 @@ final class OdiseoSyliusBannerExtensionTest extends TestCase
 
         self::assertSame(
             ['size' => [1920, 600], 'mode' => 'inset'],
-            $filterSets['odiseo_banner_image']['filters']['thumbnail'],
+            $this->thumbnail($filterSets['odiseo_banner_image']),
         );
         self::assertSame(
             ['size' => [768, 1000], 'mode' => 'inset'],
-            $filterSets['odiseo_banner_mobile_image']['filters']['thumbnail'],
+            $this->thumbnail($filterSets['odiseo_banner_mobile_image']),
         );
     }
 
@@ -72,6 +72,18 @@ final class OdiseoSyliusBannerExtensionTest extends TestCase
 
         $extension->prepend($container);
 
-        return $container->getExtensionConfig('liip_imagine')[0]['filter_sets'];
+        /** @var array<string, array<string, mixed>> $filterSets */
+        $filterSets = $container->getExtensionConfig('liip_imagine')[0]['filter_sets'] ?? [];
+
+        return $filterSets;
+    }
+
+    /** @param array<string, mixed> $filterSet */
+    private function thumbnail(array $filterSet): mixed
+    {
+        $filters = $filterSet['filters'] ?? null;
+        self::assertIsArray($filters);
+
+        return $filters['thumbnail'] ?? null;
     }
 }

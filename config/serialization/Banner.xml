@@ -1,44 +1,78 @@
 <?xml version="1.0" ?>
 
-<serializer xmlns="http://symfony.com/schema/dic/serializer-mapping"
-            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:schemaLocation="http://symfony.com/schema/dic/serializer-mapping https://symfony.com/schema/dic/serializer-mapping/serializer-mapping-1.0.xsd"
+<serializer
+    xmlns="http://symfony.com/schema/dic/serializer-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/serializer-mapping https://symfony.com/schema/dic/serializer-mapping/serializer-mapping-1.0.xsd"
 >
     <class name="Odiseo\SyliusBannerPlugin\Entity\Banner">
         <attribute name="id">
-            <group>admin:banner:read</group>
-            <group>shop:banner:read</group>
+            <group>odiseo:admin:banner:index</group>
+            <group>odiseo:admin:banner:show</group>
         </attribute>
         <attribute name="code">
-            <group>admin:banner:create</group>
-            <group>admin:banner:read</group>
-            <group>shop:banner:read</group>
+            <group>odiseo:admin:banner:index</group>
+            <group>odiseo:admin:banner:show</group>
+            <group>odiseo:shop:banner:index</group>
+            <group>odiseo:shop:banner:show</group>
+        </attribute>
+        <attribute name="position">
+            <group>odiseo:admin:banner:index</group>
+            <group>odiseo:admin:banner:show</group>
+            <group>odiseo:admin:banner:update</group>
+            <group>odiseo:shop:banner:index</group>
+            <group>odiseo:shop:banner:show</group>
         </attribute>
         <attribute name="enabled">
-            <group>admin:banner:create</group>
-            <group>admin:banner:read</group>
-            <group>admin:banner:update</group>
-            <group>shop:banner:read</group>
-        </attribute>
-        <attribute name="translations">
-            <group>admin:banner:create</group>
-            <group>admin:banner:read</group>
-            <group>admin:banner:update</group>
-            <group>shop:banner:read</group>
+            <group>odiseo:admin:banner:index</group>
+            <group>odiseo:admin:banner:show</group>
+            <group>odiseo:admin:banner:update</group>
         </attribute>
         <attribute name="channels">
-            <group>admin:banner:create</group>
-            <group>admin:banner:read</group>
-            <group>admin:banner:update</group>
-            <group>shop:banner:read</group>
+            <group>odiseo:admin:banner:index</group>
+            <group>odiseo:admin:banner:show</group>
+            <group>odiseo:admin:banner:update</group>
+        </attribute>
+        <attribute name="taxons">
+            <group>odiseo:admin:banner:index</group>
+            <group>odiseo:admin:banner:show</group>
+            <group>odiseo:admin:banner:update</group>
+        </attribute>
+        <attribute name="translations">
+            <group>odiseo:admin:banner:index</group>
+            <group>odiseo:admin:banner:show</group>
+        </attribute>
+        <attribute name="url">
+            <group>odiseo:shop:banner:index</group>
+            <group>odiseo:shop:banner:show</group>
+        </attribute>
+        <attribute name="mainText">
+            <group>odiseo:shop:banner:index</group>
+            <group>odiseo:shop:banner:show</group>
+        </attribute>
+        <attribute name="secondaryText">
+            <group>odiseo:shop:banner:index</group>
+            <group>odiseo:shop:banner:show</group>
+        </attribute>
+        <attribute name="buttonText">
+            <group>odiseo:shop:banner:index</group>
+            <group>odiseo:shop:banner:show</group>
+        </attribute>
+        <attribute name="imageName">
+            <group>odiseo:shop:banner:index</group>
+            <group>odiseo:shop:banner:show</group>
+        </attribute>
+        <attribute name="mobileImageName">
+            <group>odiseo:shop:banner:index</group>
+            <group>odiseo:shop:banner:show</group>
         </attribute>
         <attribute name="createdAt">
-            <group>admin:banner:read</group>
-            <group>shop:banner:read</group>
+            <group>odiseo:admin:banner:index</group>
+            <group>odiseo:admin:banner:show</group>
         </attribute>
         <attribute name="updatedAt">
-            <group>admin:banner:read</group>
-            <group>shop:banner:read</group>
+            <group>odiseo:admin:banner:index</group>
+            <group>odiseo:admin:banner:show</group>
         </attribute>
     </class>
 </serializer>

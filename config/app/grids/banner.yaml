@@ -24,6 +24,12 @@ sylius_grid:
                     path: mobileImageName
                     options:
                         template: "@OdiseoSyliusBannerPlugin/admin/banner/grid/field/mobile_image.html.twig"
+                taxons:
+                    type: twig
+                    label: odiseo_banner.ui.shown_on
+                    path: taxons
+                    options:
+                        template: "@OdiseoSyliusBannerPlugin/admin/banner/grid/field/taxons.html.twig"
                 position:
                     type: string
                     label: sylius.ui.position
@@ -44,6 +50,17 @@ sylius_grid:
                 code:
                     type: string
                     label: sylius.ui.code
+                taxon:
+                    type: ux_translatable_autocomplete
+                    label: sylius.ui.taxon
+                    form_options:
+                        multiple: false
+                        extra_options:
+                            class: '%sylius.model.taxon.class%'
+                            translation_fields: [name]
+                            choice_label: fullname
+                    options:
+                        fields: [taxons.id]
                 enabled:
                     type: boolean
                     label: sylius.ui.enabled

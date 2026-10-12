@@ -1,22 +1,21 @@
-includes:
-    - phpstan-baseline.neon
-
 parameters:
     level: max
     reportUnmatchedIgnoredErrors: false
     paths:
         - src
-        - tests/Behat
+        - tests
 
     excludePaths:
-        # Makes PHPStan crash
-        - 'src/DependencyInjection/Configuration.php'
-
-        # Test dependencies
-        - 'tests/Application/app/**.php'
-        - 'tests/Application/src/**.php'
+        - 'tests/TestApplication/**'
 
     ignoreErrors:
-        - '/Parameter #1 \$configuration of method Symfony\\Component\\DependencyInjection\\Extension\\Extension::processConfiguration\(\) expects Symfony\\Component\\Config\\Definition\\ConfigurationInterface, Symfony\\Component\\Config\\Definition\\ConfigurationInterface\|null given\./'
+        # Which Sylius repositories and factories are generic depends on the Sylius version.
         -
-            identifier: missingType.iterableValue
+            identifier: missingType.generics
+        # Symfony 6.4 types the config tree builder loosely (fine on 7.4).
+        -
+            identifier: method.notFound
+            path: src/DependencyInjection/Configuration.php
+        -
+            identifier: method.nonObject
+            path: src/DependencyInjection/Configuration.php

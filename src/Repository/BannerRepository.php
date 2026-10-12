@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Odiseo\SyliusBannerPlugin\Repository;
 
 use Doctrine\ORM\QueryBuilder;
+use Odiseo\SyliusBannerPlugin\Entity\BannerInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Component\Channel\Model\ChannelInterface;
 use Sylius\Component\Taxonomy\Model\TaxonInterface;
@@ -39,16 +40,37 @@ class BannerRepository extends EntityRepository implements BannerRepositoryInter
 
     public function findByChannel(ChannelInterface $channel): array
     {
-        return $this->findByEnabledQueryBuilder($channel, null)->getQuery()->getResult();
+        /** @var array<BannerInterface> $banners */
+        $banners = $this->findByEnabledQueryBuilder($channel, null)->getQuery()->getResult();
+
+        return $banners;
+    }
+
+    public function findWithoutTaxonByChannel(ChannelInterface $channel): array
+    {
+        /** @var array<BannerInterface> $banners */
+        $banners = $this->findByEnabledQueryBuilder($channel, null)
+            ->andWhere('b.taxons IS EMPTY')
+            ->getQuery()
+            ->getResult()
+        ;
+
+        return $banners;
     }
 
     public function findByTaxon(TaxonInterface $taxon): array
     {
-        return $this->findByEnabledQueryBuilder(null, $taxon)->getQuery()->getResult();
+        /** @var array<BannerInterface> $banners */
+        $banners = $this->findByEnabledQueryBuilder(null, $taxon)->getQuery()->getResult();
+
+        return $banners;
     }
 
     public function findByChannelAndTaxon(ChannelInterface $channel, TaxonInterface $taxon): array
     {
-        return $this->findByEnabledQueryBuilder($channel, $taxon)->getQuery()->getResult();
+        /** @var array<BannerInterface> $banners */
+        $banners = $this->findByEnabledQueryBuilder($channel, $taxon)->getQuery()->getResult();
+
+        return $banners;
     }
 }

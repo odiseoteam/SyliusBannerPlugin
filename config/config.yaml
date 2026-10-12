@@ -4,13 +4,10 @@ imports:
     - { resource: "@OdiseoSyliusBannerPlugin/config/app/resources/**/*.yaml" }
     - { resource: "@OdiseoSyliusBannerPlugin/config/app/fixtures/*.yaml"}
 
-knp_gaufrette:
-    stream_wrapper: ~
-    adapters:
-        odiseo_banner_image:
-            local:
-                directory: "%sylius_core.public_dir%/media/banner-image"
-                create: true
-    filesystems:
-        odiseo_banner_image:
-            adapter: odiseo_banner_image
+flysystem:
+    storages:
+        odiseo_banner.storage.banner_image:
+            adapter: 'local'
+            options:
+                directory: '%sylius_core.public_dir%/media/banner-image'
+            directory_visibility: 'public'

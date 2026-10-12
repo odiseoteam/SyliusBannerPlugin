@@ -11,10 +11,12 @@ use Odiseo\SyliusBannerPlugin\Entity\BannerInterface;
 use Sylius\Bundle\CoreBundle\Fixture\Factory\AbstractExampleFactory;
 use Sylius\Bundle\CoreBundle\Fixture\OptionsResolver\LazyOption;
 use Sylius\Bundle\ResourceBundle\Event\ResourceControllerEvent;
+use Sylius\Component\Channel\Model\ChannelInterface;
 use Sylius\Component\Channel\Repository\ChannelRepositoryInterface;
 use Sylius\Component\Locale\Model\LocaleInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
+use Sylius\Component\Taxonomy\Model\TaxonInterface;
 use Sylius\Component\Taxonomy\Repository\TaxonRepositoryInterface;
 use Symfony\Component\Config\FileLocatorInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -28,10 +30,6 @@ class BannerExampleFactory extends AbstractExampleFactory
 
     protected OptionsResolver $optionsResolver;
 
-    /**
-     * @param RepositoryInterface<T> $channelRepository
-     * @param RepositoryInterface<T> $taxonRepository
-     */
     public function __construct(
         protected FactoryInterface $bannerFactory,
         protected ChannelRepositoryInterface $channelRepository,
@@ -46,20 +44,29 @@ class BannerExampleFactory extends AbstractExampleFactory
         $this->configureOptions($this->optionsResolver);
     }
 
+    /** @param array<string, mixed> $options */
     public function create(array $options = []): BannerInterface
     {
+        /** @var array{code: string, position: int, channels: array<ChannelInterface>, taxons: iterable<TaxonInterface|null>, image: string, mobile_image: string|null, main_text: string|null, secondary_text: string|null, button_text: string|null, url: string|null} $options */
         $options = $this->optionsResolver->resolve($options);
 
         /** @var BannerInterface $banner */
         $banner = $this->bannerFactory->createNew();
         $banner->setCode($options['code']);
+        $banner->setPosition($options['position']);
 
-        foreach ($options['channels'] as $channel) {
+        // A banner without channels is never shown: when none is set, it goes to all of them.
+        /** @var iterable<ChannelInterface> $channels */
+        $channels = [] === $options['channels'] ? $this->channelRepository->findAll() : $options['channels'];
+        foreach ($channels as $channel) {
             $banner->addChannel($channel);
         }
 
         foreach ($options['taxons'] as $taxon) {
-            $banner->addTaxon($taxon);
+            // A store may not have the taxon the default banners point at.
+            if ($taxon instanceof TaxonInterface) {
+                $banner->addTaxon($taxon);
+            }
         }
 
         /** @var string $localeCode */
@@ -122,6 +129,9 @@ class BannerExampleFactory extends AbstractExampleFactory
             })
             ->setAllowedTypes('code', ['string'])
 
+            ->setDefault('position', 0)
+            ->setAllowedTypes('position', ['int'])
+
             ->setDefault('main_text', null)
             ->setAllowedTypes('main_text', ['string', 'null'])
 
@@ -137,12 +147,12 @@ class BannerExampleFactory extends AbstractExampleFactory
             ->setAllowedTypes('url', ['string', 'null'])
 
             ->setDefault('image', function (Options $_options): string {
-                return __DIR__ . '/../../../config/app/fixtures/images/banner1.png';
+                return __DIR__ . '/../../../config/app/fixtures/images/banner1.jpg';
             })
             ->setAllowedTypes('image', ['string'])
 
             ->setDefault('mobile_image', function (Options $_options): string {
-                return __DIR__ . '/../../../config/app/fixtures/images/banner1.png';
+                return __DIR__ . '/../../../config/app/fixtures/images/banner1_mobile.jpg';
             })
             ->setAllowedTypes('mobile_image', ['string', 'null'])
 

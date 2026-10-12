@@ -1,7 +1,7 @@
 {% form_theme form '@SyliusAdmin/shared/form_theme.html.twig' %}
 
 <div class="container-xl" {{ attributes }}>
-    {{ form_start(form, {'attr': {'class': 'ui loadable form', 'novalidate': 'novalidate', 'id': form.vars.id}}) }}
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'id': form.vars.id}}) }}
     {% if hookable_metadata.configuration.method is defined %}
         <input type="hidden" name="_method" value="{{ hookable_metadata.configuration.method }}" />
     {% endif %}
@@ -9,6 +9,15 @@
     {{ form_widget(form._token) }}
 
     {% hook 'form' with { form } %}
+
+    <div class="row">
+        <div class="col-12 col-lg-8">
+            {% hook 'form#left' with { form } %}
+        </div>
+        <div class="col-12 col-lg-4">
+            {% hook 'form#right' with { form } %}
+        </div>
+    </div>
 
     {{ form_end(form, {render_rest: false}) }}
 </div>

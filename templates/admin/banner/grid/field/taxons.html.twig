@@ -1,0 +1,7 @@
+{% import '@SyliusUi/macro/labels.html.twig' as label %}
+
+{% for taxon in data %}
+    <span class="badge bg-azure-lt">{{ taxon.name }}</span>
+{% else %}
+    {{ label.default('odiseo_banner.ui.homepage'|trans) }}
+{% endfor %}

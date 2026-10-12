@@ -17,5 +17,37 @@
 
             <tag name="sylius.live_component.admin" key="sylius_admin:banner:form" />
         </service>
+
+        <service
+            id="odiseo_banner.twig.component.shop.banners"
+            class="Odiseo\SyliusBannerPlugin\Twig\Component\Shop\BannersComponent"
+        >
+            <argument type="service" id="odiseo_banner.repository.banner" />
+            <argument type="service" id="sylius.context.channel" />
+            <argument type="service" id="odiseo_banner.provider.taxon_banners" />
+
+            <tag
+                name="sylius.twig_component"
+                key="odiseo_banner:shop:banners"
+                template="@OdiseoSyliusBannerPlugin/shop/banner/content/index.html.twig"
+            />
+        </service>
+
+        <service
+            id="odiseo_banner.twig.component.shop.taxon_banners"
+            class="Odiseo\SyliusBannerPlugin\Twig\Component\Shop\TaxonBannersComponent"
+        >
+            <argument type="service" id="odiseo_banner.provider.taxon_banners" />
+            <argument type="service" id="sylius.context.channel" />
+            <argument type="service" id="request_stack" />
+            <argument type="service" id="sylius.repository.taxon" />
+            <argument type="service" id="sylius.context.locale" />
+
+            <tag
+                name="sylius.twig_component"
+                key="odiseo_banner:shop:taxon_banners"
+                template="@OdiseoSyliusBannerPlugin/shop/banner/content/index.html.twig"
+            />
+        </service>
     </services>
 </container>

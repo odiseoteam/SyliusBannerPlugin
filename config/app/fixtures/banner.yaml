@@ -4,4 +4,56 @@ sylius_fixtures:
             fixtures:
                 banner:
                     options:
-                        random: 1
+                        custom:
+                            -
+                                code: 'new_collection'
+                                position: 1
+                                url: ~
+                                image: '@OdiseoSyliusBannerPlugin/config/app/fixtures/images/banner1.jpg'
+                                mobile_image: '@OdiseoSyliusBannerPlugin/config/app/fixtures/images/banner1_mobile.jpg'
+                            -
+                                code: 'summer_sale'
+                                position: 2
+                                url: ~
+                                image: '@OdiseoSyliusBannerPlugin/config/app/fixtures/images/banner2.jpg'
+                                mobile_image: '@OdiseoSyliusBannerPlugin/config/app/fixtures/images/banner2_mobile.jpg'
+                            -
+                                code: 'free_shipping'
+                                position: 3
+                                url: ~
+                                image: '@OdiseoSyliusBannerPlugin/config/app/fixtures/images/banner3.jpg'
+                                mobile_image: '@OdiseoSyliusBannerPlugin/config/app/fixtures/images/banner3_mobile.jpg'
+                            -
+                                code: 'new_arrivals'
+                                position: 4
+                                url: ~
+                                image: '@OdiseoSyliusBannerPlugin/config/app/fixtures/images/banner4.jpg'
+                                mobile_image: '@OdiseoSyliusBannerPlugin/config/app/fixtures/images/banner4_mobile.jpg'
+                            -
+                                code: 't_shirts_banner'
+                                position: 5
+                                url: ~
+                                taxons: ['t_shirts']
+                                image: '@OdiseoSyliusBannerPlugin/config/app/fixtures/images/taxon_t_shirts.jpg'
+                                mobile_image: ~
+                            -
+                                code: 'caps_banner'
+                                position: 6
+                                url: ~
+                                taxons: ['caps']
+                                image: '@OdiseoSyliusBannerPlugin/config/app/fixtures/images/taxon_caps.jpg'
+                                mobile_image: ~
+                            -
+                                code: 'dresses_banner'
+                                position: 7
+                                url: ~
+                                taxons: ['dresses']
+                                image: '@OdiseoSyliusBannerPlugin/config/app/fixtures/images/taxon_dresses.jpg'
+                                mobile_image: ~
+                            -
+                                code: 'jeans_banner'
+                                position: 8
+                                url: ~
+                                taxons: ['jeans']
+                                image: '@OdiseoSyliusBannerPlugin/config/app/fixtures/images/taxon_jeans.jpg'
+                                mobile_image: ~

@@ -5,6 +5,16 @@ odiseo_banner:
         edit_banner: Edit banner
         new_banner: New banner
         mobile_image: Mobile image
+        visibility: 'Visibility'
+        content: 'Content'
+        images: 'Images'
+        texts: 'Texts'
+        link: 'Link'
+        homepage: 'Homepage'
+        shown_on: 'Shown on'
+        taxons_help: 'Leave it empty to show the banner on the homepage. With taxons, it is shown only on their pages.'
+        image_help: 'Recommended size: 1920 × 600 px.'
+        mobile_image_help: 'Optional, replaces the image on small screens. Recommended size: 768 × 1000 px.'
     menu:
         admin:
             banners: Banners

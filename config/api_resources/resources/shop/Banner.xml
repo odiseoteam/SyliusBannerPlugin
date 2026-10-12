@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<resources
+    xmlns="https://api-platform.com/schema/metadata/resources-3.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://api-platform.com/schema/metadata/resources-3.0 https://api-platform.com/schema/metadata/resources-3.0.xsd"
+>
+    <!-- Sylius builds the IRIs of each section from the operations named "sylius_api_<section>_". -->
+    <resource class="%odiseo_banner.model.banner.class%">
+        <operations>
+            <operation
+                name="sylius_api_shop_odiseo_banner_get_collection"
+                class="ApiPlatform\Metadata\GetCollection"
+                uriTemplate="/shop/banners"
+            >
+                <normalizationContext>
+                    <values>
+                        <value name="groups">
+                            <values>
+                                <value>odiseo:shop:banner:index</value>
+                            </values>
+                        </value>
+                    </values>
+                </normalizationContext>
+                <filters>
+                    <filter>odiseo_banner.api.search_filter.shop.banner</filter>
+                    <filter>odiseo_banner.api.exists_filter.shop.banner</filter>
+                </filters>
+                <order>
+                    <values>
+                        <value name="position">ASC</value>
+                        <value name="id">ASC</value>
+                    </values>
+                </order>
+            </operation>
+
+            <operation
+                name="sylius_api_shop_odiseo_banner_get"
+                class="ApiPlatform\Metadata\Get"
+                uriTemplate="/shop/banners/{code}"
+            >
+                <normalizationContext>
+                    <values>
+                        <value name="groups">
+                            <values>
+                                <value>odiseo:shop:banner:show</value>
+                            </values>
+                        </value>
+                    </values>
+                </normalizationContext>
+            </operation>
+        </operations>
+    </resource>
+</resources>
