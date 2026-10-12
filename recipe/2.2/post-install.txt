@@ -1,0 +1,12 @@
+  <bg=blue;fg=white>              </>
+  <bg=blue;fg=white> What's next? </>
+  <bg=blue;fg=white>              </>
+
+  * <fg=blue>Run</> the migrations:
+    <comment>bin/console doctrine:migrations:migrate</>
+
+  * <fg=blue>Add</> the slider and import the plugin assets in your shop entrypoint:
+    <comment>yarn add swiper@^11.2.7</>
+
+  * <fg=blue>Read</> the documentation at
+    <comment>https://github.com/odiseoteam/SyliusBannerPlugin#readme</>

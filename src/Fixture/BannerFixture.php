@@ -14,6 +14,7 @@ class BannerFixture extends AbstractResourceFixture
         $node = $resourceNode->children();
 
         $node->scalarNode('code')->cannotBeEmpty();
+        $node->integerNode('position');
         $node->arrayNode('channels')->scalarPrototype();
         $node->arrayNode('taxons')->scalarPrototype();
         $node->scalarNode('url');

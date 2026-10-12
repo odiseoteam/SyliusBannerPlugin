@@ -6,7 +6,7 @@ odiseo_banner_shop_partial_banner:
         _sylius:
             template: $template
             repository:
-                method: findByChannel
+                method: findWithoutTaxonByChannel
                 arguments:
                     - "expr:service('sylius.context.channel').getChannel()"
 

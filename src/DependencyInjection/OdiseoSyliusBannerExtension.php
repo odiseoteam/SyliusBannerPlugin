@@ -23,12 +23,24 @@ final class OdiseoSyliusBannerExtension extends AbstractResourceExtension implem
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../../config'));
 
         $loader->load('services.xml');
+
+        /** @var array<string, class-string> $bundles */
+        $bundles = $container->getParameter('kernel.bundles');
+        if (isset($bundles['ApiPlatformBundle'], $bundles['SyliusApiBundle'])) {
+            $loader->load('api.xml');
+        }
     }
 
     public function prepend(ContainerBuilder $container): void
     {
         $this->prependDoctrineMigrations($container);
         $this->prependLiipImagine($container);
+
+        if ($container->hasExtension('api_platform')) {
+            $container->prependExtensionConfig('api_platform', [
+                'mapping' => ['paths' => [\dirname(__DIR__, 2) . '/config/api_resources']],
+            ]);
+        }
     }
 
     private function prependLiipImagine(ContainerBuilder $container): void
@@ -99,6 +111,7 @@ final class OdiseoSyliusBannerExtension extends AbstractResourceExtension implem
         return '@OdiseoSyliusBannerPlugin/src/Migrations';
     }
 
+    /** @return array<string> */
     protected function getNamespacesOfMigrationsExecutedBefore(): array
     {
         return [

@@ -15,3 +15,6 @@ Odiseo\SyliusBannerPlugin\Entity\Banner:
                 minMessage: 'odiseo_banner.banner.code.min_length'
                 maxMessage: 'odiseo_banner.banner.code.max_length'
                 groups: ['odiseo']
+        translations:
+            - Valid:
+                groups: ['odiseo_banner_api']

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="odiseo_banner.behat.page.admin.banner.index" class="Sylius\Behat\Page\Admin\Crud\IndexPage" parent="sylius.behat.page.admin.crud.index">
+            <argument type="string">odiseo_banner_admin_banner_index</argument>
+        </service>
+        <service id="odiseo_banner.behat.page.admin.banner.create" class="Tests\Odiseo\SyliusBannerPlugin\Behat\Page\Admin\Banner\CreatePage" parent="sylius.behat.page.admin.crud.create">
+            <argument type="string">odiseo_banner_admin_banner_create</argument>
+        </service>
+        <service id="odiseo_banner.behat.page.admin.banner.update" class="Tests\Odiseo\SyliusBannerPlugin\Behat\Page\Admin\Banner\UpdatePage" parent="sylius.behat.page.admin.crud.update">
+            <argument type="string">odiseo_banner_admin_banner_update</argument>
+        </service>
+    </services>
+</container>

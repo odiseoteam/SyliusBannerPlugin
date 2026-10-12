@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<resources
+    xmlns="https://api-platform.com/schema/metadata/resources-3.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://api-platform.com/schema/metadata/resources-3.0 https://api-platform.com/schema/metadata/resources-3.0.xsd"
+>
+    <!-- Sylius builds the IRIs of each section from the operations named "sylius_api_<section>_". -->
+    <resource class="%odiseo_banner.model.banner.class%">
+        <operations>
+            <operation
+                name="sylius_api_admin_odiseo_banner_get_collection"
+                class="ApiPlatform\Metadata\GetCollection"
+                uriTemplate="/admin/banners"
+            >
+                <normalizationContext>
+                    <values>
+                        <value name="groups">
+                            <values>
+                                <value>odiseo:admin:banner:index</value>
+                            </values>
+                        </value>
+                    </values>
+                </normalizationContext>
+                <filters>
+                    <filter>odiseo_banner.api.search_filter.admin.banner</filter>
+                    <filter>odiseo_banner.api.boolean_filter.admin.banner</filter>
+                    <filter>odiseo_banner.api.order_filter.admin.banner</filter>
+                </filters>
+                <order>
+                    <values>
+                        <value name="position">ASC</value>
+                        <value name="id">ASC</value>
+                    </values>
+                </order>
+            </operation>
+
+            <operation
+                name="sylius_api_admin_odiseo_banner_post"
+                class="ApiPlatform\Metadata\Post"
+                uriTemplate="/admin/banners"
+                provider="odiseo_banner.api.state_provider.admin.banner.new"
+                processor="odiseo_banner.api.state_processor.admin.banner.create"
+                read="true"
+                deserialize="false"
+                validate="false"
+            >
+                <inputFormats>
+                    <format name="multipart">multipart/form-data</format>
+                </inputFormats>
+                <normalizationContext>
+                    <values>
+                        <value name="groups">
+                            <values>
+                                <value>odiseo:admin:banner:show</value>
+                            </values>
+                        </value>
+                    </values>
+                </normalizationContext>
+            </operation>
+
+            <operation
+                name="sylius_api_admin_odiseo_banner_get"
+                class="ApiPlatform\Metadata\Get"
+                uriTemplate="/admin/banners/{code}"
+            >
+                <normalizationContext>
+                    <values>
+                        <value name="groups">
+                            <values>
+                                <value>odiseo:admin:banner:show</value>
+                            </values>
+                        </value>
+                    </values>
+                </normalizationContext>
+            </operation>
+
+            <operation
+                name="sylius_api_admin_odiseo_banner_put"
+                class="ApiPlatform\Metadata\Put"
+                uriTemplate="/admin/banners/{code}"
+            >
+                <denormalizationContext>
+                    <values>
+                        <value name="groups">
+                            <values>
+                                <value>odiseo:admin:banner:update</value>
+                            </values>
+                        </value>
+                    </values>
+                </denormalizationContext>
+                <normalizationContext>
+                    <values>
+                        <value name="groups">
+                            <values>
+                                <value>odiseo:admin:banner:show</value>
+                            </values>
+                        </value>
+                    </values>
+                </normalizationContext>
+                <validationContext>
+                    <values>
+                        <value name="groups">
+                            <values>
+                                <value>odiseo</value>
+                                <value>odiseo_banner_api</value>
+                            </values>
+                        </value>
+                    </values>
+                </validationContext>
+            </operation>
+
+            <operation
+                name="sylius_api_admin_odiseo_banner_delete"
+                class="ApiPlatform\Metadata\Delete"
+                uriTemplate="/admin/banners/{code}"
+            />
+
+            <operation
+                name="sylius_api_admin_odiseo_banner_images_post"
+                class="ApiPlatform\Metadata\Post"
+                uriTemplate="/admin/banners/{code}/images"
+                processor="odiseo_banner.api.state_processor.admin.banner.upload_images"
+                deserialize="false"
+                validate="false"
+            >
+                <inputFormats>
+                    <format name="multipart">multipart/form-data</format>
+                </inputFormats>
+                <normalizationContext>
+                    <values>
+                        <value name="groups">
+                            <values>
+                                <value>odiseo:admin:banner:show</value>
+                            </values>
+                        </value>
+                    </values>
+                </normalizationContext>
+            </operation>
+        </operations>
+    </resource>
+</resources>

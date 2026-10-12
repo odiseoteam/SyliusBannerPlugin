@@ -1,0 +1,17 @@
+{% set form = hookable_metadata.context.form %}
+{% set locale = hookable_metadata.context.locale %}
+{% set translation = form.vars.value %}
+
+<div class="col-12 col-md-6">
+    {{ form_row(form.mobileImageFile, sylius_test_form_attribute('mobile-image', locale)) }}
+    {% if translation and translation.mobileImageName %}
+        <a href="{{ translation.mobileImageName|imagine_filter('odiseo_banner_mobile_image') }}" target="_blank" class="d-block mb-3">
+            <img
+                src="{{ translation.mobileImageName|imagine_filter('odiseo_banner_mobile_image') }}"
+                alt="{{ translation.mobileImageName }}"
+                class="img-fluid rounded border"
+                {{ sylius_test_html_attribute('mobile-image-preview', locale) }}
+            >
+        </a>
+    {% endif %}
+</div>

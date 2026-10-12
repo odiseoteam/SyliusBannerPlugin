@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <services>
+        <service id="odiseo_banner.api.banner_storer" class="Odiseo\SyliusBannerPlugin\Api\Banner\BannerStorer">
+            <argument type="service" id="validator" />
+            <argument type="service" id="odiseo_banner.uploader.banner_image" />
+        </service>
+
+        <service id="odiseo_banner.api.state_provider.admin.banner.new" class="Odiseo\SyliusBannerPlugin\Api\StateProvider\Admin\NewBannerProvider">
+            <argument type="service" id="odiseo_banner.factory.banner" />
+            <tag name="api_platform.state_provider" />
+        </service>
+
+        <service id="odiseo_banner.api.state_processor.admin.banner.create" class="Odiseo\SyliusBannerPlugin\Api\StateProcessor\Admin\CreateBannerProcessor">
+            <argument type="service" id="api_platform.doctrine.orm.state.persist_processor" />
+            <argument type="service" id="odiseo_banner.factory.banner_translation" />
+            <argument type="service" id="api_platform.iri_converter" />
+            <argument type="service" id="sylius.translation_locale_provider" />
+            <argument type="service" id="odiseo_banner.api.banner_storer" />
+            <tag name="api_platform.state_processor" />
+        </service>
+
+        <service id="odiseo_banner.api.state_processor.admin.banner.upload_images" class="Odiseo\SyliusBannerPlugin\Api\StateProcessor\Admin\UploadBannerImagesProcessor">
+            <argument type="service" id="api_platform.doctrine.orm.state.persist_processor" />
+            <argument type="service" id="odiseo_banner.repository.banner" />
+            <argument type="service" id="odiseo_banner.factory.banner_translation" />
+            <argument type="service" id="odiseo_banner.api.banner_storer" />
+            <tag name="api_platform.state_processor" />
+        </service>
+
+        <service id="odiseo_banner.api.doctrine.orm.query_extension.shop.banner.channel_based" class="Odiseo\SyliusBannerPlugin\Api\Doctrine\QueryExtension\Shop\ChannelBasedExtension">
+            <argument type="service" id="sylius.section_resolver.uri_based" />
+            <tag name="api_platform.doctrine.orm.query_extension.collection" />
+            <tag name="api_platform.doctrine.orm.query_extension.item" />
+        </service>
+
+        <service id="odiseo_banner.api.normalizer.banner_image" class="Odiseo\SyliusBannerPlugin\Api\Serializer\BannerImageNormalizer">
+            <argument type="service" id="liip_imagine.cache.manager" />
+            <tag name="serializer.normalizer" priority="64" />
+        </service>
+
+        <service id="odiseo_banner.api.denormalizer.banner_translations" class="Odiseo\SyliusBannerPlugin\Api\Serializer\BannerTranslationsDenormalizer">
+            <argument type="service" id="odiseo_banner.factory.banner_translation" />
+            <tag name="serializer.normalizer" priority="64" />
+        </service>
+
+        <service id="odiseo_banner.api.search_filter.admin.banner" parent="api_platform.doctrine.orm.search_filter">
+            <argument type="collection">
+                <argument key="code">partial</argument>
+                <argument key="taxons.code">exact</argument>
+            </argument>
+            <tag name="api_platform.filter" />
+        </service>
+
+        <service id="odiseo_banner.api.boolean_filter.admin.banner" parent="api_platform.doctrine.orm.boolean_filter">
+            <argument type="collection">
+                <argument key="enabled" />
+            </argument>
+            <tag name="api_platform.filter" />
+        </service>
+
+        <service id="odiseo_banner.api.order_filter.admin.banner" parent="api_platform.doctrine.orm.order_filter">
+            <argument type="collection">
+                <argument key="code" />
+                <argument key="position" />
+                <argument key="createdAt" />
+            </argument>
+            <tag name="api_platform.filter" />
+        </service>
+
+        <service id="odiseo_banner.api.search_filter.shop.banner" parent="api_platform.doctrine.orm.search_filter">
+            <argument type="collection">
+                <argument key="taxons.code">exact</argument>
+            </argument>
+            <tag name="api_platform.filter" />
+        </service>
+
+        <service id="odiseo_banner.api.exists_filter.shop.banner" parent="api_platform.doctrine.orm.exists_filter">
+            <argument type="collection">
+                <argument key="taxons" />
+            </argument>
+            <tag name="api_platform.filter" />
+        </service>
+    </services>
+</container>
